@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="id01" class="modal">
+  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+  <form class="modal-content">
+    <div class="container">
+      <div class="title_container">
+        <span class="title">Tripmefy</span>
+        <span class="subtitle">Por favor, rellena este formulario para registrarte</span>
+      </div>
+      <hr>
+
+      <div class="name_surname_container ns1">
+        <input type="text" placeholder="Introduce tu nombre" required>
+      </div>
+
+      <div class="name_surname_container ns2">
+        <input type="text" placeholder="Introduce tu Apellidos" required>
+      </div>
+
+      <input type="email" placeholder="Introduce tu email" required>
+      <input type="password" placeholder="Introduce tu contraseña" required>
+      <input type="password" placeholder="Introduce tu contraseña de nuevo" required>
+
+      <div class="radio_container">
+        <label class="container_checkbox">Soy organizador
+          <input type="radio" name="option" value="Option 2"><span class="checkmark"></span>
+        </label>      
+      </div>
+      <div class="radio_container">
+        <label class="container_checkbox">Soy viajero
+          <input type="radio" name="option" value="Option 2"><span class="checkmark"></span>
+        </label>      
+      </div>
+      <br>
+
+      <label>
+        <input type="checkbox" checked="checked">Creando una cuenta aceptas los términos y condiciones de la <a href="#" style="color:dodgerblue">política de privacidad</a>.
+      </label>
+
+
+      <div class="clearfix">
+      	<button type="submit" class="signupbtn">Registrarse</button>
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancelar</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+</body>
+</html>

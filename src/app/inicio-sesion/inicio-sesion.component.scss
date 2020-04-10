@@ -1,0 +1,211 @@
+$azul-claro: #0da8de;
+$azul-royal: #004cbe;
+$azul-marino: #20284c;
+$gris: #cfd8dc;
+$naranja: #f4a500;
+$azul-oscuro: #002063; 
+$gris-buscador: #c0c1c0;
+
+body {font-family: Arial, Helvetica, sans-serif;}
+* {
+  box-sizing: border-box;
+  color: white;
+}
+
+
+/* Full-width input fields */
+input[type=text] {
+  width: 100%;
+  padding: 2.2%;
+  margin: 0px 0 0px 0;
+  display: inline-block;
+  background: #f1f1f1;
+  border:2px solid #aaa;
+  border-radius:4px;
+  outline:none;
+  box-sizing:border-box;
+  transition:.3s;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    opacity: 1; /* Firefox */
+    font-size: 15px;
+  }
+
+.name_surname_container{
+    width: 49%;
+    display: inline-block;
+}
+
+.ns1{
+    float: left;
+}
+
+.ns2{
+    float: right;
+}
+
+/* Full-width input fields */
+input[type=email], input[type=password] {
+    width: 100%;
+    padding: 2%;
+    margin-top: 2%;
+    display: inline-block;
+    background: #f1f1f1;
+    border:2px solid #aaa;
+    border-radius:4px;
+    outline:none;
+    box-sizing:border-box;
+    transition:.3s;
+  }
+
+/* Add a background color when the inputs get focus */
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
+  border-color:$naranja;
+  box-shadow:0 0 3px 0 $naranja;
+}
+
+/* Add a background color when the inputs get focus */
+input[type=text]:hover, input[type=password]:hover, input[type=email]:hover {
+  background-color: #ddd;
+}
+
+
+/* -----------------------------
+--------------------------------
+          CONTAINER
+--------------------------------
+------------------------------  */
+
+/* The Modal (background) */
+.modal {
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: white;
+
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: $azul-oscuro;
+  width: 40%; /* Could be more or less, depending on screen size */
+  margin: 12% auto 15% auto;
+  border-radius: 4px;
+
+}
+
+/* Add padding to container elements */
+.container {
+  padding: 5%;
+  padding-bottom: 10%;
+}
+
+
+/* Style the horizontal ruler */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 2%;
+}
+ 
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #413838;
+}
+
+.close:hover,
+.close:focus {
+  color: #f44336;
+  cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title{
+    color: $naranja;
+    font-size: 55px;
+    font-weight: bold;
+}
+
+.subtitle{
+    color: white;
+    font-weight: bold;
+    margin-top: 2%;
+    display: block;
+}
+
+.title_container{
+    text-align: center;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 600px) {
+  .cancelbtn, .signupbtn {
+     width: 100%;
+  }
+  .title{
+    font-size: 35px;
+  }
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    opacity: 1; /* Firefox */
+    font-size: 10px;
+  }
+  .container_checkbox{
+    font-size: 14px;
+  }
+}
+
+/* -----------------------------
+--------------------------------
+          BUTTONS
+--------------------------------
+------------------------------  */
+
+button {
+    padding: 14px 20px;
+    margin-left: 13%;
+    margin-top: 7%;
+    border: none;
+    cursor: pointer;
+    opacity: 0.88;
+    font-size: 18px;
+    font-weight: bold;
+    -moz-transition: all 0.35s ease;
+    -o-transition: all 0.35s ease;
+    -webkit-transition: all 0.35s ease;
+    transition: all 0.35s ease;
+    border-radius: 4px;
+    text-align: center;
+  }
+  
+  button:hover {
+    opacity:1;
+  }
+  
+  /* Extra styles for the cancel button */
+  .cancelbtn {
+    background-color: gray;
+    color: white;
+  }
+  
+  .signupbtn {
+    background-color: white;
+    color: $azul-oscuro;
+  }
+  
+  /* Float cancel and signup buttons and add an equal width */
+  .cancelbtn, .signupbtn {
+    float: left;
+    width: 30%;
+  }
