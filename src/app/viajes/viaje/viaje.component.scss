@@ -1,6 +1,68 @@
-.container {
+$azul-claro: #0da8de;
+$azul-royal: #004cbe;
+$blanco: #ffffff;
+$azul-marino: #20284c; /** solo en textos **/
+$gris: #cfd8dc;
+$naranja: #f4a500;
+$azul-oscuro: #002063; /** popups y detalles **/
+$transparencia: #6c6c6d; /** este lleva opacidad del 52% **/
+$gris-buscador: #c0c1c0;
+$letters: #03a9f4;
+$gris-encabezado: #F5F5F5;
+
+.main_container_izq{
+  float:left;
+  width: 43%;
+  margin-top: 4%;
+  padding-left: 7%;
+}
+
+.main_container_der{
+  float:left;
+  width: 50%;
+  margin-top: 4%;
+}
+
+.container_carousel1 {
     display: block;
-    height: 500px;
-    width: 500px;
-    padding: 2em;
+    height: 20em;
+    width: 35em;
   }
+
+.container_carousel2 {
+    display: block;
+    height: 15em;
+    width: 23em;
+    margin: 2% 25%;
+    margin-top: 4%;
+    margin-bottom: 7%;
+}
+
+.lugar {
+  color: $letters;
+  font-weight: bold;
+}
+
+.informacion_viaje{
+  margin-top: 2%;
+}
+
+.precio{
+  color: $letters;
+  font-size: 3em;
+  margin-top: 2%;
+}
+
+.organizador{
+  color: $letters;
+  font-weight: bold;
+}
+
+.bold{
+  font-weight: bold;
+}
+
+.button{
+  margin-left: 27%;
+  margin-top: 4%;
+}

@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatButtonModule } from '@angular/material/button';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -46,6 +47,7 @@ import { CarouselComponent } from './carousel/carousel.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule, 
+    MatButtonModule,
     MatSliderModule
   ],
   providers: [],
