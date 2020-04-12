@@ -20,6 +20,7 @@ import { UnirseCiudadComponent } from './viajes/unirse-ciudad/unirse-ciudad.comp
 import { UnirseContinenteComponent } from './viajes/unirse-continente/unirse-continente.component';
 import { UnirsePaisComponent } from './viajes/unirse-pais/unirse-pais.component';
 import { ViajeComponent } from './viajes/viaje/viaje.component';
+import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ViajeComponent } from './viajes/viaje/viaje.component';
     UnirseContinenteComponent,
     UnirsePaisComponent,
     ViajeComponent,
+    CarouselComponent,
   ],
   imports: [
     BrowserModule,

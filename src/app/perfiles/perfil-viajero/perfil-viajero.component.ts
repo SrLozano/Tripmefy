@@ -7,6 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PerfilViajeroComponent implements OnInit {
 
+  public slides = [
+    { src: "../../../assets/bucarest.jpg"},
+    { src: "../../../assets/amberes.jpg" },
+    { src: "../../../assets/cracovia.jpg" },
+    { src: "../../../assets/zurich.jpg" }
+  ];
+
   constructor() { }
 
   ngOnInit(): void {
