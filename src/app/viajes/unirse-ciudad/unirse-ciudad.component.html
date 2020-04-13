@@ -1,1 +1,41 @@
-<p>unirse-ciudad works!</p>
+<app-header titulo="VIAJES A {{estePais}}"></app-header>
+<nav>
+    <div class="volver">
+        <img src="../../../assets/volver.png"> <h1>Volver</h1>
+    </div>
+    <div class="right">
+        <div class="buscador">
+            <form action="/action_page.php">
+                <!---<label for="fname"><img src="../../../assets/busqueda.png"></label>-->
+                <input type="text" id="fname" name="fname" value="Busqueda..."><br><br>
+            </form>
+        </div>
+        <img id="img-f" src="../../../assets/filtro.png">
+        <select id="select-f">
+            <option value=any selected>Filter Post</option>
+            <option value="africa">Turismo cultural</option> 
+            <option value="america-centro">Turismo gastronómico</option>
+            <option value="america-norte">Las mejores playas</option>
+        </select>
+    </div>
+</nav>
+<div class="content">
+    <div class="pais" *ngFor="let ciudad of ciudades">
+        
+        <div *ngIf="isTrue(ciudad)">
+            <img src="../../../assets/viajes/Europa/{{ciudad['ciudad']}}-00.jpg">
+            
+            <p class="destacado">{{ ciudad["ciudad"] }}</p>
+            <p id="mensaje">{{ ciudad["mensaje"] }}</p>   
+            <div class="info">
+                <p class="destacado">{{ciudad["precio"]}}</p>
+                <div class="personas">
+                    <img src="../../../assets/usuario.png">
+                    <p>{{ciudad["personas"]}}</p>
+                </div>
+                <img src="../../../assets/compartir.png">
+            </div> 
+        </div>     
+    </div>
+   
+</div>
