@@ -1,6 +1,66 @@
-.container {
-    display: block;
-    height: 500px;
-    width: 500px;
-    padding: 2em;
-  }
+$azul-claro: #0da8de;
+$azul-royal: #004cbe;
+$blanco: #ffffff;
+$azul-marino: #20284c; /** solo en textos **/
+$gris: #cfd8dc;
+$naranja: #f4a500;
+$azul-oscuro: #002063; /** popups y detalles **/
+$transparencia: #6c6c6d; /** este lleva opacidad del 52% **/
+$gris-buscador: #c0c1c0;
+$letters: #03a9f4;
+$gris-encabezado: #F5F5F5;
+
+.main_container_izq{
+  float:left;
+  width: 46%;
+  margin-top: 4%;
+  padding-left: 4%;
+  height: 50%;
+}
+
+.main_container_der{
+  float:left;
+  width: 42%;
+  margin-top: 4%;
+  margin-left: 4%;
+  margin-right: 4%;
+  height: 50%;
+}
+
+
+.little_container_der{
+  display: inline-block;
+  width: 50%;
+}
+
+.little_container_izq{
+  width: 50%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.name{
+  display: inline-block; 
+  color: $letters;
+  font-weight: bold;
+  font-size: 200%;
+  margin-bottom: 2.5%;
+}
+
+.texto_perfil{
+  display: inline-block; 
+  margin-top: 9%;
+  font-size: 160%;
+}
+
+.texto{
+  font-size: 110%;
+  text-align: justify;
+}
+
+.container_carousel1 {
+  display: block;
+  height: 20em;
+  width: 35em;
+  margin: 1% 8%;
+}

@@ -1,5 +1,55 @@
 <app-header titulo="MI PERFIL"></app-header>
 
-<div class="container">
-   <carousel [slides]="slides"></carousel>
+<div class="main_container_izq">
+   <mat-card>
+      <mat-card-content>
+         
+         <div class="little_container_izq">
+            <span class="name">Alejandro Chamorro</span>
+            <div>
+               <span class="texto_perfil">Hombre</span>
+               <img src="../../../assets/person.png" style="height: 7%; width: 7%;">
+               <!--IF AQUI ENTRE ICONO HOMBRE/MUJER-->
+            </div>
+            <div>
+               <span class="texto_perfil">27 años</span>
+            </div>
+            <div>
+               <span class="texto_perfil">Salamanca, España</span>
+               <img src="../../../assets/location.png" style="height: 7%; width: 7%;" >
+            </div>
+         </div>
+         <div class="little_container_der">
+            <img src="../../../assets/person-2.jpg" style="display: inline-block; width: 100%; max-height: 300px; " >
+         </div>
+         
+         
+      </mat-card-content>
+   </mat-card> 
+   
+
 </div>
+
+<div class="main_container_der">
+     
+      <p class="texto">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda vitae iusto non magnam inventore amet sapiente earum minima cum 
+      quam fuga voluptatem quae ab sequi quia cupiditate nesciunt, voluptate architecto.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda vitae iusto non magnam inventore amet sapiente earum minima cum 
+      quam fuga voluptatem quae ab sequi quia cupiditate nesciunt, voluptate architecto.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda vitae iusto non magnam inventore amet sapiente earum minima cum 
+      quam fuga voluptatem quae ab sequi quia cupiditate nesciunt, voluptate architecto.
+      </p>
+
+      <span class="name">Viajes del usuario</span>
+      <div class="container_carousel1">
+         <carousel [slides]="slides"></carousel>
+      </div>
+  
+  
+</div>
+
+<!--
+<span style="display: inline-block;">hjfdekfjksj</span>
+<img src="../../../assets/person-1.jpg" style="display: inline-block; width: 50%; height: 50%;" >
+-->

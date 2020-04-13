@@ -8,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class PerfilViajeroComponent implements OnInit {
 
   public slides = [
-    { src: "../../../assets/bucarest.jpg"},
-    { src: "../../../assets/amberes.jpg" },
-    { src: "../../../assets/cracovia.jpg" },
-    { src: "../../../assets/zurich.jpg" }
+    { src: "../../../assets/Zurich-01.jpg" },
+    { src: "../../../assets/Bucarest-01.jpg"},
+    { src: "../../../assets/Amberes-01.jpg" },
+    { src: "../../../assets/Moscow-01.jpg" }
   ];
 
   constructor() { }
