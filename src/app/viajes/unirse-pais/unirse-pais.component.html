@@ -1,1 +1,37 @@
-<p>unirse-pais works!</p>
+<app-header titulo="ESCOGE TU SIGUIENTE EXPLORACIÓN"></app-header>
+<nav>
+    <select (change)="onChange($event.target.value)"   id="continentes" >
+        <option value="{{identificador}}" selected>{{continente}}</option>
+        <option value="africa">África</option>
+        <option value="america-centro">América Central</option>
+        <option value="america-sur">América del sur</option>
+        <option value="america-norte">América del Norte</option>
+        <option value="oceania">Oceanía</option>
+        <option value="asia">Asía</option>
+        <option value="europa">Europa</option>
+    </select>
+    <div class="right">
+        <div class="buscador">
+            <form action="/action_page.php">
+                <!---<label for="fname"><img src="../../../assets/busqueda.png"></label>-->
+                <input type="text" id="fname" name="fname" value="Busqueda..."><br><br>
+            </form>
+        </div>
+        <img id="img-f" src="../../../assets/filtro.png">
+        <select id="select-f">
+            <option value=any selected>Filter Post</option>
+            <option value="africa">Turismo cultural</option> 
+            <option value="america-centro">Turismo gastronómico</option>
+            <option value="america-norte">Las mejores playas</option>
+        </select>
+    </div>
+</nav>
+<div class="content">
+    <div class="pais" *ngFor="let pais of continentes[0]">
+        <img src="../../../assets/banderas/{{pais['imagen']}}" >
+        <p class="destacado">{{ pais["pais"] }}</p>         
+    </div> 
+</div>
+<br>
+
+
