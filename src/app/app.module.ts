@@ -40,8 +40,6 @@ import { VolverComponent } from './shared/volver/volver.component';
     UnirseContinenteComponent,
     UnirsePaisComponent,
     ViajeComponent,
-    SharedComponent,
-    VolerComponent,
     VolverComponent,
   ],
   imports: [
