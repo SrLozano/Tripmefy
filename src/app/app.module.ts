@@ -26,9 +26,11 @@ import { UnirseCiudadComponent } from './viajes/unirse-ciudad/unirse-ciudad.comp
 import { UnirseContinenteComponent } from './viajes/unirse-continente/unirse-continente.component';
 import { UnirsePaisComponent } from './viajes/unirse-pais/unirse-pais.component';
 import { ViajeComponent } from './viajes/viaje/viaje.component';
+
 import { LogrosComponent } from './logros/logros.component';
 import { BienvenidaComponent } from './bienvenida/bienvenida.component';
 import { CommonModule } from '@angular/common';
+
 import { VolverComponent } from './shared/volver/volver.component';
 
 @NgModule({
@@ -49,8 +51,11 @@ import { VolverComponent } from './shared/volver/volver.component';
     UnirseContinenteComponent,
     UnirsePaisComponent,
     ViajeComponent,
+
     LogrosComponent,
     BienvenidaComponent,
+
+
     VolverComponent,
   ],
   imports: [
