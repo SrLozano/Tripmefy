@@ -33,7 +33,7 @@
     </div>
 </nav>
 <div class="notfound" *ngIf="hayPais() == false" >
-    <app-not-found404></app-not-found404>
+    <app-not-found404 titulo="Lo sentimos, no hay países que coincidan con esas características"></app-not-found404>
 </div>
 <div class="content" *ngIf="hayPais()">
     <div class="pais"  *ngFor="let pais of escogidos"  [routerLink]="['/unirse-ciudad/', pais['pais'] ]">

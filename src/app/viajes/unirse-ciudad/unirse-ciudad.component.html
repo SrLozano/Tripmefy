@@ -25,7 +25,7 @@
     </div>
 </nav>
 <div class="notfound" *ngIf="estaVacio()" >
-    <app-not-found404></app-not-found404>
+    <app-not-found404 titulo="Lo sentimos, el viaje que estás buscando no está disponible"></app-not-found404>
 </div>
 <div class="content" *ngIf="estaVacio() == false">
     <div class="pais" *ngFor="let ciudad of escogidas" [routerLink]="['/viaje/', ciudad['id'] ]">
