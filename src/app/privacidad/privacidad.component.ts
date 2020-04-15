@@ -12,4 +12,11 @@ export class PrivacidadComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onClick(){
+    console.log("Botón pulsado");
+    if (window && window.pageYOffset) {
+      window.scroll(0, 0);
+    }
+  }
+
 }
