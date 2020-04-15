@@ -18,6 +18,11 @@
     </div>
 </nav>
 <div class="content">
+
+    <div class="nuevo" [routerLink] = "['/unirse-continente']">
+        <img id="mas" src="../../../assets/nuevo.png">
+    </div>
+    
     <div class="pais" *ngFor="let ciudad of ciudades" [routerLink]="['/viaje/', ciudad['id'] ]">
     
     
@@ -36,8 +41,6 @@
             
     </div>
 
-    <div class="nuevo" [routerLink] = "['/unirse-continente']">
-        <img id="mas" src="../../../assets/nuevo.png">
-    </div>
+   
    
 </div>

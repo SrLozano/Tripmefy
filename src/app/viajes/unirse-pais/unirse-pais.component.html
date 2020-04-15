@@ -1,15 +1,9 @@
 <app-header titulo="ESCOGE TU SIGUIENTE EXPLORACIÓN"></app-header>
 <nav>
-    <select (change)="onChange($event.target.value)"   id="continentes" >
-        <option value="{{identificador}}" selected>{{continente}}</option>
-        <option value="africa">África</option>
-        <option value="america-centro">América Central</option>
-        <option value="america-sur">América del sur</option>
-        <option value="america-norte">América del Norte</option>
-        <option value="oceania">Oceanía</option>
-        <option value="asia">Asía</option>
-        <option value="europa">Europa</option>
-    </select>
+    <div id="div-volver" [routerLink]="['/unirse-continente']">
+        <app-volver></app-volver>
+    </div>
+       
     <div class="right">
         <div class="buscador">
             <form action="/action_page.php">
@@ -18,11 +12,23 @@
             </form>
         </div>
         <img id="img-f" src="../../../assets/filtro.png">
+        <!--
         <select id="select-f">
             <option value=any selected>Filter Post</option>
             <option value="africa">Turismo cultural</option> 
             <option value="america-centro">Turismo gastronómico</option>
             <option value="america-norte">Las mejores playas</option>
+        </select>
+        -->
+        <select (change)="onChange($event.target.value)"   id="continentes" >
+            <option value="{{identificador}}" selected>{{continente}}</option>
+            <option value="africa">África</option>
+            <option value="america-centro">América Central</option>
+            <option value="america-sur">América del sur</option>
+            <option value="america-norte">América del Norte</option>
+            <option value="oceania">Oceanía</option>
+            <option value="asia">Asía</option>
+            <option value="europa">Europa</option>
         </select>
     </div>
 </nav>

@@ -1,3 +1,8 @@
+#div-volver:active{
+    outline: none;
+ }
+
+
 .mapa{
     display: flex;
     justify-content: center;
@@ -61,6 +66,8 @@ button{
         height: 80%;
         width: 80%;
     }
-    
+    #div-volver{
+        display: none;
+     }
 
 }

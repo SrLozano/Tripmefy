@@ -23,8 +23,8 @@ nav {
     margin-right: 10px;
 }
 
-#componente{
-   
+#div-volver:active{
+   outline: none;
 }
 
 select {
@@ -223,5 +223,9 @@ nav .buscador img{
         height: 100px;
         width: 120;
     }
+    #div-volver{
+        display: none;
+     }
+
 
 }

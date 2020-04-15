@@ -28,6 +28,7 @@ import { ViajeComponent } from './viajes/viaje/viaje.component';
 import { LogrosComponent } from './logros/logros.component';
 import { BienvenidaComponent } from './bienvenida/bienvenida.component';
 import { CommonModule } from '@angular/common';
+import { VolverComponent } from './shared/volver/volver.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { CommonModule } from '@angular/common';
     ViajeComponent,
     LogrosComponent,
     BienvenidaComponent,
+    VolverComponent,
   ],
   imports: [
     
