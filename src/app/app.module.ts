@@ -51,13 +51,16 @@ import { CommonModule } from '@angular/common';
     BienvenidaComponent,
   ],
   imports: [
+    
+    AngularFireModule.initializeApp(environment.firebase),
+    CommonModule,
+    AngularFirestoreModule,
+    
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule, 
-    MatSliderModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    CommonModule,
-    AngularFirestoreModule
+    MatSliderModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
