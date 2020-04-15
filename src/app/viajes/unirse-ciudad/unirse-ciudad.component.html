@@ -1,27 +1,34 @@
 <app-header titulo="VIAJES A {{estePais}}"></app-header>
 <nav>
-    <div id="div-volver" [routerLink]="['/unirse-continente']">
+    <div id="div-volver" [routerLink]="['/unirse-pais']">
         <app-volver></app-volver>
     </div>
     <div class="right">
         <div class="buscador">
-            <form action="/action_page.php">
+            <form>
                 <!---<label for="fname"><img src="../../../assets/busqueda.png"></label>-->
-                <input type="text" id="fname" name="fname" value="Busqueda..."><br><br>
+                <input id="fname"  name="fname" placeholder="Buscar ciudad..." [(ngModel)]="buscar" (change)="busqueda()" onclick="reset()"><br><br>
+                <!--<input type="submit" value="Submit" (click)="busqueda">-->
             </form>
         </div>
         <img id="img-f" src="../../../assets/filtro.png">
-        <select id="select-f">
-            <option value=any selected>Filter Post</option>
-            <option value="100">Hasta 100€</option> 
-            <option value="300">Hasta 300€</option>
-            <option value="500">Hasta 500€</option>
-            <option value="+500">Más de 500€</option>
+        <select id="select-f" [(ngModel)]="precio" (change)="filtrar()">
+           
+            <option value="+ 500€">Todos</option>
+            <option value="Hasta 100€">Hasta 100€</option> 
+            <option value="Hasta 300€">Hasta 300€</option>
+            <option value="Hasta 500€">Hasta 500€</option>
+            <option value="+ 500€">+ 500€</option>
+            <option value={{precio}} selected>{{precio}}</option>
+
         </select>
     </div>
 </nav>
-<div class="content">
-    <div class="pais" *ngFor="let ciudad of ciudades" [routerLink]="['/viaje/', ciudad['id'] ]">
+<div class="notfound" *ngIf="estaVacio()" >
+    <app-not-found404></app-not-found404>
+</div>
+<div class="content" *ngIf="estaVacio() == false">
+    <div class="pais" *ngFor="let ciudad of escogidas" [routerLink]="['/viaje/', ciudad['id'] ]">
     
     
         <img src="../../../assets/viajes/Europa/{{ciudad['ciudad']}}-00.jpg">
@@ -32,7 +39,7 @@
             <p class="destacado">{{ciudad["precio"]}}</p>
             <div class="personas">
                 <img src="../../../assets/usuario.png">
-                <p>{{ciudad["personas"]}}</p>
+                <p>{{ciudad["unidas"]}}/{{ciudad["maximo"]}}</p>
             </div>
             <img src="../../../assets/compartir.png">
         </div> 

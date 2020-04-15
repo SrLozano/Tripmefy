@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
 
 import { AngularFireModule } from '@angular/fire';
@@ -59,6 +60,7 @@ import { VolverComponent } from './shared/volver/volver.component';
     AngularFirestoreModule,
     
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule, 
     MatSliderModule

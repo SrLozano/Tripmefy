@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute }  from '@angular/router';
 import {Router} from '@angular/router';
+import { HAMMER_LOADER } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-mis-viajes',
@@ -11,6 +12,77 @@ export class MisViajesComponent implements OnInit {
 
   title = 'España';
   estePais = "";
+  precio = "Todos";
+  escogidas = [];
+  buscar = "";
+
+  estaVacio(){
+    return this.escogidas.length < 1;
+  }
+
+  busqueda(){
+    
+    var i;
+    var selec;
+    this.escogidas = [];
+    for (i = 0; i < this.ciudades.length; i++) {
+      // Se ejecuta 5 veces, con valores desde paso desde 0 hasta 4.
+      //console.log(this.estePais);
+      selec = this.filtro(i);
+      if(selec != -1 && selec['ciudad'].toUpperCase().includes(this.buscar.toUpperCase())){
+        this.escogidas.push(selec);
+      }
+     
+    };
+  }
+
+  filtrar(){
+    var i;
+    var selec;
+    this.escogidas = [];
+    for (i = 0; i < this.ciudades.length; i++) {
+      // Se ejecuta 5 veces, con valores desde paso desde 0 hasta 4.
+      //console.log(this.estePais);
+      selec = this.filtro(i);
+      if(selec != -1){
+        this.escogidas.push(selec);
+      }
+      
+
+    };
+  }
+
+  filtro(i:number): any{
+    var ciudad = this.ciudades[i];
+    //solo metemos los viajes del pais escogido
+    
+        
+    switch(this.precio){
+      case "Hasta 100€":
+        if (parseInt(ciudad['precio'].substr(0,3)) <= 100 ){
+          //this.escogidas.push(ciudad);
+          return ciudad;
+        }
+        break;
+      case "Hasta 300€":
+        if (parseInt(ciudad['precio'].substr(0,3)) <= 300 ){
+          //this.escogidas.push(ciudad);
+          return ciudad;
+        }
+        break;
+      case "Hasta 500€":
+        if (parseInt(ciudad['precio'].substr(0,3)) <= 500 ){
+          //this.escogidas.push(ciudad);
+          return ciudad;
+        }
+        break;
+      default:  
+          //this.escogidas.push(ciudad);
+          return ciudad;
+        break; 
+    }
+    return -1;
+  }
   
   //ciudades = [['Sevilla', 'hola'], ['Barcelona'], ['Galicia'], ['Madrid']];
   ciudades = [
@@ -19,32 +91,36 @@ export class MisViajesComponent implements OnInit {
       "pais": "España",
       "ciudad": "Sevilla",
       "mensaje": "La capital andaluza destila alegría y bullicio en cada una de las calles y plazas que configuran su casco histórico, que alberga un interesante conjunto de construcciones declaradas Patrimonio Mundial y barrios de hondo sabor popular, como el de Triana o La Macarena. ",
-      "precio": "400€",
-      "personas": "1/5"
+      "precio": "80€",
+      "unidas": "1",
+      "maximo": "5"
     },
     {
       "id":"2",
       "pais": "España",
       "ciudad": "Barcelona",
       "mensaje": "Situada a orillas del Mediterráneo, Barcelona es una ciudad cosmopolita con una gran importancia tanto cultural como comercial, financiera y turística. Barcelona es una de las ciudades europeas más visitadas",
-      "precio": "350€",
-      "personas": "2/5"
+      "precio": "300€",
+      "unidas": "1",
+      "maximo": "5"
     },
     {
       "id":"3",
       "pais": "España",
       "ciudad": "Galicia",
       "mensaje": "Patrimonio cultural, museos, alojamiento, fiestas... Todos los recursos turísticos de Galicia a tu alcance",
-      "precio": "300€",
-      "personas": "3/5"
+      "precio": "450€",
+      "unidas": "1",
+      "maximo": "5"
     },
     {
       "id":"4",
       "pais": "España",
       "ciudad": "Madrid",
       "mensaje": "Déjate seducir por la magnífica ciudad de Madrid visitando todos sus museos y paseando por sus calles peculiares. La oferta incluye vuelos desde Cádiz y alojamiento en hotel 4*.",
-      "precio": "370€",
-      "personas": "0/5"
+      "precio": "625€",
+      "unidas": "1",
+      "maximo": "5"
     }
     
   ]
@@ -56,15 +132,15 @@ export class MisViajesComponent implements OnInit {
     //let dato = JSON.parse(localStorage.getItem('pais'));
     
     //let id = localStorage.getItem('pais');
-    
+    this.escogidas = this.ciudades;
 
   
   }
   comprobarViajero(){
-    return localStorage.getItem('usuario') == 'viajero';
+    return localStorage.getItem('usuario') == "viajero";
   }
   comprobarOrganizador(){
-    return localStorage.getItem('usuario') == 'organizador';
+    return localStorage.getItem('usuario') == "organizador";
   }
 
 

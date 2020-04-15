@@ -104,6 +104,13 @@ nav .buscador img{
 }
 
 /**BANDERAS**/
+
+.notfound{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .content{
     display: flex;
     flex-wrap: wrap;

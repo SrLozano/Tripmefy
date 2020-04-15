@@ -8,6 +8,28 @@ import {Router} from '@angular/router';
 })
 export class UnirsePaisComponent implements OnInit {
 
+  escogidos = [];
+  buscar = "";
+
+  hayPais():boolean{
+    return this.escogidos.length > 0;
+  }
+  busqueda(){
+    var i;
+    var pais;
+    this.escogidos = [];
+    for (i = 0; i < this.continentes[0].length; i++) {
+      // Se ejecuta 5 veces, con valores desde paso desde 0 hasta 4.
+      //console.log(this.estePais);
+      pais = this.continentes[0][i];
+      if(pais['pais'].toUpperCase().includes(this.buscar.toUpperCase())){
+        this.escogidos.push(pais);
+      }
+    }
+    //si devuelve true, habra encontrado, si devuelve false, no habra encontrado
+    
+  }
+
   onChange(deviceValue) {
     console.log(deviceValue);
     localStorage.setItem('continente', deviceValue);
@@ -57,8 +79,13 @@ export class UnirsePaisComponent implements OnInit {
         this.identificador = "europa";
          break; 
       } 
+
+   
       
    }
+   this.escogidos = this.continentes[0];
+   
+   
    
   
 
@@ -72,41 +99,44 @@ export class UnirsePaisComponent implements OnInit {
 
     identificador:string;
     continente:string;
+    elegido = [];
     numContinente:number;
+
+
     americaNorte = [
       {
-        "pais": "Francia",
-        "imagen": "fr.png"
+        "pais": "Canadá",
+        "imagen": "cn.jpg"
       }
     ];
     americaCentro = [
       {
-        "pais": "Hungría",
-        "imagen": "hu.png"
+        "pais": "Panamá",
+        "imagen": "pn.png"
       }
     ];
     americaSur = [
       {
-        "pais": "Francia",
-        "imagen": "fr.png"
+        "pais": "Argentina",
+        "imagen": "ar.png"
       }
     ];
     asia = [
       {
-        "pais": "Italia",
-        "imagen": "zw.png"
+        "pais": "China",
+        "imagen": "ch.png"
       }
     ];
     africa = [
       {
-        "pais": "Francia",
-        "imagen": "fr.png"
+        "pais": "Egipto",
+        "imagen": "eg.png"
       }
     ];
     oceania = [
       {
-        "pais": "España",
-        "imagen"  : "sp.png"
+        "pais": "Australia",
+        "imagen"  : "au.png"
       }
     ];
     europa = [
@@ -116,19 +146,7 @@ export class UnirsePaisComponent implements OnInit {
       },
       {
         "pais": "Italia",
-        "imagen": "zw.png"
-      },
-      {
-        "pais": "Francia",
-        "imagen": "fr.png"
-      },
-      {
-        "pais": "España",
-        "imagen": "sp.png"
-      },
-      {
-        "pais": "Italia",
-        "imagen": "zw.png"
+        "imagen": "ita.png"
       },
       {
         "pais": "Francia",
@@ -193,7 +211,11 @@ export class UnirsePaisComponent implements OnInit {
         this.continente = 'Europa';  
          break; 
       } 
+      
    }
+   this.escogidos = this.continentes[0];
+
+   
    
   }
   
