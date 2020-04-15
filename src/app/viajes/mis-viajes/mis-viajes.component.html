@@ -19,11 +19,15 @@
 </nav>
 <div class="content">
 
-    <div class="nuevo" [routerLink] = "['/unirse-continente']">
+    <div class="nuevo" *ngIf="comprobarViajero()" [routerLink] = "['/unirse-continente']">
         <img id="mas" src="../../../assets/nuevo.png">
     </div>
     
-    <div class="pais" *ngFor="let ciudad of ciudades" [routerLink]="['/viaje/', ciudad['id'] ]">
+    <div class="nuevo" *ngIf="comprobarOrganizador()" [routerLink] = "['/crear-viaje']">
+        <img id="mas" src="../../../assets/nuevo.png">
+    </div>
+
+    <div class="pais" *ngFor="let ciudad of ciudades"  [routerLink]="['/viaje/', ciudad['id'] ]">
     
     
         <img src="../../../assets/viajes/Europa/{{ciudad['ciudad']}}-00.jpg">

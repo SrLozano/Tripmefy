@@ -33,7 +33,8 @@ export class BienvenidaComponent implements OnInit {
   ngOnInit(): void {
 
     /**Obtener variable global tipo y meterla en usuario (falta) */
-    let usuario = 'organizador';
+    localStorage.setItem('usuario', 'viajero');
+    let usuario = localStorage.getItem('usuario');
 
     /**Este switch evalua la variable usuario y decide qué texto mostrar */
     switch(usuario){

@@ -60,6 +60,12 @@ export class MisViajesComponent implements OnInit {
 
   
   }
+  comprobarViajero(){
+    return localStorage.getItem('usuario') == 'viajero';
+  }
+  comprobarOrganizador(){
+    return localStorage.getItem('usuario') == 'organizador';
+  }
 
 
 
