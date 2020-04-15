@@ -13,11 +13,14 @@ $azul-verdoso: #009788;
 
 .volver{
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     height: 35px;
     padding: 5px;
     border-radius: 10px;
+    width:120px;
+    margin-left: 20px; 
+    margin-top: 15px;
 }
 
 .volver:hover{
