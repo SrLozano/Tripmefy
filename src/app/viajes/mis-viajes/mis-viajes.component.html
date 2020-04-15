@@ -31,7 +31,7 @@
         <img id="mas" src="../../../assets/nuevo.png">
     </div>
 
-    <div class="pais" *ngFor="let ciudad of ciudades"  [routerLink]="['/viaje/', ciudad['id'] ]">
+    <div class="pais" *ngFor="let ciudad of escogidas"  [routerLink]="['/viaje/', ciudad['id'] ]">
     
     
         <img src="../../../assets/viajes/Europa/{{ciudad['ciudad']}}-00.jpg">
