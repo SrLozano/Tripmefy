@@ -1,1 +1,43 @@
-<p>mis-viajes works!</p>
+<app-header titulo="MIS VIAJES"></app-header>
+<nav>
+    <div class="right">
+        <div class="buscador">
+            <form action="/action_page.php">
+                <!---<label for="fname"><img src="../../../assets/busqueda.png"></label>-->
+                <input type="text" id="fname" name="fname" value="Busqueda..."><br><br>
+            </form>
+        </div>
+        <img id="img-f" src="../../../assets/filtro.png">
+        <select id="select-f">
+            <option value=any selected>Filter Post</option>
+            <option value="100">Hasta 100€</option> 
+            <option value="300">Hasta 300€</option>
+            <option value="500">Hasta 500€</option>
+            <option value="+500">Más de 500€</option>
+        </select>
+    </div>
+</nav>
+<div class="content">
+    <div class="pais" *ngFor="let ciudad of ciudades" [routerLink]="['/viaje/', ciudad['id'] ]">
+    
+    
+        <img src="../../../assets/viajes/Europa/{{ciudad['ciudad']}}-00.jpg">
+        
+        <p class="destacado">{{ ciudad["ciudad"] }}</p>
+        <p id="mensaje">{{ ciudad["mensaje"] }}</p>   
+        <div class="info">
+            <p class="destacado">{{ciudad["precio"]}}</p>
+            <div class="personas">
+                <img src="../../../assets/usuario.png">
+                <p>{{ciudad["personas"]}}</p>
+            </div>
+            <img src="../../../assets/compartir.png">
+        </div> 
+            
+    </div>
+
+    <div class="nuevo" [routerLink] = "['/unirse-continente']">
+        <img id="mas" src="../../../assets/nuevo.png">
+    </div>
+   
+</div>

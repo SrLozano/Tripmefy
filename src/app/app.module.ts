@@ -2,6 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MatSliderModule } from '@angular/material/slider';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
+
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,6 +25,9 @@ import { UnirseCiudadComponent } from './viajes/unirse-ciudad/unirse-ciudad.comp
 import { UnirseContinenteComponent } from './viajes/unirse-continente/unirse-continente.component';
 import { UnirsePaisComponent } from './viajes/unirse-pais/unirse-pais.component';
 import { ViajeComponent } from './viajes/viaje/viaje.component';
+import { LogrosComponent } from './logros/logros.component';
+import { BienvenidaComponent } from './bienvenida/bienvenida.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -39,12 +47,17 @@ import { ViajeComponent } from './viajes/viaje/viaje.component';
     UnirseContinenteComponent,
     UnirsePaisComponent,
     ViajeComponent,
+    LogrosComponent,
+    BienvenidaComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule, 
-    MatSliderModule
+    MatSliderModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    CommonModule,
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

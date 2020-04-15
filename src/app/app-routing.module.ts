@@ -13,8 +13,8 @@ import { UnirseContinenteComponent } from './viajes/unirse-continente/unirse-con
 import { ViajeComponent } from './viajes/viaje/viaje.component';
 import { NotFound404Component } from './not-found404/not-found404.component';
 import { PrivacidadComponent } from './privacidad/privacidad.component';
-
-
+import { LogrosComponent } from './logros/logros.component';
+import { BienvenidaComponent } from './bienvenida/bienvenida.component';
 const routes: Routes = [
   {path:'page1', component:Page1Component},
   {path:'inicio-sesion', component:InicioSesionComponent},
@@ -24,12 +24,15 @@ const routes: Routes = [
   {path:'crear-viaje', component:CrearViajeComponent},
   {path:'mis-viajes', component:MisViajesComponent},
   {path:'unirse-ciudad/:id', component:UnirseCiudadComponent},
-  {path:'unirse-pais/:id', component:UnirsePaisComponent},
+  {path:'unirse-pais', component:UnirsePaisComponent},
   {path: 'unirse-continente', component:UnirseContinenteComponent},
-  {path:'viaje', component:ViajeComponent},
+  {path:'viaje/:id', component:ViajeComponent},
   {path:'privacidad', component:PrivacidadComponent},
   {path:'not-found404', component: NotFound404Component},
+  {path: 'logros', component: LogrosComponent},
+  {path: 'bienvenida', component: BienvenidaComponent},
   {path: '**', pathMatch: 'full', redirectTo: 'page1'}
+  
 ];
 
 @NgModule({

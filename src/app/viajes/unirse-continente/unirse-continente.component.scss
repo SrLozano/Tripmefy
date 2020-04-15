@@ -12,5 +12,55 @@ img{
 
 area{
     outline: none; 
+
 }
 
+button{
+    width: 20px;
+    height: 40px;
+    background-color: black;
+}
+
+.botones{
+    display: none;
+}
+
+
+@media screen and (max-device-width : 480px) {
+    map{
+        display: none;
+    }
+    #imagen{
+        display: none;
+    }
+
+    .botones{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 20px;
+        
+    }
+    .botones .boton{
+        height: 200px;
+        width: 200px;
+        text-align: center;
+        margin-top: 50px;
+        border-radius: 10px;
+        -webkit-box-shadow: 2px 7px 4px 0px rgba(207,216,220,1);
+        -moz-box-shadow: 2px 7px 4px 0px rgba(207,216,220,1);
+        box-shadow: 2px 7px 4px 0px rgba(207,216,220,1);
+    }
+    
+    .botones .boton:hover{
+        -webkit-box-shadow: 2px 7px 4px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 2px 7px 4px 0px rgba(0,0,0,0.75);
+        box-shadow: 2px 7px 4px 0px rgba(0,0,0,0.75);
+    }
+    .boton img{
+        height: 80%;
+        width: 80%;
+    }
+    
+
+}

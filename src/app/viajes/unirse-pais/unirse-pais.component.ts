@@ -9,16 +9,14 @@ import {Router} from '@angular/router';
 export class UnirsePaisComponent implements OnInit {
 
   onChange(deviceValue) {
-
-    this.continente = 'Europa';
-    this.identificador = 'europa';
-
-    /**
     console.log(deviceValue);
-    this._router.navigate(['//unirse-pais/', deviceValue]);
-    this.identificador = deviceValue;
+    localStorage.setItem('continente', deviceValue);
+    this.identificador = localStorage.getItem('continente');
+    this.continente = this.identificador;
+    
+    
     this.continente = deviceValue; 
-    switch(this.continente) { 
+    switch(this.identificador) { 
       case 'europa': { 
          this.continentes[0] = this.europa;
          this.continente = 'Europa';
@@ -61,7 +59,7 @@ export class UnirsePaisComponent implements OnInit {
       } 
       
    }
-   **/
+   
   
 
 }
@@ -146,13 +144,16 @@ export class UnirsePaisComponent implements OnInit {
     elem = this.continentes[this.numContinente];
 
   ngOnInit(): void {
-    this.continente = 'Europa';
-    this.identificador = 'europa';
-    /**
-    let id = this._route.snapshot.paramMap.get('id');
-    this.continente = id; 
-    this.identificador = id;
-    switch(this.continente) { 
+
+    
+
+    this.identificador = localStorage.getItem('continente');
+    this.continente = this.identificador;
+    this.continente[0].toUpperCase();
+    
+    
+      
+    switch(this.identificador) { 
       case 'europa': { 
          this.continentes[0] = this.europa;
          this.continente = 'Europa';
@@ -193,7 +194,13 @@ export class UnirsePaisComponent implements OnInit {
          break; 
       } 
    }
-   **/
+   
   }
+  
+  establecerPais(){
+     //onclick="localStorage.setItem('pais', pais['pais'])"
+     //[routerLink]="['/unirse-ciudad']"
+  }
+  
 
 }

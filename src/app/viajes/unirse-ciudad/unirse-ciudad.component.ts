@@ -11,13 +11,11 @@ export class UnirseCiudadComponent implements OnInit {
 
   title = 'España';
   estePais = "";
-  isTrue(miPais):boolean{
-    
-    return true;
-  }
+  
   //ciudades = [['Sevilla', 'hola'], ['Barcelona'], ['Galicia'], ['Madrid']];
   ciudades = [
     {
+      "id":"1",
       "pais": "España",
       "ciudad": "Sevilla",
       "mensaje": "La capital andaluza destila alegría y bullicio en cada una de las calles y plazas que configuran su casco histórico, que alberga un interesante conjunto de construcciones declaradas Patrimonio Mundial y barrios de hondo sabor popular, como el de Triana o La Macarena. ",
@@ -25,6 +23,7 @@ export class UnirseCiudadComponent implements OnInit {
       "personas": "1/5"
     },
     {
+      "id":"2",
       "pais": "España",
       "ciudad": "Barcelona",
       "mensaje": "Situada a orillas del Mediterráneo, Barcelona es una ciudad cosmopolita con una gran importancia tanto cultural como comercial, financiera y turística. Barcelona es una de las ciudades europeas más visitadas",
@@ -32,6 +31,7 @@ export class UnirseCiudadComponent implements OnInit {
       "personas": "2/5"
     },
     {
+      "id":"3",
       "pais": "España",
       "ciudad": "Galicia",
       "mensaje": "Patrimonio cultural, museos, alojamiento, fiestas... Todos los recursos turísticos de Galicia a tu alcance",
@@ -39,6 +39,7 @@ export class UnirseCiudadComponent implements OnInit {
       "personas": "3/5"
     },
     {
+      "id":"4",
       "pais": "España",
       "ciudad": "Madrid",
       "mensaje": "Déjate seducir por la magnífica ciudad de Madrid visitando todos sus museos y paseando por sus calles peculiares. La oferta incluye vuelos desde Cádiz y alojamiento en hotel 4*.",
@@ -52,7 +53,11 @@ export class UnirseCiudadComponent implements OnInit {
   constructor(private _route:ActivatedRoute, private _router: Router) { }
 
   ngOnInit(): void {
+    //let dato = JSON.parse(localStorage.getItem('pais'));
+    
+    //let id = localStorage.getItem('pais');
     let id = this._route.snapshot.paramMap.get('id');
+
     this.estePais = id.toUpperCase();
     
 
