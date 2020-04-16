@@ -1,7 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ActivatedRoute }  from '@angular/router';
 import {Router} from '@angular/router';
-
+import {FirestoreService} from '../../services/firestore/firestore.service';
+import {Subscription} from 'rxjs';
+import {Viaje, IViaje} from '../../interfaces/viaje';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-unirse-ciudad',
@@ -18,6 +22,10 @@ export class UnirseCiudadComponent implements OnInit {
   precio = "Todos";
   buscar = "";
 
+  public viajes:Viaje[];
+  public s_viajes:Subscription;
+  public search_texto:string="";
+  public search_tipo:number=0;
 
   estaVacio(){
     return this.escogidas.length < 1;
@@ -132,15 +140,23 @@ export class UnirseCiudadComponent implements OnInit {
     
   ]
   myciudad= this.ciudades[0];
-
+  private db:AngularFirestore;
+  public misViajes = []
   constructor(private _route:ActivatedRoute, 
               private _router: Router,
-              ) { }
+              private firestoreService: FirestoreService,
+              private firestore: AngularFirestore
+              ) 
+  { 
+ 
+    
+      
+  }
   
   
 
   
-
+  
   ngOnInit(): void {
     //let dato = JSON.parse(localStorage.getItem('pais'));
     
@@ -154,12 +170,30 @@ export class UnirseCiudadComponent implements OnInit {
 
     this.filtrar();
 
-  
-
-    
+     
     
 
   }
+    
+    
+
+
+    
   
 
+
+  ngOnDestroy()
+  {
+    this.s_viajes.unsubscribe();
+  }
+
+  
+  
+
+    
+    
+
 }
+  
+
+
