@@ -32,22 +32,3 @@ $azul-verdoso: #009788;
     color: $azul-verdoso;
 }
   
-.scroll-to-top {
-    position: fixed;
-    bottom: 25px;
-    right: 5px;
-    opacity: 0;
-    transition: all .2s ease-in-out;
-    width: 100px;
-}
-
-.scroll-top{
-    width: 50%;
-}
-
-.show-scroll {
-    opacity: 1;
-    transition: all .2s ease-in-out;
-}
-
-  
