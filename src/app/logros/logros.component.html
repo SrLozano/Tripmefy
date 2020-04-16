@@ -1,0 +1,10 @@
+<app-header titulo="Tus logros"></app-header>
+<div class="contenido">
+    <div class="logro" *ngFor="let logro of logros">
+        <div class ="info">
+            <img src="../../assets/{{logro['img']}}">
+            <p id="titulo">{{logro["nombre"]}}</p>
+            <p id="descripción">{{logro["descripcion"]}}</p>
+        </div>
+    </div>
+</div>

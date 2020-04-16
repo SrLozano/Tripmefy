@@ -1,1 +1,54 @@
-<p>mis-viajes works!</p>
+<app-header titulo="MIS VIAJES"></app-header>
+<nav>
+    <div class="right">
+        <div class="buscador">
+            <form>
+                <!---<label for="fname"><img src="../../../assets/busqueda.png"></label>-->
+                <input id="fname"  name="fname" placeholder="Buscar ciudad..." [(ngModel)]="buscar" (change)="busqueda()" onclick="reset()"><br><br>
+                <!--<input type="submit" value="Submit" (click)="busqueda">-->
+            </form>
+        </div>
+        <img id="img-f" src="../../../assets/filtro.png">
+        <select id="select-f" [(ngModel)]="precio" (change)="filtrar()">
+           
+            <option value="+ 500€">Todos</option>
+            <option value="Hasta 100€">Hasta 100€</option> 
+            <option value="Hasta 300€">Hasta 300€</option>
+            <option value="Hasta 500€">Hasta 500€</option>
+            <option value="+ 500€">+ 500€</option>
+            <option value={{precio}} selected>{{precio}}</option>
+
+        </select>
+    </div>
+</nav>
+<div class="content">
+
+    <div class="nuevo" *ngIf="comprobarViajero()" [routerLink] = "['/unirse-continente']">
+        <img id="mas" src="../../../assets/nuevo.png">
+    </div>
+    
+    <div class="nuevo" *ngIf="comprobarOrganizador()" [routerLink] = "['/crear-viaje']">
+        <img id="mas" src="../../../assets/nuevo.png">
+    </div>
+
+    <div class="pais" *ngFor="let ciudad of escogidas"  [routerLink]="['/viaje/', ciudad['id'] ]">
+    
+    
+        <img src="../../../assets/viajes/Europa/{{ciudad['ciudad']}}-00.jpg">
+        
+        <p class="destacado">{{ ciudad["ciudad"] }}</p>
+        <p id="mensaje">{{ ciudad["mensaje"] }}</p>   
+        <div class="info">
+            <p class="destacado">{{ciudad["precio"]}}</p>
+            <div class="personas">
+                <img src="../../../assets/usuario.png">
+                <p>{{ciudad["unidas"]}}/{{ciudad["maximo"]}}</p>
+            </div>
+            <img src="../../../assets/compartir.png">
+        </div> 
+            
+    </div>
+
+   
+   
+</div>
