@@ -32,7 +32,11 @@ import { BienvenidaComponent } from './bienvenida/bienvenida.component';
 import { CommonModule } from '@angular/common';
 
 import { VolverComponent } from './shared/volver/volver.component';
+
 import { BotonComponent } from './shared/boton/boton.component';
+
+
+import { ScrollTopComponent } from './shared/scroll-top/scroll-top.component';
 
 
 @NgModule({
@@ -61,10 +65,14 @@ import { BotonComponent } from './shared/boton/boton.component';
     VolverComponent,
 
 
+
     BotonComponent,
 
 
    
+
+    ScrollTopComponent,
+
   ],
   imports: [
     

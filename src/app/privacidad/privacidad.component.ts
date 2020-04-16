@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./privacidad.component.scss']
 })
 export class PrivacidadComponent implements OnInit {
-
+  
   constructor() { }
 
+
   ngOnInit(): void {
+  }
+
+  scroll(el: HTMLElement) {
+    el.scrollIntoView({behavior: 'smooth'});
   }
 
 }
