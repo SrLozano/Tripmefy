@@ -33,10 +33,14 @@ import { CommonModule } from '@angular/common';
 
 import { VolverComponent } from './shared/volver/volver.component';
 
+
 import { BotonComponent } from './shared/boton/boton.component';
 
 
 import { ScrollTopComponent } from './shared/scroll-top/scroll-top.component';
+
+
+
 
 
 @NgModule({
@@ -66,26 +70,29 @@ import { ScrollTopComponent } from './shared/scroll-top/scroll-top.component';
 
 
 
+    ScrollTopComponent,
+
+
+
+
     BotonComponent,
 
 
-   
 
-    ScrollTopComponent,
 
   ],
   imports: [
-    
+
     AngularFireModule.initializeApp(environment.firebase),
     CommonModule,
     AngularFirestoreModule,
-    
+
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
     MatSliderModule
-    
+
   ],
   providers: [],
   bootstrap: [AppComponent]
