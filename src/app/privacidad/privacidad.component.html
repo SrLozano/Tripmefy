@@ -1,7 +1,8 @@
 <app-header titulo="Política de Privacidad"></app-header>
 
+<h1 class="title">Nuestra política de privacidad</h1>
 <div class="politica">
-    <h1>Introducción</h1>
+    <h1 #t0>Introducción</h1>
     <p>
         Tal y como mencionamos en nuestras  3 Leyes de protección de datos, nos comprometemos a proteger la privacidad 
         de sus datos. Esta Política de privacidad explica más concretamente qué información Tripmefy Corporation y sus 
@@ -21,7 +22,7 @@
         realizamos algún cambio significativo, le notificaremos y, en caso necesario, solicitaremos su consentimiento. 
     </p>
 
-    <h1>¿Qué tipo de información recoge Tripmefy? </h1>
+    <h1 #t1>¿Qué tipo de información recoge Tripmefy? </h1>
 
     <p>
         Creamos Tripmefy para ayudarle a crear paquetes de viajes y así poder acercarse más al usuario . 
@@ -46,7 +47,7 @@
             aplicaciones de su dispositivo en nuestra página de Uso de datos.</li>
     </ul>
 
-    <h1>¿Cómo utiliza Tripmefy mi información?</h1>
+    <h1 #t2>¿Cómo utiliza Tripmefy mi información?</h1>
 
         <p>Tenemos normas concretas sobre cómo y cuándo utilizamos la información que recopilamos y recibimos. 
             Las describimos a continuación.</p>
@@ -92,7 +93,7 @@
             </ul>
 
     
-    <h1>¿Alguien de Tripmefy podría ver alguna vez mi Contenido?</h1>
+    <h1 #t3>¿Alguien de Tripmefy podría ver alguna vez mi Contenido?</h1>
         <p>
             Usted tiene el control sobre quién ve su Contenido. Limitamos el uso de su Contenido 
             para asegurarnos de que nadie de Tripmefy pueda verlo, a menos que usted nos dé permiso expreso o 
@@ -112,7 +113,7 @@
         </p>
 
     
-    <h1>¿Cómo responde Tripmefy a las solicitudes legales de mi información?</h1>
+    <h1 #t4>¿Cómo responde Tripmefy a las solicitudes legales de mi información?</h1>
         <p>
             Protegemos cuidadosamente la privacidad de su cuenta. No divulgaremos su información a 
             las autoridades policiales u otras autoridades gubernamentales a menos que consideremos 
@@ -137,7 +138,7 @@
              propiedad o sistemas de quienes trabajamos en el Servicio, o según sea necesario con el fin de 
              cumplir nuestras obligaciones legales.</p>
 
-    <h1>¿Cómo puedo gestionar mi información almacenada en Tripmefy?</h1>
+    <h1 #t5>¿Cómo puedo gestionar mi información almacenada en Tripmefy?</h1>
         <p>
             De acuerdo con nuestra primera ley de protección de datos, sus datos le pertenecen y en la mayoría 
             de los casos puede gestionar su información simplemente accediendo a su cuenta y editando su información 
@@ -150,6 +151,18 @@
             Escudo de Privacidad de España.
         </p>
         
+</div>
+
+
+<div class="right-menu">
+    <ul>
+    <a (click)="scroll(t0)"><li>Introducción</li></a> <hr>
+    <a (click)="scroll(t1)"><li>¿Qué tipo de información recoge Tripmefy?</li></a> <hr>
+    <a (click)="scroll(t2)"><li>¿Cómo utiliza Tripmefy mi información?</li></a> <hr>
+    <a (click)="scroll(t3)"><li>¿Alguien de Tripmefy podría ver alguna vez mi Contenido?</li></a> <hr>
+    <a (click)="scroll(t4)"><li>¿Cómo responde Tripmefy a las solicitudes legales de mi información?</li></a> <hr>
+    <a (click)="scroll(t5)"><li>¿Cómo puedo gestionar mi información almacenada en Tripmefy?</li></a>
+    </ul>   
 </div>
 
 <app-scroll-top></app-scroll-top>
