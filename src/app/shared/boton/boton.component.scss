@@ -1,0 +1,25 @@
+$azul-claro: #0da8de;
+$azul-royal: #004cbe;
+$blanco: #ffffff;
+$azul-marino: #20284c; /** solo en textos **/
+$gris: #cfd8dc;
+$naranja: #f4a500;
+$azul-oscuro: #002063; /** popups y detalles **/
+$transparencia: #6c6c6d; /** este lleva opacidad del 52% **/
+$gris-buscador: #c0c1c0;
+$letters: #03a9f4;
+$gris-encabezado: #F5F5F5;
+$azul-verdoso: #009788;
+
+
+button{
+    padding: 10px 15px;
+    background-color: $azul-verdoso;
+    color: $blanco;
+    font-weight: bolder;
+}
+button:hover{
+    -webkit-box-shadow: 2px 2px 2px 0px rgba(207,216,220,1);
+    -moz-box-shadow: 2px 2px 2px 0px rgba(207,216,220,1);
+    box-shadow: 2px 2px 2px 0px rgba(207,216,220,1);
+}
