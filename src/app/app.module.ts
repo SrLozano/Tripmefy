@@ -21,6 +21,7 @@ import { UnirseContinenteComponent } from './viajes/unirse-continente/unirse-con
 import { UnirsePaisComponent } from './viajes/unirse-pais/unirse-pais.component';
 import { ViajeComponent } from './viajes/viaje/viaje.component';
 import { VolverComponent } from './shared/volver/volver.component';
+import { ScrollTopComponent } from './shared/scroll-top/scroll-top.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { VolverComponent } from './shared/volver/volver.component';
     UnirsePaisComponent,
     ViajeComponent,
     VolverComponent,
+    ScrollTopComponent,
   ],
   imports: [
     BrowserModule,
