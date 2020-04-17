@@ -25,13 +25,13 @@ const routes: Routes = [
   {path:'mis-viajes', component:MisViajesComponent},
   {path:'unirse-ciudad/:id', component:UnirseCiudadComponent},
   {path:'unirse-pais', component:UnirsePaisComponent},
-  {path: 'unirse-continente', component:UnirseContinenteComponent},
+  {path:'unirse-continente', component:UnirseContinenteComponent},
   {path:'viaje/:id', component:ViajeComponent},
   {path:'privacidad', component:PrivacidadComponent},
   {path:'not-found404', component: NotFound404Component},
-  {path: 'logros', component: LogrosComponent},
-  {path: 'bienvenida', component: BienvenidaComponent},
-  {path: '**', pathMatch: 'full', redirectTo: 'page1'}
+  {path:'logros', component: LogrosComponent},
+  {path:'bienvenida', component: BienvenidaComponent},
+  {path:'**', pathMatch: 'full', redirectTo: 'page1'}
   
 ];
 

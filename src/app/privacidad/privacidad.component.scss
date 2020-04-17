@@ -58,3 +58,31 @@ $azul-verdoso: #009788;
     color: $azul-verdoso;
     border-color: $azul-verdoso;
 }
+
+@media screen and (max-device-width : 480px) {
+    .title{
+        font-size: 20pt;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 30px;
+        margin-bottom: 150px;
+    }
+    .politica{
+        width: 80%;
+        margin-left: 40px;
+        font-size: 11pt;
+        margin-top: 300px;
+    
+    }
+    
+   
+      
+    .right-menu{
+        position: absolute;
+        width: 80%;
+        top: 200px;
+        left: 15px;
+        font-size: 9pt;
+    }
+
+}
