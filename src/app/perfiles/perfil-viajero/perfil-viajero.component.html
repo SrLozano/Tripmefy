@@ -1,5 +1,89 @@
 <app-header titulo="MI PERFIL"></app-header>
 
+<div id="general">
+   
+   <div id="div1">
+      <div id="tarjeta">
+         <mat-card>
+         <mat-card-content>
+            <div class="little_container_izq">
+               <span class="name">Alejandro Chamorro</span>
+               <div>
+                  <span class="texto_perfil">Hombre</span>
+                  <img src="../../../assets/person.png" style="height: 7%; width: 7%;">
+                  <!--IF AQUI ENTRE ICONO HOMBRE/MUJER -->
+               </div>
+               <div>
+                  <span class="texto_perfil">27 años</span>
+               </div>
+               <div>
+                  <span class="texto_perfil">Salamanca, España</span>
+                  <img src="../../../assets/location.png" style="height: 7%; width: 7%;" >
+               </div>
+            </div>
+            <div class="little_container_der">
+               <img src="../../../assets/person-2.jpg" style="display: inline-block; width: 100%; max-height: 300px; " >
+            </div>
+            
+            
+         </mat-card-content>
+         </mat-card> 
+      </div>
+      
+   </div>
+   <div id="div2">
+      <p class="texto">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda vitae iusto non magnam inventore amet sapiente earum minima cum 
+      quam fuga voluptatem quae ab sequi quia cupiditate nesciunt, voluptate architecto.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda vitae iusto non magnam inventore amet sapiente earum minima cum 
+      quam fuga voluptatem quae ab sequi quia cupiditate nesciunt, voluptate architecto.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda vitae iusto non magnam inventore amet sapiente earum minima cum 
+      quam fuga voluptatem quae ab sequi quia cupiditate nesciunt, voluptate architecto.
+      </p>
+
+      
+   </div>
+   <div id="div3">
+      <div id="opinions">
+         <img src="../../../assets/telegram.png" style="height: 5%; width: 5%; vertical-align: middle; margin-right: 2%">
+         <span class="bold_text">Usuario Viajero</span>
+         <br>
+         <br>
+         <!-- STARS -->
+         <div class="stars">
+            <span *ngFor="let i of Arr(stars).fill(1)" >
+               <img src="../../../assets/star.png" style="height: 5%; width: 5%; vertical-align: middle; margin-right: 2%">
+            </span>  
+            <span *ngFor="let i of Arr(emptystars).fill(1)">
+               <img src="../../../assets/empty_star.png" style="height: 5%; width: 5%; vertical-align: middle; margin-right: 2%;">    
+            </span> 
+         </div>
+         <span class="name comentarios_usuario">Los usuarios opinaron:</span>
+         <div class="comment" *ngFor="let comment of comments">
+              <div class="comment-division-1">               
+                  <img src= '{{ comment["photo"] }}' style="height: 100%; width: 100%; vertical-align: middle; display: inline-block; float:inline-start; ">            
+               </div>
+               <div class="comment-division-2">
+                  <p class="bold_text" style="display: inline-block;">{{ comment["person"]}}</p>   
+                  <p>{{ comment["comment"] }}</p> 
+               </div>             
+         </div> 
+
+      </div>
+      
+   </div>
+   <div id="div4">
+      <span class="name viajes_usuario">Viajes del usuario</span>
+      <div class="container_carousel1">
+         <carousel [slides]="slides"></carousel>
+      </div>
+   </div>
+</div>
+
+
+
+<!--
+
 <div class="main_container_izq">
    <mat-card>
       <mat-card-content>
@@ -9,7 +93,7 @@
             <div>
                <span class="texto_perfil">Hombre</span>
                <img src="../../../assets/person.png" style="height: 7%; width: 7%;">
-               <!--IF AQUI ENTRE ICONO HOMBRE/MUJER-->
+               IF AQUI ENTRE ICONO HOMBRE/MUJER
             </div>
             <div>
                <span class="texto_perfil">27 años</span>
@@ -48,6 +132,8 @@
   
   
 </div>
+
+-->
 
 <!--
 <span style="display: inline-block;">hjfdekfjksj</span>

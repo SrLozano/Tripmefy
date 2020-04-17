@@ -10,22 +10,22 @@ $gris-buscador: #c0c1c0;
 $letters: #03a9f4;
 $gris-encabezado: #F5F5F5;
 
-.main_container_izq{
-  float:left;
-  width: 46%;
-  margin-top: 4%;
-  padding-left: 4%;
-  height: 50%;
+#general{ height: 86%; width: 100%; padding: 0; margin: 0; position: absolute; left: 0;}
+#div1 { 
+  width: 50%; 
+  height: 50%; 
+  float: left;
+}
+#tarjeta{
+  margin: 5%;
+}
+#opinions{
+  margin: 0 5%;
 }
 
-.main_container_der{
-  float:left;
-  width: 42%;
-  margin-top: 4%;
-  margin-left: 4%;
-  margin-right: 4%;
-  height: 50%;
-}
+#div2 { width: 50%; height: 50%; float: left; overflow: hidden;}
+#div3 { width: 50%; height: 50%; float: left; overflow: auto;}
+#div4 { width: 50%; height: 50%; float: left;}
 
 
 .little_container_der{
@@ -43,24 +43,82 @@ $gris-encabezado: #F5F5F5;
   display: inline-block; 
   color: $letters;
   font-weight: bold;
-  font-size: 200%;
+  font-size: 180%;
   margin-bottom: 2.5%;
+  margin-top: 5%;
+}
+
+.viajes_usuario{
+  margin-left: 5%; 
+  margin-top: 0%;
+  font-size: 170%;
+}
+
+.comentarios_usuario{
+  margin-top: 0%;
+  font-size: 170%;
 }
 
 .texto_perfil{
   display: inline-block; 
-  margin-top: 9%;
+  margin-top: 6%;
   font-size: 160%;
+}
+
+.bold_text{
+  font-size: 120%;
+  font-weight: bold;
 }
 
 .texto{
   font-size: 110%;
   text-align: justify;
+  margin: 6%;
+  margin-right: 10%;
+  overflow: auto;
 }
+
 
 .container_carousel1 {
   display: block;
-  height: 20em;
-  width: 35em;
-  margin: 1% 8%;
+  height: 70%;
+  width: 60%;
+  margin: 1% 20%;
+}
+
+.comment{
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.stars{
+  margin-bottom: 5%;
+}
+
+.comment-division-1{
+  display: inline-block;
+  width: 19%;
+  margin-left: 3%;
+}
+.comment-division-2{
+  display: inline-block;
+  width: 68%;
+  margin: 5%;
+}
+
+/**PARA MÓVIL**/
+@media screen and (max-device-width : 700px){
+  
+  #div1 { width: 100%; height: 50%; float: left;}
+  #div2 { width: 100%; height: 50%; float: left;}
+  #div3 { width: 100%; height: 50%; float: left;}
+  #div4 { width: 100%; height: 50%; float: left;}
+
+
+  .texto_perfil{
+    font-size: 140%;
+  }
+  .viajes_usuario{
+    font-size: 145%; 
+  }
 }
