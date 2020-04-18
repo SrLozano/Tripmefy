@@ -13,17 +13,19 @@ $gris-encabezado: #F5F5F5;
 #general{ height: 86%; width: 100%; padding: 0; margin: 0; position: absolute; left: 0;}
 #div1 { 
   width: 50%; 
-  height: 50%; 
+  height: 35%; 
   float: left;
 }
 #tarjeta{
   margin: 5%;
+  margin-top: 2%;
 }
 #opinions{
   margin: 0 5%;
+
 }
 
-#div2 { width: 50%; height: 50%; float: left; overflow: hidden;}
+#div2 { width: 50%; height: 40%; float: left; overflow: hidden;}
 #div3 { width: 50%; height: 50%; float: left; overflow: auto;}
 #div4 { width: 50%; height: 50%; float: left;}
 
@@ -74,6 +76,7 @@ $gris-encabezado: #F5F5F5;
   font-size: 110%;
   text-align: justify;
   margin: 6%;
+  margin-top: 2%;
   margin-right: 10%;
   overflow: auto;
 }

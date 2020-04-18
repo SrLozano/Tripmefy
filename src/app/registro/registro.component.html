@@ -1,54 +1,74 @@
-<!DOCTYPE html>
-<html>
-<body>
+<div class="contenedor">
+  <div class="lateral-izq">
+      
+      <img src='../../assets/tripmefy.png'>
+     
 
-<div id="id01" class="modal">
-  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-  <form class="modal-content">
-    <div class="container">
-      <div class="title_container">
-        <span class="title">Tripmefy</span>
-        <span class="subtitle">Por favor, rellena este formulario para registrarte</span>
-      </div>
-      <hr>
+  </div>
 
-      <div class="name_surname_container ns1">
-        <input type="text" placeholder="Introduce tu nombre" required>
-      </div>
-
-      <div class="name_surname_container ns2">
-        <input type="text" placeholder="Introduce tu Apellidos" required>
-      </div>
-
-      <input type="email" placeholder="Introduce tu email" required>
-      <input type="password" placeholder="Introduce tu contraseña" required>
-      <input type="password" placeholder="Introduce tu contraseña de nuevo" required>
-
-      <div class="radio_container">
-        <label class="container_checkbox">Soy organizador
-          <input type="radio" name="option" value="Option 2"><span class="checkmark"></span>
-        </label>      
-      </div>
-      <div class="radio_container">
-        <label class="container_checkbox">Soy viajero
-          <input type="radio" name="option" value="Option 2"><span class="checkmark"></span>
-        </label>      
-      </div>
+  <div class="lateral-drch">
+    <div class="boton_inicio">
+      <mat-form-field class="formulario">
+        <mat-label>Nombre</mat-label>
+        <input matInput [(ngModel)]="nombre" name="nombre">
+      </mat-form-field>
+      <br>
+      <mat-form-field class="formulario" >
+        <mat-label>Apellido</mat-label>
+        <input matInput [(ngModel)]="apellido" name="apellido">
+      </mat-form-field>
       <br>
 
-      <label>
-        <input type="checkbox" checked="checked">Creando una cuenta aceptas los términos y condiciones de la <a href="#" style="color:dodgerblue">política de privacidad</a>.
-      </label>
+			<mat-form-field class="formulario">
+			    <mat-label>Email</mat-label>
+			    <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher" placeholder="Ej. pat@example.com" [(ngModel)]="email" name="email">
+				  <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+				      Por favor, introduce una dirección válida
+				  </mat-error>
+				  <mat-error *ngIf="emailFormControl.hasError('required')">
+				      Por favor, introduce una dirección de correo
+				  </mat-error>
+			  </mat-form-field>
+      
+      <br>
 
+      <mat-form-field class="formulario" appearance="fill" >
+        <mat-label>Introduce tu contraseña</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      
+      <br>
 
-      <div class="clearfix">
-      	<button type="submit" class="signupbtn">Registrarse</button>
-        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancelar</button>
-      </div>
+      <mat-form-field class="formulario" appearance="fill">
+        <mat-label>Confirma la contraseña</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+
     </div>
-  </form>
+
+    <section class="checkbox">
+      <mat-radio-group [(ngModel)]="labelPosition">
+        <mat-radio-button class="example-margin" value="after">Soy viajero</mat-radio-button>
+        <mat-radio-button class="example-margin" value="before">Soy organizador</mat-radio-button>
+      </mat-radio-group>
+    </section>
+
+    <section class="checkbox">
+      <mat-checkbox class="" [(ngModel)]="checked">Acepto los términos y la política de privacidad</mat-checkbox>
+    </section>
+
+      <div class="boton_registro">
+          <button mat-raised-button style="width: 200px" class= "boton" >
+          <a routerLink="/registro">REGISTRATE</a></button>
+      </div>
+
+      
+  </div>
+
 </div>
-
-
-</body>
-</html>

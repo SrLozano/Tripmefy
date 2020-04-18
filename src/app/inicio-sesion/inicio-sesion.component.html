@@ -1,30 +1,44 @@
-<!DOCTYPE html>
-<html>
-<body>
+<div class="contenedor">
+  <div class="lateral-izq">
+      
+      <img src='../../assets/tripmefy.png'>
+     
 
-<div id="id01" class="modal">
-  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-  <form class="modal-content">
-    <div class="container">
-      <div class="title_container">
-        <span class="title">Tripmefy</span>
-        <span class="subtitle">Inicia sesión</span>
-      </div>
-      <hr>
+  </div>
 
+  <div class="lateral-drch">
+    <div class="boton_inicio">
 
-      <input type="email" placeholder="Introduce tu email" required>
-      <input type="password" placeholder="Introduce tu contraseña" required>
+			<mat-form-field class="formulario">
+			    <mat-label>Email</mat-label>
+			    <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher" placeholder="Ej. pat@example.com" [(ngModel)]="email" name="email">
+				  <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+				      Por favor, introduce una dirección válida
+				  </mat-error>
+				  <mat-error *ngIf="emailFormControl.hasError('required')">
+				      Por favor, introduce una dirección de correo
+				  </mat-error>
+			  </mat-form-field>
+      
+      <br>
 
-      <div class="clearfix">
-        <button type="submit" class="signupbtn">Iniciar sesión</button>
-        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancelar</button>
-    </div>
+      <mat-form-field class="formulario" appearance="fill" >
+        <mat-label>Introduce tu contraseña</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
       
     </div>
-  </form>
+
+
+      <div class="boton_registro">
+          <button mat-raised-button style="width: 200px" class= "boton" >
+          <a routerLink="/registro">INICIAR SESIÓN</a></button>
+      </div>
+
+      
+  </div>
+
 </div>
-
-
-</body>
-</html>

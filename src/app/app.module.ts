@@ -3,6 +3,14 @@ import { NgModule } from '@angular/core';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule} from '@angular/material/form-field';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +31,7 @@ import { UnirseContinenteComponent } from './viajes/unirse-continente/unirse-con
 import { UnirsePaisComponent } from './viajes/unirse-pais/unirse-pais.component';
 import { ViajeComponent } from './viajes/viaje/viaje.component';
 import { CarouselComponent } from './carousel/carousel.component';
+import { VolverComponent } from './shared/volver/volver.component';
 
 @NgModule({
   declarations: [
@@ -43,14 +52,24 @@ import { CarouselComponent } from './carousel/carousel.component';
     UnirsePaisComponent,
     ViajeComponent,
     CarouselComponent,
+    VolverComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule, 
+    FormsModule,
     MatButtonModule,
     MatCardModule,
-    MatSliderModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatSliderModule,
+    MatRadioModule,
+    MatCheckboxModule, 
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
