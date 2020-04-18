@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -11,6 +12,11 @@ import {MatInputModule} from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,6 +39,18 @@ import { ViajeComponent } from './viajes/viaje/viaje.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { VolverComponent } from './shared/volver/volver.component';
 
+import { LogrosComponent } from './logros/logros.component';
+import { BienvenidaComponent } from './bienvenida/bienvenida.component';
+import { CommonModule } from '@angular/common';
+
+import { VolverComponent } from './shared/volver/volver.component';
+
+import { ScrollTopComponent } from './shared/scroll-top/scroll-top.component';
+
+import { BotonComponent } from './shared/boton/boton.component';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,9 +71,20 @@ import { VolverComponent } from './shared/volver/volver.component';
     ViajeComponent,
     CarouselComponent,
     VolverComponent,
+    LogrosComponent,
+    BienvenidaComponent,
+    VolverComponent,
+    ScrollTopComponent,
+    BotonComponent,
   ],
   imports: [
+
+    AngularFireModule.initializeApp(environment.firebase),
+    CommonModule,
+    AngularFirestoreModule,
+
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule, 
     FormsModule,
@@ -70,6 +99,7 @@ import { VolverComponent } from './shared/volver/volver.component';
     MatRadioModule,
     MatCheckboxModule, 
     ReactiveFormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

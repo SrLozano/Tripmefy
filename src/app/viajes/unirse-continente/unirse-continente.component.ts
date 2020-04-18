@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+
+
 
 @Component({
   selector: 'app-unirse-continente',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UnirseContinenteComponent implements OnInit {
 
+  clickMessage = '';
+
   constructor() { }
+/** 
+  establecerContinente(continente:string):void{
+    alert(continente);
+  }
+  **/
+  
+ 
 
   ngOnInit(): void {
+  
+    
   }
+  
 
 }

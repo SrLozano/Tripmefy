@@ -1,0 +1,42 @@
+$azul-claro: #0da8de;
+$azul-royal: #004cbe;
+$blanco: #ffffff;
+$azul-marino: #20284c; /** solo en textos **/
+$gris: #cfd8dc;
+$naranja: #f4a500;
+$azul-oscuro: #002063; /** popups y detalles **/
+$transparencia: #6c6c6d; /** este lleva opacidad del 52% **/
+$gris-buscador: #c0c1c0;
+$letters: #03a9f4;
+$gris-encabezado: #F5F5F5;
+$azul-verdoso: #009788;
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 25px;
+    right: 5px;
+    opacity: 0;
+    transition: all .2s ease-in-out;
+    width: 100px;
+}
+
+.scroll-top{
+    width: 50%;
+}
+
+.show-scroll {
+    opacity: 1;
+    transition: all .2s ease-in-out;
+}
+
+@media screen and (max-device-width : 480px) {
+    .scroll-top{
+        filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.7));
+    }
+    
+
+    .scroll-to-top {
+        width: 70px;
+    }
+    
+}

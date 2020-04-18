@@ -17,6 +17,7 @@ $gris-buscador: #c0c1c0;
     position: absolute; 
     top: 0;
     left: 0;
+
     
 
 }
@@ -39,7 +40,6 @@ a{
     align-items: center;
     margin-left: auto;
     margin-right: auto;
-
 }
 
 .lateral-izq img{
@@ -83,11 +83,9 @@ a{
 
 
 
-
-
-
 /**PARA MÓVIL**/
 @media screen and (max-device-width : 700px) {
+
 
     .contenedor{
         flex-wrap: wrap;
@@ -120,3 +118,4 @@ a{
        
     }
 }
+
