@@ -1,14 +1,16 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, Input } from '@angular/core';
 import { ActivatedRoute }  from '@angular/router';
 import {Router} from '@angular/router';
-
+import {Viaje} from '../../interfaces/viaje';
+import { FirestoreService } from '../../services/firestore.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-unirse-ciudad',
   templateUrl: './unirse-ciudad.component.html',
   styleUrls: ['./unirse-ciudad.component.scss']
 })
-export class UnirseCiudadComponent implements OnInit {
+export class UnirseCiudadComponent implements OnInit, OnDestroy {
 
 
 
@@ -17,7 +19,11 @@ export class UnirseCiudadComponent implements OnInit {
   escogidas = [];
   precio = "Todos";
   buscar = "";
+  
 
+  public viajes:Viaje[];
+  public s_viajes:Subscription;
+  public viaje;
 
   estaVacio(){
     return this.escogidas.length < 1;
@@ -135,7 +141,10 @@ export class UnirseCiudadComponent implements OnInit {
 
   constructor(private _route:ActivatedRoute, 
               private _router: Router,
-              ) { }
+              private firestoreService: FirestoreService
+              ) {
+                this.viajes = [];
+               }
   
   
 
@@ -153,13 +162,30 @@ export class UnirseCiudadComponent implements OnInit {
     var ciudad; //para ver los datos de la ciudad iterada
 
     this.filtrar();
-
-  
+   
+    this.s_viajes=this.firestoreService.getViajesSorted().subscribe(data=>{
+      this.viajes=data;
+    });
+    
+    this.firestoreService.getViajes().subscribe(res=>{
+      this.viajes=res;
+      }
+    );
+    
+   
+   console.log("--------------------------");
+   console.log(this.viajes[0]);
 
     
     
 
   }
+
+  ngOnDestroy()
+  {
+    this.s_viajes.unsubscribe();
+  }
+
   
 
 }
