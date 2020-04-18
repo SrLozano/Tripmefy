@@ -1,0 +1,88 @@
+$azul-claro: #0da8de;
+$azul-royal: #004cbe;
+$blanco: #ffffff;
+$azul-marino: #20284c; /** solo en textos **/
+$gris: #cfd8dc;
+$naranja: #f4a500;
+$azul-oscuro: #002063; /** popups y detalles **/
+$transparencia: #6c6c6d; /** este lleva opacidad del 52% **/
+$gris-buscador: #c0c1c0;
+$letters: #03a9f4;
+$gris-encabezado: #F5F5F5;
+
+#general{ 
+	height: 86%; 
+	width: 100%; 
+	padding: 0; 
+	margin: 0; 
+	position: absolute; 
+	left: 0;
+}
+#div1 { 
+  width: 30%; 
+  height: 100%; 
+  float: left;
+  margin: 0 4%;
+}
+#div2 { 
+  width: 55%; 
+  height: 100%; 
+  float: left;
+  margin-right: 4%;
+  margin-bottom: 4%;
+  font-size: 140%;
+
+}
+
+
+.up{
+  height: 60%;
+}
+
+.bottom{
+  height: 40%;
+}
+
+.checkbox{
+  color: red($color: #000000);
+}
+
+span > .texto{
+	padding-right: 5%;
+	float: left;
+}
+
+.formulario{
+	display: inline-block;
+	margin-left: 2%;
+}
+
+.descripcion{
+	width: 95%;
+	margin-left: 0;
+}
+
+.contacto{
+	width: 35%;
+}
+.prefijo{
+	width: 5%;
+	margin-left: 0;	
+}
+.email{
+	margin-right: 2%;
+}
+
+.election{
+	display: inline-block;
+	width: 100%;
+}
+
+.ciudad{
+	width: 30%;
+}
+
+.divBotonAceptar{	
+	float:right;
+	margin-top: 5%;
+}
