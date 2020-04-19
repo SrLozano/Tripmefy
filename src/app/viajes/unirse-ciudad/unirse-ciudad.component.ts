@@ -1,9 +1,13 @@
-import { Component, OnInit, OnDestroy, ViewChild, Input } from '@angular/core';
+
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ActivatedRoute }  from '@angular/router';
 import {Router} from '@angular/router';
-import {Viaje} from '../../interfaces/viaje';
-import { FirestoreService } from '../../services/firestore.service';
-import { Subscription } from 'rxjs';
+import {FirestoreService} from '../../services/firestore/firestore.service';
+import {Subscription} from 'rxjs';
+import {Viaje, IViaje} from '../../interfaces/viaje';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-unirse-ciudad',
@@ -19,18 +23,23 @@ export class UnirseCiudadComponent implements OnInit, OnDestroy {
   escogidas = [];
   precio = "Todos";
   buscar = "";
-  
+
 
   public viajes:Viaje[];
   public s_viajes:Subscription;
+
   public viaje;
+
+  public search_texto:string="";
+  public search_tipo:number=0;
+
 
   estaVacio(){
     return this.escogidas.length < 1;
   }
 
   busqueda(){
-    
+
     var i;
     var selec;
     this.escogidas = [];
@@ -41,12 +50,12 @@ export class UnirseCiudadComponent implements OnInit, OnDestroy {
       if(selec != -1 && selec['ciudad'].toUpperCase().includes(this.buscar.toUpperCase())){
         this.escogidas.push(selec);
       }
-      
+
 
     };
   }
-    
-  
+
+
   filtrar(){
     var i;
     var selec;
@@ -58,7 +67,7 @@ export class UnirseCiudadComponent implements OnInit, OnDestroy {
       if(selec != -1){
         this.escogidas.push(selec);
       }
-      
+
 
     };
   }
@@ -67,7 +76,7 @@ export class UnirseCiudadComponent implements OnInit, OnDestroy {
     var ciudad = this.ciudades[i];
     //solo metemos los viajes del pais escogido
     if (ciudad['pais'].toUpperCase() == this.estePais){
-        
+
       switch(this.precio){
         case "Hasta 100€":
           if (parseInt(ciudad['precio'].substr(0,3)) <= 100 ){
@@ -87,7 +96,7 @@ export class UnirseCiudadComponent implements OnInit, OnDestroy {
             return ciudad;
           }
           break;
-        default:  
+        default:
             //this.escogidas.push(ciudad);
             return ciudad;
           break;
@@ -96,7 +105,7 @@ export class UnirseCiudadComponent implements OnInit, OnDestroy {
     }
     return -1;
   }
-  
+
   //ciudades = [['Sevilla', 'hola'], ['Barcelona'], ['Galicia'], ['Madrid']];
   ciudades = [
     {
@@ -135,57 +144,76 @@ export class UnirseCiudadComponent implements OnInit, OnDestroy {
       "unidas": "1",
       "maximo": "5"
     }
-    
+
   ]
   myciudad= this.ciudades[0];
-
-  constructor(private _route:ActivatedRoute, 
+  private db:AngularFirestore;
+  public misViajes = []
+  constructor(private _route:ActivatedRoute,
               private _router: Router,
+
               private firestoreService: FirestoreService
               ) {
                 this.viajes = [];
                }
-  
-  
 
-  
+
+
+
+
+
+
 
   ngOnInit(): void {
     //let dato = JSON.parse(localStorage.getItem('pais'));
-    
+
     //let id = localStorage.getItem('pais');
     let id = this._route.snapshot.paramMap.get('id'); //para saber el pais a traves de la URL
-    
+
     this.estePais = id.toUpperCase(); //para el titulo
 
     var i; //iteramos sobre el conjunto de ciudades
     var ciudad; //para ver los datos de la ciudad iterada
 
     this.filtrar();
-   
+
+
     this.s_viajes=this.firestoreService.getViajesSorted().subscribe(data=>{
       this.viajes=data;
     });
-    
+
     this.firestoreService.getViajes().subscribe(res=>{
       this.viajes=res;
       }
     );
-    
-   
+
+
    console.log("--------------------------");
    console.log(this.viajes[0]);
 
-    
-    
+
+
+
+
 
   }
+
+
+
+
+
+
+
 
   ngOnDestroy()
   {
     this.s_viajes.unsubscribe();
   }
 
-  
+
+
+
+
+
 
 }
