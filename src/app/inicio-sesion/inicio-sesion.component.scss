@@ -1,211 +1,169 @@
 $azul-claro: #0da8de;
 $azul-royal: #004cbe;
-$azul-marino: #20284c;
+$blanco: #ffffff;
+$azul-marino: #20284c; /** solo en textos **/
 $gris: #cfd8dc;
 $naranja: #f4a500;
-$azul-oscuro: #002063; 
+$azul-oscuro: #002063; /** popups y detalles **/
+$transparencia: #6c6c6d; /** este lleva opacidad del 52% **/
 $gris-buscador: #c0c1c0;
 
-body {font-family: Arial, Helvetica, sans-serif;}
-* {
-  box-sizing: border-box;
-  color: white;
-}
 
-
-/* Full-width input fields */
-input[type=text] {
-  width: 100%;
-  padding: 2.2%;
-  margin: 0px 0 0px 0;
-  display: inline-block;
-  background: #f1f1f1;
-  border:2px solid #aaa;
-  border-radius:4px;
-  outline:none;
-  box-sizing:border-box;
-  transition:.3s;
-}
-
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    opacity: 1; /* Firefox */
-    font-size: 15px;
-  }
-
-.name_surname_container{
-    width: 49%;
-    display: inline-block;
-}
-
-.ns1{
-    float: left;
-}
-
-.ns2{
-    float: right;
-}
-
-/* Full-width input fields */
-input[type=email], input[type=password] {
+/**CONTENEDOR Y FUENTE COMÚN**/
+.contenedor{
+    height: 100%;
     width: 100%;
-    padding: 2%;
-    margin-top: 2%;
-    display: inline-block;
-    background: #f1f1f1;
-    border:2px solid #aaa;
-    border-radius:4px;
-    outline:none;
-    box-sizing:border-box;
-    transition:.3s;
-  }
-
-/* Add a background color when the inputs get focus */
-input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
-  border-color:$naranja;
-  box-shadow:0 0 3px 0 $naranja;
-}
-
-/* Add a background color when the inputs get focus */
-input[type=text]:hover, input[type=password]:hover, input[type=email]:hover {
-  background-color: #ddd;
-}
-
-
-/* -----------------------------
---------------------------------
-          CONTAINER
---------------------------------
-------------------------------  */
-
-/* The Modal (background) */
-.modal {
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  background-color: white;
+    display: flex;
+    position: absolute; 
+    top: 0;
+    left: 0;
+    
 
 }
 
-/* Modal Content/Box */
-.modal-content {
-  background-color: $azul-oscuro;
-  width: 40%; /* Could be more or less, depending on screen size */
-  margin: 12% auto 15% auto;
-  border-radius: 4px;
+.formulario{
+  width: 30%;
+}
+
+.contenedor p{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+a{
+    text-decoration: none;
+}
+
+/**LATERAL IZQUIERDO DE LA PÁGINA**/
+.lateral-izq{
+    background-color: $blanco;
+    width: 50%;
+    height: 100%;
+
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
 
 }
 
-/* Add padding to container elements */
-.container {
-  padding: 5%;
-  padding-bottom: 10%;
+.lateral-izq img{
+    height: 350px;
+    margin-left: auto;
+    margin-right: auto;
+
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    
+
 }
 
 
-/* Style the horizontal ruler */
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 2%;
-}
- 
-/* The Close Button (x) */
-.close {
-  position: absolute;
-  right: 35px;
-  top: 15px;
-  font-size: 40px;
-  font-weight: bold;
-  color: #413838;
+/**LATERAL DERECHO DE LA PÁGINA**/
+.lateral-drch{
+    background-image: linear-gradient($azul-royal, $azul-claro);
+    width: 50%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+      
 }
 
-.close:hover,
-.close:focus {
-  color: #f44336;
-  cursor: pointer;
+a{
+    text-decoration: none;
+    color:$azul-royal;
 }
 
-/* Clear floats */
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-.title{
-    color: $naranja;
-    font-size: 55px;
-    font-weight: bold;
-}
-
-.subtitle{
-    color: white;
-    font-weight: bold;
-    margin-top: 2%;
-    display: block;
-}
-
-.title_container{
+.boton_registro{
     text-align: center;
+    margin-top: 2%;
+}
+.boton_inicio{
+  text-align: center;
+  margin-top: 45%;
 }
 
-/* Change styles for cancel button and signup button on extra small screens */
-@media screen and (max-width: 600px) {
-  .cancelbtn, .signupbtn {
-     width: 100%;
-  }
-  .title{
-    font-size: 35px;
-  }
-  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    opacity: 1; /* Firefox */
-    font-size: 10px;
-  }
-  .container_checkbox{
-    font-size: 14px;
-  }
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: white !important;
+ }
+
+ ::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: white !important;
+} 
+
+::ng-deep.mat-form-field-ripple {
+ /*change color of underline when focused*/
+ background-color: white !important;
 }
 
-/* -----------------------------
---------------------------------
-          BUTTONS
---------------------------------
-------------------------------  */
+/* input color class */
+::ng-deep input.mat-input-element {
+  color:white;
+}
 
-button {
-    padding: 14px 20px;
-    margin-left: 13%;
-    margin-top: 7%;
-    border: none;
-    cursor: pointer;
-    opacity: 0.88;
-    font-size: 18px;
-    font-weight: bold;
-    -moz-transition: all 0.35s ease;
-    -o-transition: all 0.35s ease;
-    -webkit-transition: all 0.35s ease;
-    transition: all 0.35s ease;
-    border-radius: 4px;
-    text-align: center;
-  }
-  
-  button:hover {
-    opacity:1;
-  }
-  
-  /* Extra styles for the cancel button */
-  .cancelbtn {
-    background-color: gray;
-    color: white;
-  }
-  
-  .signupbtn {
-    background-color: white;
-    color: $azul-oscuro;
-  }
-  
-  /* Float cancel and signup buttons and add an equal width */
-  .cancelbtn, .signupbtn {
-    float: left;
-    width: 30%;
-  }
+
+/**PARA MÓVIL**/
+@media screen and (max-device-width : 700px) {
+
+    .contenedor{
+        flex-wrap: wrap;
+        width: 100%;
+        display: inline-block;
+        background-color: $blanco;
+        height: 620px;
+    }
+    
+    .lateral-izq{
+        background-color: $blanco;
+        width: auto;
+        height: 70%;
+
+       
+    
+    }
+    .lateral-izq img{
+        height: 70%;
+    }
+    .lateral-drch{
+        background-image: none;
+        background-color: $blanco;
+        width: auto;
+        height: 30%;
+
+        padding-bottom: 20px;
+       
+    }
+
+    .boton_inicio{
+      text-align: center;
+      margin-top:0%;
+    }
+
+    .formulario{
+      width: 70%;
+    }
+
+    ::ng-deep .mat-focused .mat-form-field-label {
+      /*change color of label*/
+      color: $azul-royal !important;
+     }
+    
+     ::ng-deep.mat-form-field-underline {
+      /*change color of underline*/
+      background-color: $azul-royal !important;
+    } 
+    
+    ::ng-deep.mat-form-field-ripple {
+     /*change color of underline when focused*/
+     background-color: $azul-royal !important;
+    }
+    
+    /* input color class */
+    ::ng-deep input.mat-input-element {
+      color:$azul-royal;
+    }
+}
