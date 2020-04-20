@@ -149,9 +149,7 @@ a{
     .lateral-izq{
         background-color: $blanco;
         width: auto;
-        height: 70%;
-
-       
+        height: 70%; 
     
     }
     .lateral-izq img{
@@ -195,4 +193,24 @@ a{
     ::ng-deep input.mat-input-element {
       color:$azul-royal;
     }
+
+    ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
+      background-color: $azul-royal !important;
+    }
+
+    ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+      background-color: $azul-royal;
+    }
+
+    ::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle , .mat-radio-outer-circle {
+      border-color: $azul-royal !important;
+    }
+
+    ::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle{
+      background-color: $azul-royal !important;
+    }
+
+    .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+      border-color: $azul-royal !important; /*outer ring color change*/ 
+     }
 }
