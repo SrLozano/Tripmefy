@@ -108,6 +108,7 @@ export class PerfilOrganizadorComponent implements OnInit, OnDestroy {
       usuarioAux.image = elem.image;
 
       this.usuario = usuarioAux;
+      /**
       this.stars = parseInt(this.usuario.estrellas);
       if(this.stars < 0){
         this.stars = 0;
@@ -115,6 +116,7 @@ export class PerfilOrganizadorComponent implements OnInit, OnDestroy {
       }else{
         this.emptystars = this.maxStars - this.stars;
       }
+      **/
 
       this.firestoreServiceOpiniones.getPuntuacionesFiltered(this.usuario.id).subscribe(res=>{
         if (res.length <= 0){
