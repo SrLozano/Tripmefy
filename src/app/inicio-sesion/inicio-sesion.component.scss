@@ -105,6 +105,67 @@ a{
   color:white;
 }
 
+/**PARA TABLET**/
+@media screen and (max-device-width : 1024px) {
+
+  .contenedor{
+      flex-wrap: wrap;
+      width: 100%;
+      display: inline-block;
+      background-color: $blanco;
+      height: 620px;
+  }
+  
+  .lateral-izq{
+      background-color: $blanco;
+      width: auto;
+      height: 70%;
+
+     
+  
+  }
+  .lateral-izq img{
+      height: 70%;
+  }
+  .lateral-drch{
+      background-image: none;
+      background-color: $blanco;
+      width: auto;
+      height: 30%;
+
+      padding-bottom: 20px;
+     
+  }
+
+  .boton_inicio{
+    text-align: center;
+    margin-top:0%;
+  }
+
+  .formulario{
+    width: 70%;
+  }
+
+  ::ng-deep .mat-focused .mat-form-field-label {
+    /*change color of label*/
+    color: $azul-royal !important;
+   }
+  
+   ::ng-deep.mat-form-field-underline {
+    /*change color of underline*/
+    background-color: $azul-royal !important;
+  } 
+  
+  ::ng-deep.mat-form-field-ripple {
+   /*change color of underline when focused*/
+   background-color: $azul-royal !important;
+  }
+  
+  /* input color class */
+  ::ng-deep input.mat-input-element {
+    color:$azul-royal;
+  }
+}
 
 /**PARA MÓVIL**/
 @media screen and (max-device-width : 700px) {
