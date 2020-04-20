@@ -15,7 +15,12 @@ import {MatRadioModule} from '@angular/material/radio';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import {AngularFireStorageModule} from '@angular/fire/storage';
 import { environment } from '../environments/environment';
+
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -50,6 +55,8 @@ import { BotonComponent } from './shared/boton/boton.component';
 
 
 import { ScrollTopComponent } from './shared/scroll-top/scroll-top.component';
+import { PedirImagenComponent } from './shared/pedir-imagen/pedir-imagen.component';
+import { PruebasComponent } from './pruebas/pruebas.component';
 
 
 
@@ -87,12 +94,21 @@ import { ScrollTopComponent } from './shared/scroll-top/scroll-top.component';
     ScrollTopComponent,
 
     BotonComponent,
+
+    PedirImagenComponent,
+
+    PruebasComponent,
   ],
   imports: [
 
     AngularFireModule.initializeApp(environment.firebase),
     CommonModule,
     AngularFirestoreModule,
+    AngularFireStorageModule,
+
+    BsDropdownModule.forRoot(),
+    TooltipModule.forRoot(),
+    ModalModule.forRoot(),
 
     BrowserModule,
     FormsModule,

@@ -28,18 +28,18 @@
     <app-not-found404 titulo="Lo sentimos, el viaje que estás buscando no está disponible"></app-not-found404>
 </div>
 <div class="content" *ngIf="estaVacio() == false">
-    <div class="pais" *ngFor="let ciudad of escogidas" [routerLink]="['/viaje/', ciudad['id'] ]">
+    <div class="pais" *ngFor="let ciudad of escogidas" [routerLink]="['/viaje/', ciudad.id ]">
     
     
-        <img src="../../../assets/viajes/Europa/{{ciudad['ciudad']}}-00.jpg">
+        <img src="{{ciudad.img}}">
         
-        <p class="destacado">{{ ciudad["ciudad"] }}</p>
-        <p id="mensaje">{{ ciudad["mensaje"] }}</p>   
+        <p class="destacado">{{ ciudad.ciudad }}</p>
+        <p id="mensaje">{{ ciudad.descripcion }}</p>   
         <div class="info">
-            <p class="destacado">{{ciudad["precio"]}}</p>
+            <p class="destacado">{{ciudad.precio}}</p>
             <div class="personas">
                 <img src="../../../assets/usuario.png">
-                <p>{{ciudad["unidas"]}}/{{ciudad["maximo"]}}</p>
+                <p>{{ciudad.unidas}}/{{ciudad.maximo}}</p>
             </div>
             <img src="../../../assets/compartir.png">
         </div> 
@@ -47,3 +47,21 @@
     </div>
    
 </div>
+
+
+<!--
+<div class="form-group">
+    <label for="file">Choose File</label>
+    <input type="file"
+           id="file"
+           (change)="onUpload($event)">
+</div>
+<div class="progress">
+    <div class="progress-bar" role="progressbar" [style.width]="( uploadPercent | async) + '%'" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+<input #imageUser type="hidden"  [value]="urlImage | async" >
+<button *ngIf="urlImage | async; else btnDisabled" type="submit" (click)="crearViaje()">Crear</button>
+<ng-template #btnDisabled>
+    <button onclick="console.log('hi')" type="submit" disabled=true>Crear</button>
+</ng-template>
+-->

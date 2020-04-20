@@ -1,0 +1,30 @@
+<div id="all" class="outsider">
+    <div class="content">
+
+        <div class="cerrar">
+            <img src="../../../assets/cerrar.png" id="close" (click)="cerrar()">
+        </div>
+
+        <div class="formulario">
+            <label id="titulo" for="file"><h1>Selecciona una imagen</h1></label>
+            <input type="file" id="file" (change)="onUpload($event)">
+        </div>
+
+
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" [style.width]="( uploadPercent | async) + '%'" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+
+
+        <input #imageUser type="hidden"  [value]="urlImage | async" >
+
+        <div class="boton">
+            <button *ngIf="urlImage | async; " type="submit" (click)="getURL()">Subir</button>
+            <!--<button *ngIf="urlImage | async; else btnDisabled" type="submit" (click)="getURL()">Crear</button>-->
+            <ng-template #btnDisabled>
+                <!--<button type="submit" disabled=true>Crear</button>-->
+                <!--<app-boton type="submit" disabled=true texto="Aceptar"></app-boton>-->
+            </ng-template>
+        </div>
+    </div>
+</div>

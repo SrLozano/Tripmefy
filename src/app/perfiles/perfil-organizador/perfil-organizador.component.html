@@ -1,20 +1,20 @@
 <app-header titulo="ORGANIZADOR"></app-header>
 <app-volver></app-volver>
 <div id="general">
-   
+   <!-- DATOS -->
    <div id="div1">
       <div id="tarjeta">
          <mat-card>
          <mat-card-content>
             <div class="little_container_izq">
-               <span class="name">TopViajes</span>
+               <span class="name">{{usuario.nombre}}</span>
                <div>
-                  <span class="texto_perfil">Burgos, España</span>
+                  <span class="texto_perfil">{{usuario.ubicacion}}</span>
                   <img src="../../../assets/location.png" style="height: 7%; width: 7%;" >
                </div>
             </div>
             <div class="little_container_der">
-               <img src="../../../assets/topViaje.jpg" style="display: inline-block; width: 100%; max-height: 300px; " >
+               <img src="{{usuario.image}}" style="display: inline-block; width: 100%; max-height: 200px; " >
             </div>
             
             
@@ -25,12 +25,7 @@
    </div>
    <div id="div2">
       <p class="texto">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda vitae iusto non magnam inventore amet sapiente earum minima cum 
-      quam fuga voluptatem quae ab sequi quia cupiditate nesciunt, voluptate architecto.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda vitae iusto non magnam inventore amet sapiente earum minima cum 
-      quam fuga voluptatem quae ab sequi quia cupiditate nesciunt, voluptate architecto.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda vitae iusto non magnam inventore amet sapiente earum minima cum 
-      quam fuga voluptatem quae ab sequi quia cupiditate nesciunt, voluptate architecto.
+      {{usuario.descripcion}}
       </p>
 
       
@@ -38,18 +33,20 @@
    <div id="div3">
       <div id="opinions">
          <img src="../../../assets/plan.png" style="height: 5%; width: 5%; vertical-align: middle; margin-right: 2%">
-         <span class="bold_text">Organizador</span>
+         <span class="bold_text">{{usuario.tipo}}</span>
          <br>
          <br>
          <!-- STARS -->
+         <p *ngIf="usuario.estrellas == -1"> Este usuario no tiene valoraciones aún </p>
          <div class="stars">
             <span *ngFor="let i of Arr(stars).fill(1)" >
-               <img src="../../../assets/star.png" style="height: 5%; width: 5%; vertical-align: middle; margin-right: 2%">
+               <img src="../../../assets/star.png" class="llena" style="height: 5%; width: 5%; vertical-align: middle; margin-right: 2%">
             </span>  
-            <span *ngFor="let i of Arr(emptystars).fill(1)">
-               <img src="../../../assets/empty_star.png" style="height: 5%; width: 5%; vertical-align: middle; margin-right: 2%;">    
+            <span *ngFor="let i of Arr(emptystars).fill(1)" >
+               <img src="../../../assets/empty_star.png" class="vacia" style="height: 5%; width: 5%; vertical-align: middle; margin-right: 2%;">    
             </span> 
          </div>
+         <!--OPINIONES-->
          <span class="name comentarios_usuario">Los usuarios opinaron:</span>
          <div class="comment" *ngFor="let comment of comments">
               <div class="comment-division-1">               
@@ -64,10 +61,11 @@
       </div>
       
    </div>
+   <!--PAQUETES-->
    <div id="div4">
       <span class="name viajes_usuario">Paquetes ofrecidos</span>
       <div class="container_carousel1">
-         <carousel [slides]="slides"></carousel>
+         <carousel [slides]="slides" ></carousel>
       </div>
    </div>
 </div>

@@ -15,6 +15,9 @@ import { NotFound404Component } from './not-found404/not-found404.component';
 import { PrivacidadComponent } from './privacidad/privacidad.component';
 import { LogrosComponent } from './logros/logros.component';
 import { BienvenidaComponent } from './bienvenida/bienvenida.component';
+import { PedirImagenComponent } from './shared/pedir-imagen/pedir-imagen.component';
+import {PruebasComponent} from './pruebas/pruebas.component';
+
 const routes: Routes = [
   {path:'page1', component:Page1Component},
   {path:'inicio-sesion', component:InicioSesionComponent},
@@ -31,6 +34,8 @@ const routes: Routes = [
   {path:'not-found404', component: NotFound404Component},
   {path:'logros', component: LogrosComponent},
   {path:'bienvenida', component: BienvenidaComponent},
+  {path:'pedir-imagen', component: PedirImagenComponent},
+  {path:'pruebas', component: PruebasComponent},
   {path:'**', pathMatch: 'full', redirectTo: 'page1'}
   
 ];
