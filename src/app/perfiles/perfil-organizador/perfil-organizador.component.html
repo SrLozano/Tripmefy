@@ -37,7 +37,7 @@
          <br>
          <br>
          <!-- STARS -->
-         <p *ngIf="usuario.estrellas == -1"> Este usuario no tiene valoraciones aún </p>
+         <p *ngIf="usuario.estrellas == '-1'"> Este usuario no tiene valoraciones aún </p>
          <div class="stars">
             <span *ngFor="let i of Arr(stars).fill(1)" >
                <img src="../../../assets/star.png" class="llena" style="height: 5%; width: 5%; vertical-align: middle; margin-right: 2%">
