@@ -23,6 +23,7 @@ $gris-encabezado: #F5F5F5;
   height: 100%; 
   float: left;
   margin: 0 4%;
+  margin-top: 1%;
 }
 #div2 { 
   width: 55%; 
@@ -85,4 +86,17 @@ span > .texto{
 .divBotonAceptar{	
 	float:right;
 	margin-top: 5%;
+}
+
+/**PARA MÓVIL**/
+@media screen and (max-device-width : 700px){
+	#div1, #div2{
+		width: 90%;
+	}
+	#div1{
+		margin-bottom: 35%;
+	}
+	#div2{
+		margin-left: 3%;
+	}
 }

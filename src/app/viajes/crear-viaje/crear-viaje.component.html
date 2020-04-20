@@ -7,7 +7,7 @@
 		<mat-card style="height: 220px; vertical-align: middle; text-align: center;">
 			<div class="up">
 			  <input hidden type="file" #uploader/>
-			  <img src="../../../assets/plus.png" (click)="uploader.click()" (change)="onFileChanged($event)" style="display: block; margin-left: auto; margin-right: auto;" height="100px" width="100px"/>
+			  <img src="../../../assets/plus.png" (click)="uploader.click()" (change)="onFileChanged($event)" style="display: block; margin-left: auto; margin-right: auto; cursor: pointer;" height="100px" width="100px"/>
 			</div>
 			<div class="bottom">
 			  <input type="file" (change)="onFileChanged($event)" #fileInput>
