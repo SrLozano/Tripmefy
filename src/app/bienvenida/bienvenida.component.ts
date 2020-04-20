@@ -35,8 +35,8 @@ export class BienvenidaComponent implements OnInit {
     /**Obtener variable global tipo y meterla en usuario (falta) */
 
     /**ESTO SIRVE PARA PRUEBAS DE TIPO DE USUARIO */
-    //localStorage.setItem('usuario', 'viajero');
-    localStorage.setItem('usuario', 'organizador');
+    localStorage.setItem('usuario', 'viajero');
+    //localStorage.setItem('usuario', 'organizador');
     
     let usuario = localStorage.getItem('usuario');
 
