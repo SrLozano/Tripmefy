@@ -26,8 +26,8 @@ $gris-encabezado: #F5F5F5;
 }
 
 #div2 { width: 50%; height: 40%; float: left; overflow: hidden;}
-#div3 { width: 50%; height: 50%; float: left; overflow: auto;}
-#div4 { width: 50%; height: 50%; float: left;}
+#div3 { width: 50%; height: 47%; float: left; overflow: auto; margin-top: 3%;}
+#div4 { width: 50%; height: 47%; float: left; margin-top: 3%;}
 
 
 .little_container_der{
@@ -130,7 +130,7 @@ $gris-encabezado: #F5F5F5;
 @media screen and (max-device-width : 700px){
   
   #div1 { width: 100%; float: left;}
-  #div2 { width: 100%; height: auto; float: left;}
+  #div2 { width: 100%; margin-top:5%; height: auto; float: left;}
   #div3 { width: 100%; margin-top:10%;  float: left;}
   #div4 { width: 100%; margin-top:10%; float: left;}
 
