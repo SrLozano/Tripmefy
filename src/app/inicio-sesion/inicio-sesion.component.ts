@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {FormGroup, FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
+import { AuthService } from '../services/auth.service';
+import { IUsuario } from '../interfaces/usuario';
+
+
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -18,12 +22,18 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class InicioSesionComponent implements OnInit {
 
   hide = true;
-
-  constructor() { }
+  loginForm = new FormGroup({
+    email: new FormControl ('', Validators.required),
+    password: new FormControl ('', Validators.required),
+  })
+  constructor(private authSvc : AuthService) { }
 
   ngOnInit(): void {
   }
 
+  onLogin(form){
+    this.authSvc.loginByEmail(form);
+  }
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,

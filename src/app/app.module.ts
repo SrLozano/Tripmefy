@@ -15,7 +15,8 @@ import {MatRadioModule} from '@angular/material/radio';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import {AngularFireStorageModule} from '@angular/fire/storage';
+import { AngularFireStorageModule} from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -104,8 +105,9 @@ import { PruebasComponent } from './pruebas/pruebas.component';
     AngularFireModule.initializeApp(environment.firebase),
     CommonModule,
     AngularFirestoreModule,
+    AngularFireAuthModule,
     AngularFireStorageModule,
-
+  
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
