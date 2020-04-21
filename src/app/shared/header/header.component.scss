@@ -81,7 +81,12 @@ $azul-verdoso: #009788;
 
 /**PARA MÓVIL**/
 @media screen and (max-device-width : 480px) {
-
+    .titulo h1{
+    font-size: 16px;
+    }
+    .content .centro img{
+        margin-left: 40px;
+    }
     .titulo img{
         display: block;
     }
