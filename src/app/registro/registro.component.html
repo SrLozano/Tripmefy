@@ -21,7 +21,7 @@
 
 			<mat-form-field class="formulario"> <!--Pide el email-->
         <mat-label>Email</mat-label>
-        <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher" placeholder="Ej. pat@example.com" [(ngModel)]="email" name="email">
+        <input id="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher" placeholder="Ej. pat@example.com" [(ngModel)]="email" name="email">
         <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
             Por favor, introduce una dirección válida
         </mat-error>

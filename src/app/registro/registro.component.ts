@@ -45,11 +45,10 @@ export class RegistroComponent implements OnInit {
     }else{
       document.getElementById("password1").style.color="white";
       document.getElementById("password2").style.color="white";
+      document.getElementById("email").style.color="white";
 
       this.authService.registerUser(this.email, this.password) //almacenamos el usuario de registro en la bbdd (email y contraseña)
       .then((res)=> {
-        this.route.navigate(['/bienvenida']);
-       
         var usuario:Usuario = new Usuario();
 
         usuario.nombre = this.nombre;
@@ -57,11 +56,19 @@ export class RegistroComponent implements OnInit {
         usuario.email = this.email;
         usuario.password = this.password;
         usuario.tipo = this.tipo;
+        usuario.image = "";
         
         this.userService.createUsuario(usuario);
         
         localStorage.setItem('tipo', this.tipo);
-      }).catch(err => console.log('errooooooor\n', err.message));
+
+        this.route.navigate(['/bienvenida']);
+        
+        console.log(localStorage.getItem("tipo"));
+
+      }).catch(err => {
+        document.getElementById("email").style.color="red";
+      });
 
   
     }

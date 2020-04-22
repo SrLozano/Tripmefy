@@ -1,7 +1,7 @@
 import { UsuarioFirestoreService } from './../services/firestore/usuario-firestore.service';
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
+import { FormGroup, FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 import { AuthService } from '../services/auth.service';
 import { IUsuario, Usuario } from './../interfaces/usuario';
 
