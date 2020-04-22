@@ -1,4 +1,3 @@
-import { FirestoreService } from './../services/firestore/firestore.service';
 import { UsuarioFirestoreService } from './../services/firestore/usuario-firestore.service';
 import { IUsuario, Usuario } from './../interfaces/usuario';
 import { style } from '@angular/animations';
@@ -50,7 +49,7 @@ export class RegistroComponent implements OnInit {
       this.authService.registerUser(this.email, this.password) //almacenamos el usuario de registro en la bbdd (email y contraseña)
       .then((res)=> {
         this.route.navigate(['/bienvenida']);
-        console.log("estoy aquiii");
+       
         var usuario:Usuario = new Usuario();
 
         usuario.nombre = this.nombre;

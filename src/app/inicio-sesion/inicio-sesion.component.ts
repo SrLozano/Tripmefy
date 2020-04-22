@@ -1,8 +1,9 @@
+import { UsuarioFirestoreService } from './../services/firestore/usuario-firestore.service';
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 import { AuthService } from '../services/auth.service';
-import { IUsuario } from '../interfaces/usuario';
+import { IUsuario, Usuario } from './../interfaces/usuario';
 
 
 
@@ -23,19 +24,26 @@ export class InicioSesionComponent implements OnInit {
 
   hide = true;
   loginForm = new FormGroup({
-    email: new FormControl ('', Validators.required),
-    password: new FormControl ('', Validators.required),
+  email: new FormControl ('', Validators.required),
+  password: new FormControl ('', Validators.required),
 
   })
-  constructor(private authSvc : AuthService) { }
+  constructor(private authSvc : AuthService, private userService: UsuarioFirestoreService) { }
 
   ngOnInit(): void {
   }
 
   onLogin(form){
     this.authSvc.loginByEmail(form);
-
+    this.userService.getUsuariosByEmail(this.email).subscribe(res=>{
+      var i;
+        for(i=0; i<res.length; i++){ //nunca va a haber más de un usuario con ese email
+          localStorage.setItem("id", res[i].id);
+          localStorage.setItem("tipo", res[i].tipo);
+        }
+      })  
   }
+
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,

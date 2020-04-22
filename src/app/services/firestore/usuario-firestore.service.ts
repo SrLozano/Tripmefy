@@ -24,10 +24,9 @@ export class UsuarioFirestoreService {
     
     data.id=this.firestore.createId();
     data.estrellas = "-1";
-    console.log("la id es ", data.id);
+    
     localStorage.setItem('id', data.id);
-    console.log("la id esss ", localStorage.getItem('id'));
-    console.log("el tipo de usuario es ", localStorage.getItem("tipo"));
+    
     
     return this.afs.doc(data.id).set({... data}).then(r=>{
       return data.id;  
@@ -88,6 +87,11 @@ export class UsuarioFirestoreService {
   public getUsuariosFiltered(id:String):Observable<Usuario[]>
   {  
     return this.firestore.collection<Usuario>('Usuario',ref=>ref.where('id','==',id)).valueChanges();
+  }
+
+  public getUsuariosByEmail(email:String):Observable<Usuario[]>
+  {  
+    return this.firestore.collection<Usuario>('Usuario',ref=>ref.where('email','==',email)).valueChanges();
   }
 
   public getusuariosCombined(pais:String):Observable<Usuario[]>
