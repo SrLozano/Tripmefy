@@ -24,6 +24,10 @@ export class UsuarioFirestoreService {
     
     data.id=this.firestore.createId();
     data.estrellas = "-1";
+    console.log("la id es ", data.id);
+    localStorage.setItem('id', data.id);
+    console.log("la id esss ", localStorage.getItem('id'));
+    console.log("el tipo de usuario es ", localStorage.getItem("tipo"));
     
     return this.afs.doc(data.id).set({... data}).then(r=>{
       return data.id;  

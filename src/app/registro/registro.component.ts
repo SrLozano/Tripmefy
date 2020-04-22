@@ -1,3 +1,4 @@
+import { FirestoreService } from './../services/firestore/firestore.service';
 import { UsuarioFirestoreService } from './../services/firestore/usuario-firestore.service';
 import { IUsuario, Usuario } from './../interfaces/usuario';
 import { style } from '@angular/animations';
@@ -48,22 +49,21 @@ export class RegistroComponent implements OnInit {
 
       this.authService.registerUser(this.email, this.password) //almacenamos el usuario de registro en la bbdd (email y contraseña)
       .then((res)=> {
-        this.route.navigate(['/mis-viajes']);
+        this.route.navigate(['/bienvenida']);
+        console.log("estoy aquiii");
+        var usuario:Usuario = new Usuario();
+
+        usuario.nombre = this.nombre;
+        usuario.apellidos = this.apellido;
+        usuario.email = this.email;
+        usuario.password = this.password;
+        usuario.tipo = this.tipo;
+        
+        this.userService.createUsuario(usuario);
+        
+        localStorage.setItem('tipo', this.tipo);
       }).catch(err => console.log('errooooooor\n', err.message));
 
-      console.log("estoy aquiii");
-      var usuario:Usuario = new Usuario();
-
-      usuario.nombre = this.nombre;
-      usuario.apellidos = this.apellido;
-      usuario.email = this.email;
-      usuario.password = this.password;
-      usuario.tipo = this.tipo;
-      
-      this.userService.createUsuario(usuario)
-      .then((res)=> {
-        console.log('ya esta hecho', usuario, "\n");
-      }).catch(err => console.log('errooooooor2\n', err.message));
   
     }
   }

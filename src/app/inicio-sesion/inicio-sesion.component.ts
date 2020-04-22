@@ -25,6 +25,7 @@ export class InicioSesionComponent implements OnInit {
   loginForm = new FormGroup({
     email: new FormControl ('', Validators.required),
     password: new FormControl ('', Validators.required),
+
   })
   constructor(private authSvc : AuthService) { }
 
@@ -33,6 +34,7 @@ export class InicioSesionComponent implements OnInit {
 
   onLogin(form){
     this.authSvc.loginByEmail(form);
+
   }
   emailFormControl = new FormControl('', [
     Validators.required,
