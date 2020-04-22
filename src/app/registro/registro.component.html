@@ -5,70 +5,69 @@
      
 
   </div>
-
+  
   <div class="lateral-drch">
-    <div class="boton_inicio">
-      <mat-form-field class="formulario">
+    <div class="registro_datos">
+      <mat-form-field class="formulario">  <!--Pide el nombre-->
         <mat-label>Nombre</mat-label>
         <input matInput [(ngModel)]="nombre" name="nombre">
       </mat-form-field>
       <br>
-      <mat-form-field class="formulario" >
+      <mat-form-field class="formulario"> <!--Pide el apellido-->
         <mat-label>Apellido</mat-label>
         <input matInput [(ngModel)]="apellido" name="apellido">
       </mat-form-field>
       <br>
 
-			<mat-form-field class="formulario">
-			    <mat-label>Email</mat-label>
-			    <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher" placeholder="Ej. pat@example.com" [(ngModel)]="email" name="email">
-				  <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-				      Por favor, introduce una dirección válida
-				  </mat-error>
-				  <mat-error *ngIf="emailFormControl.hasError('required')">
-				      Por favor, introduce una dirección de correo
-				  </mat-error>
-			  </mat-form-field>
+			<mat-form-field class="formulario"> <!--Pide el email-->
+        <mat-label>Email</mat-label>
+        <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher" placeholder="Ej. pat@example.com" [(ngModel)]="email" name="email">
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            Por favor, introduce una dirección válida
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+            Por favor, introduce una dirección de correo
+        </mat-error>
+			</mat-form-field>
       
       <br>
 
-      <mat-form-field class="formulario" appearance="fill" >
+      <mat-form-field class="formulario" appearance="fill" > <!--Pide la contraseña-->
         <mat-label>Introduce tu contraseña</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'">
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <input id="password1" matInput [(ngModel)]="password" name="password"  [type]="hide ? 'password' : 'text'">
+        <button  mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
       </mat-form-field>
       
       <br>
 
-      <mat-form-field class="formulario" appearance="fill">
+      <mat-form-field class="formulario" appearance="fill"> <!--Pide la contraseña de comprobación -->
         <mat-label>Confirma la contraseña</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'">
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <input id="password2" matInput [(ngModel)]="password2" name="password2" [type]="hide ? 'password' : 'text'">
+        <button  mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
       </mat-form-field>
 
     </div>
 
-    <section class="checkbox">
-      <mat-radio-group [(ngModel)]="labelPosition">
-        <mat-radio-button class="example-margin" value="after">Soy viajero</mat-radio-button>
-        <mat-radio-button class="example-margin" value="before">Soy organizador</mat-radio-button>
+    <section class="checkbox"> <!--Pide el usuario-->
+      <mat-radio-group [(ngModel)]="tipo">
+        <mat-radio-button class="example-margin" value="viajero">Soy viajero</mat-radio-button>
+        <mat-radio-button class="example-margin" value="organizador">Soy organizador</mat-radio-button>
       </mat-radio-group>
     </section>
 
-    <section class="checkbox">
+    <section class="checkbox"> <!--Pide la aceptacion de la politica-->
       <mat-checkbox class="" [(ngModel)]="checked">Acepto los términos y la política de privacidad</mat-checkbox>
     </section>
 
-      <div class="boton_registro">
-          <button mat-raised-button style="width: 200px" class= "boton" >
-          <a routerLink="/registro">REGISTRATE</a></button>
-      </div>
-
-      
+    <div class="boton_registro"> <!--Botón de registro-->
+        <button mat-raised-button style="width: 200px" class= "boton" (click)='onRegister()'>
+        <a routerLink="/registro">REGISTRATE</a></button>
+    </div>
+     
   </div>
 
 </div>

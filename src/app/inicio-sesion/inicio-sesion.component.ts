@@ -1,6 +1,11 @@
+import { UsuarioFirestoreService } from './../services/firestore/usuario-firestore.service';
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {FormGroup, FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
+import { AuthService } from '../services/auth.service';
+import { IUsuario, Usuario } from './../interfaces/usuario';
+
+
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -18,10 +23,25 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class InicioSesionComponent implements OnInit {
 
   hide = true;
+  loginForm = new FormGroup({
+  email: new FormControl ('', Validators.required),
+  password: new FormControl ('', Validators.required),
 
-  constructor() { }
+  })
+  constructor(private authSvc : AuthService, private userService: UsuarioFirestoreService) { }
 
   ngOnInit(): void {
+  }
+
+  onLogin(form){
+    this.authSvc.loginByEmail(form);
+    this.userService.getUsuariosByEmail(this.email).subscribe(res=>{
+      var i;
+        for(i=0; i<res.length; i++){ //nunca va a haber más de un usuario con ese email
+          localStorage.setItem("id", res[i].id);
+          localStorage.setItem("tipo", res[i].tipo);
+        }
+      })  
   }
 
   emailFormControl = new FormControl('', [
