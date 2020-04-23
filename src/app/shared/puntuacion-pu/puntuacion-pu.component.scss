@@ -113,3 +113,16 @@ $azul-verdoso: #009788;
     text-align: center;
 }
 
+@media screen and (max-device-width : 480px) {
+
+    .outsider{
+        height: 100%;
+        width: 100%;
+
+        
+        position: relative;
+        margin-left: 0%;
+    }
+
+}
+

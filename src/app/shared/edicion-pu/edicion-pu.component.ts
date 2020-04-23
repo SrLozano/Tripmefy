@@ -26,7 +26,7 @@ export class EdicionPuComponent implements OnInit {
 
   setImagen(e){
     this.miFoto = e;
-    console.log(this.miFoto);
+    
   }
 
   chooseImagen(){
@@ -40,35 +40,6 @@ export class EdicionPuComponent implements OnInit {
     this.cerrado.emit(cerrado); //como aceptamos, cerramos
     this.foto.emit(this.miFoto);
     this.signal.emit(this.user);
-
-    var descrip = "";
-    var img = "";
-    
-    if(this.miFoto != "" && this.miFoto != undefined){
-      //alert(this.nuevaFoto);
-      this.user.image = this.miFoto;
-      
-    
-    }
-    if(this.descripcion != "" && this.descripcion != undefined){
-      //alert(this.nuevaDescripcion);
-      descrip = this.descripcion;
-      //this.firestoreServiceUser.updateUsuario(this.user);
-     
-    }
-
-    /**
-    var cerrado = true; //tenemos que cerrar porque hemos aceptado
-    this.newDescripcion.emit(descrip);
-    this.cerrado.emit(cerrado); //como aceptamos, cerramos
-    this.foto.emit(this.miFoto);
-    this.signal.emit(this.user);
-    **/
-   
-    //this.firestoreServiceUser.updateUsuario(this.usuario);
-    
-
-  
   }
 
   cerrar():boolean{

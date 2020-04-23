@@ -11,6 +11,11 @@ $letters: #03a9f4;
 $gris-encabezado: #F5F5F5;
 $azul-verdoso: #009788;
 
+img{
+    max-height: 100px;
+    max-width: 100px;
+}
+
 .cerrar{
     margin-bottom: 30px;
 }
@@ -81,7 +86,9 @@ $azul-verdoso: #009788;
     height: 70%;
     
 }
-
+#normal{
+    margin-top: 100px;
+}
 #pedir-imagen{
     display: none;
 }
@@ -107,5 +114,84 @@ textarea{
     justify-content: center;
     align-content: center;
     text-align: center;
+}
+
+#normal{
+    display: block;
+}
+#movil{
+    display: none;
+}
+
+
+@media screen and (max-device-width : 480px) {
+
+    #normal{
+        display: none;
+    }
+    #movil{
+        display: block;
+    }
+    .outsider{
+        height: 100%;
+        width: 100%;
+
+        
+        position: relative;
+        margin-left: 0%;
+       
+    }
+
+    .cerrar img{
+        margin-bottom: 50px;
+    }
+
+    .elementos img{
+        height: 40px;
+        width: 40px;
+        margin-top: 0px;
+        padding: 0px 0px 0px 0px;
+        
+    }
+    
+    .elementos{
+        display: block;
+        width: 100%;
+
+        margin-top: 50px;
+    }
+
+    .form{
+        width: 100%;
+        height: 50%;
+    }
+
+    .boton-img{
+       padding: 20px 20px 20px 20px;
+       
+        
+    }
+
+    h2 {
+        text-decoration: underline;
+    }
+
+    
+
+
+    
+    #foto{
+        margin-right: 10px;
+    }
+
+    textarea{
+        height: 100%;
+    }
+
+
+
+
+
+
 }
 

@@ -65,8 +65,9 @@
          </div>
          <div class="comment" *ngFor="let comment of comentarios">
               <div class="comment-division-1">               
-                  <img src= '{{ comment["photo"] }}' style="height: 100%; width: 100%; vertical-align: middle; display: inline-block; float:inline-start; ">            
+                  <img src= '{{ comment["photo"] }}' [routerLink]="[comment['tipo-url'], comment['id'] ]"  style="height: 100%; width: 100%; vertical-align: middle; display: inline-block; ">            
                </div>
+         
                <div class="comment-division-2">
                   <p class="bold_text" style="display: inline-block;">{{ comment["person"]}}</p>   
                   <p>{{ comment["comment"] }}</p> 
@@ -80,7 +81,7 @@
    <div id="div4">
       <span class="name viajes_usuario">Paquetes ofrecidos</span>
       <div class="container_carousel1">
-         <carousel [slides]="slides" ></carousel>
+         <carousel [slides]="slides" [links]="susViajes"></carousel>
       </div>
    </div>
 </div>

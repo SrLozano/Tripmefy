@@ -9,12 +9,23 @@
             </div>
 
             <div class="elementos">
+                
+
                 <div class="form">
+                    <h2>Descripción</h2>
                     <textarea name="message" [(ngModel)]="descripcion">
                        
                     </textarea>
                 </div>
-                    <app-boton texto="cambiar imagen de perfil" (click)="chooseImagen()"></app-boton>
+
+                <img src="../../../assets/camera.png" id="normal" texto="cambiar imagen de perfil" (click)="chooseImagen()">
+                
+                <div  id="movil">
+                    <div class="boton-img">
+                        <h2 id="foto">Cambiar foto de perfil</h2>
+                        <img src="../../../assets/camera.png" (click)="chooseImagen()"> Examinar
+                    </div>
+                </div>
                 
             </div>
 
