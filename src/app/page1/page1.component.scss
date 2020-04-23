@@ -93,30 +93,32 @@ a{
         width: 100%;
         display: inline-block;
         background-color: $blanco;
-        height: 620px;
-
-        
-       
+        height: 350px;
     }
+
     .lateral-izq{
         background-color: $blanco;
         width: auto;
-        height: 70%;
+        height: 100%;
+        margin-top: 20%;
+    }
 
-       
-    
-    }
     .lateral-izq img{
-        height: 70%;
+        margin-top: 30px;
+        height:70%;
     }
+
     .lateral-drch{
         background-image: none;
         background-color: $blanco;
         width: auto;
-        height: 30%;
-
-        padding-bottom: 20px;
-       
+        height: 20%;
+        background-attachment: fixed;
+        overflow: unset;  
+    }
+    .boton_inicio{
+        text-align: center;
+        margin-top: 10%;
     }
 }
 
