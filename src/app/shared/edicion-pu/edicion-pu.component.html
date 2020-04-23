@@ -1,0 +1,44 @@
+<div id="all" class="outsider">
+    
+
+    <div class="content">
+        <app-pedir-imagen id="pedir-imagen" directiva="users" (cerrar)="cerrarPopup($event, 'pedir-imagen')" (url)="setImagen($event)"></app-pedir-imagen>
+        <div id="allContent">
+            <div class="cerrar">
+                <img src="../../../assets/cerrar.png" id="close" (click)="cerrar()">
+            </div>
+
+            <div class="elementos">
+                
+
+                <div class="form">
+                    <h2>Descripción</h2>
+                    <textarea name="message" [(ngModel)]="descripcion">
+                       
+                    </textarea>
+                </div>
+
+                <img src="../../../assets/camera.png" id="normal" texto="cambiar imagen de perfil" (click)="chooseImagen()">
+                
+                <div  id="movil">
+                    <div class="boton-img">
+                        <h2 id="foto">Cambiar foto de perfil</h2>
+                        <img src="../../../assets/camera.png" (click)="chooseImagen()"> Examinar
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="bloque-aceptar">
+                <app-boton id = "aceptar" texto="Save" (click)="save()"></app-boton>
+            </div>
+        </div>
+          
+            
+        
+
+        
+    </div>
+</div>
+
+

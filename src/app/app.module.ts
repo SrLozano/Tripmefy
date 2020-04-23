@@ -61,6 +61,10 @@ import { BotonComponent } from './shared/boton/boton.component';
 import { ScrollTopComponent } from './shared/scroll-top/scroll-top.component';
 import { PedirImagenComponent } from './shared/pedir-imagen/pedir-imagen.component';
 import { PruebasComponent } from './pruebas/pruebas.component';
+import { PuntuacionPuComponent } from './shared/puntuacion-pu/puntuacion-pu.component';
+import { ComentarioPuComponent } from './shared/comentario-pu/comentario-pu.component';
+import { EdicionPuComponent } from './shared/edicion-pu/edicion-pu.component';
+import { MensajeComponent } from './shared/mensaje/mensaje.component';
 
 
 
@@ -102,6 +106,22 @@ import { PruebasComponent } from './pruebas/pruebas.component';
     PedirImagenComponent,
 
     PruebasComponent,
+
+  
+
+    PuntuacionPuComponent,
+
+  
+
+    ComentarioPuComponent,
+
+  
+
+    EdicionPuComponent,
+
+  
+
+    MensajeComponent,
   ],
   imports: [
 

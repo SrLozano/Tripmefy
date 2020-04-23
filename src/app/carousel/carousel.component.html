@@ -1,13 +1,19 @@
 <!-- carousel -->
 <div class="carousel">
-  <ng-container *ngFor="let slide of slides; let i = index">
-    <img
-      *ngIf="i === currentSlide"
-      [src]="slide.src"
-      class="slide"
-      @carouselAnimation
-    />
-  </ng-container>
+  <!--si hemos pasado link, se pone este a block-->
+ 
+    <ng-container  *ngFor="let slide of slides; let i = index; let link of misLinks">
+      <img
+        *ngIf="i === currentSlide"
+        [src]="slide.src"
+        (click)="onClick()"
+        class="slide"
+        @carouselAnimation
+      />
+    </ng-container>
+
+ 
+   
   
     <!-- controls -->
     <button class="control prev" (click)="onPreviousClick()">

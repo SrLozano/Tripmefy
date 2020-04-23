@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection, QuerySnapshot,Query } fro
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { IUsuario,Usuario } from '../../interfaces/usuario';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -33,13 +34,19 @@ export class UsuarioFirestoreService {
     });
   }  
 
+  public createUsuarioConID(data: IUsuario){
+    
+    return this.afs.doc(data.id).set({... data}).then(r=>{
+      return data.id;  
+    });
+  }
+
   public getUsuario(id: string):Promise<Usuario>
   {
     return this.afs.doc(id).get().toPromise().then(r=>{
       //Si quisieras forzar que se ejecute constructor de Contacto:
       //return new Contacto(r.data() as IContacto);
       var contacto = r.data() as Usuario;
-      console.log(contacto);
       return contacto;
     });
   }
@@ -54,6 +61,8 @@ export class UsuarioFirestoreService {
   {
     return this.afs.doc(data.id).set(data);
   }
+
+ 
 
   public removeUsuario(id: string)
   {

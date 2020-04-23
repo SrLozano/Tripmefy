@@ -1,0 +1,28 @@
+<div id="all" class="outsider">
+    <div class="content">
+
+        <div class="cerrar">
+            <img src="../../../assets/cerrar.png" id="close" (click)="cerrar()">
+        </div>
+
+        <div class="formulario">
+            <h1>¿Qué tal fue el viaje?</h1>
+        </div>
+        <div class="bloque-estrellas">
+            <div class="estrellas" *ngFor="let i of [0, 1, 2, 3, 4]">
+                <img *ngIf="estrellas[i] == true" src="../../../assets/star.png" (mouseout)='vaciar(i)' (click)="establecer(i)">
+                <img *ngIf="estrellas[i] == false" src="../../../assets/empty_star.png" (mouseover)='rellenar(i)' (click)="establecer(i)">
+            </div>
+        </div>
+
+        <div class="bloque-aceptar">
+            <app-boton id = "aceptar" texto="Aceptar" (click)="getPuntuacion()"></app-boton>
+        </div>
+
+          
+            
+        
+
+        
+    </div>
+</div>

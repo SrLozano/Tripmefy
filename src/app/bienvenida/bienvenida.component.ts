@@ -17,10 +17,10 @@ export class BienvenidaComponent implements OnInit {
     {
       'motivacion': '¡Hola viajero! ¿Estás cansado del mismo rollo de siempre? Organizar un viaje durante meses para que acabe saliendo mal, o peor, que ni siquiera acabe llevándose a cabo. Las agencias de viajes son costosas y las ofertas no suelen adaptarse a lo buscado. Pues estás de suerte, porque has llegado a la página que satisface todas tus necesidades. Busca ofertas de agencias, únete y vete de viaje con gente como tú. ¿A qué esperas? ¡Y no olvides rellenar tu perfil! será la forma de conocerte para los demás viajeros. ¿A qué esperas? Dale al botón y comienza a vivir aventuras inolvidables con gente diferente y al mejor precio.',
       'accion': 'Busca tu primera aventura'
-      
+
     }
   ]
-  
+
 
   textoOrganizador = [
     {
@@ -29,15 +29,19 @@ export class BienvenidaComponent implements OnInit {
     }
   ]
 
-  
+
   ngOnInit(): void {
 
     /**Obtener variable global tipo y meterla en usuario (falta) */
 
     /**ESTO SIRVE PARA PRUEBAS DE TIPO DE USUARIO */
+
     // localStorage.setItem('usuario', 'viajero');
     //localStorage.setItem('usuario', 'organizador');
-    
+
+
+
+
     let usuario = localStorage.getItem('tipo');
 
     /**Este switch evalua la variable usuario y decide qué texto mostrar */
@@ -46,9 +50,9 @@ export class BienvenidaComponent implements OnInit {
         this.textoMotivacion = this.textoViajero[0]["motivacion"];
         this.textoAccion = this.textoViajero[0]["accion"];
         break;
-      case 'organizador': 
+      case 'organizador':
       this.textoMotivacion = this.textoOrganizador[0]["motivacion"];
-      this.textoAccion = this.textoOrganizador[0]["accion"]; 
+      this.textoAccion = this.textoOrganizador[0]["accion"];
         break;
       default:
       this.textoMotivacion = this.textoViajero[0]["motivacion"];
@@ -56,7 +60,7 @@ export class BienvenidaComponent implements OnInit {
         break;
 
     }
-    
+
   }
 
 }
