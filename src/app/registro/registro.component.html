@@ -9,32 +9,66 @@
   <div class="lateral-drch">
     <div class="registro_datos">
       <mat-form-field class="formulario">  <!--Pide el nombre-->
+        <mat-error *ngIf="nombreFormControl.hasError('required')">
+          Por favor, introduce un nombre
+        </mat-error>
+
         <mat-label>Nombre</mat-label>
-        <input matInput [(ngModel)]="nombre" name="nombre">
+        <input matInput [(ngModel)]="nombre" name="nombre" [formControl]="nombreFormControl" >   
       </mat-form-field>
       <br>
       <mat-form-field class="formulario"> <!--Pide el apellido-->
+        <mat-error *ngIf="apellidoFormControl.hasError('required')">
+          Por favor, introduce un apellido
+        </mat-error>
+
         <mat-label>Apellido</mat-label>
-        <input matInput [(ngModel)]="apellido" name="apellido">
+        <input matInput [(ngModel)]="apellido" name="apellido" [formControl]="apellidoFormControl">
       </mat-form-field>
       <br>
 
-			<mat-form-field class="formulario"> <!--Pide el email-->
-        <mat-label>Email</mat-label>
-        <input id="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher" placeholder="Ej. pat@example.com" [(ngModel)]="email" name="email">
+      <mat-form-field class="formulario">  <!--Pide la población-->
+        <mat-error *ngIf="poblacionFormControl.hasError('required')">
+          Por favor, introduce una poblacion
+        </mat-error>
+
+        <mat-label>Población</mat-label>
+        <input matInput [(ngModel)]="poblacion" name="polacion" [formControl]="poblacionFormControl"> 
+      </mat-form-field>
+
+      <br>
+      <mat-form-field class="formulario"> <!--Pide el país-->
+        <mat-error *ngIf="paisFormControl.hasError('required')">
+          Por favor, introduce un pais
+        </mat-error>
+
+        <mat-label>País</mat-label>
+        <input matInput [(ngModel)]="pais" name="pais" [formControl]="paisFormControl">
+        
+      </mat-form-field>
+      <br>
+
+      <mat-form-field class="formulario"> <!--Pide el email-->
         <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-            Por favor, introduce una dirección válida
+          Por favor, introduce una dirección válida
         </mat-error>
         <mat-error *ngIf="emailFormControl.hasError('required')">
-            Por favor, introduce una dirección de correo
+          Por favor, introduce una dirección de correo
         </mat-error>
+
+        <mat-label>Email</mat-label>
+        <input id="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher" placeholder="Ej. pat@example.com" [(ngModel)]="email" name="email">
 			</mat-form-field>
       
       <br>
 
       <mat-form-field class="formulario" appearance="fill" > <!--Pide la contraseña-->
+        <mat-error *ngIf="passwordFormControl.hasError('required')">
+          Por favor, introduce una contraseña
+        </mat-error>
+
         <mat-label>Introduce tu contraseña</mat-label>
-        <input id="password1" matInput [(ngModel)]="password" name="password"  [type]="hide ? 'password' : 'text'">
+        <input id="password1" matInput [(ngModel)]="password" name="password"  [type]="hide ? 'password' : 'text'"  [formControl]="passwordFormControl">
         <button  mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
@@ -43,8 +77,12 @@
       <br>
 
       <mat-form-field class="formulario" appearance="fill"> <!--Pide la contraseña de comprobación -->
+        <mat-error *ngIf="passwordFormControl.hasError('required')">
+          Por favor, repite tu contraseña
+        </mat-error>
+
         <mat-label>Confirma la contraseña</mat-label>
-        <input id="password2" matInput [(ngModel)]="password2" name="password2" [type]="hide ? 'password' : 'text'">
+        <input id="password2" matInput [(ngModel)]="password2" name="password2" [type]="hide ? 'password' : 'text'" [formControl]="password2FormControl">
         <button  mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
@@ -53,14 +91,23 @@
     </div>
 
     <section class="checkbox"> <!--Pide el usuario-->
-      <mat-radio-group [(ngModel)]="tipo">
+      <mat-error *ngIf="tipoFormControl.hasError('required')">
+        Por favor, elige un tipo de usuario
+      </mat-error>
+
+      <mat-radio-group [(ngModel)]="tipo" [formControl]="tipoFormControl">
         <mat-radio-button class="example-margin" value="viajero">Soy viajero</mat-radio-button>
         <mat-radio-button class="example-margin" value="organizador">Soy organizador</mat-radio-button>
       </mat-radio-group>
     </section>
 
     <section class="checkbox"> <!--Pide la aceptacion de la politica-->
-      <mat-checkbox class="" [(ngModel)]="checked">Acepto los términos y la política de privacidad</mat-checkbox>
+      <mat-error *ngIf="terminosFormControl.hasError('required')">
+        Por favor, acepta los términos de uso
+      </mat-error>
+
+      <mat-checkbox class="" [(ngModel)]="checked" [formControl]="terminosFormControl">Acepto los términos y la política de privacidad</mat-checkbox>
+      
     </section>
 
     <div class="boton_registro"> <!--Botón de registro-->

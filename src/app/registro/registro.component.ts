@@ -34,6 +34,8 @@ export class RegistroComponent implements OnInit {
   public password: string = '';
   public password2: string = '';
   public tipo: string = '';
+  public pais: string =  '';
+  public poblacion: string = '';
 
   ngOnInit(): void {
   }
@@ -57,7 +59,9 @@ export class RegistroComponent implements OnInit {
         usuario.password = this.password;
         usuario.tipo = this.tipo;
         usuario.image = "";
-        
+        usuario.descripcion = "";
+        usuario.ubicacion = "";
+
         this.userService.createUsuario(usuario);
         
         localStorage.setItem('tipo', this.tipo);
@@ -79,10 +83,39 @@ export class RegistroComponent implements OnInit {
     Validators.email,
   ]);
 
-  
-
-
   matcher = new MyErrorStateMatcher();
+
+  nombreFormControl = new  FormControl('', [
+    Validators.required,
+  ]);
+
+  apellidoFormControl = new  FormControl('', [
+    Validators.required,
+  ]);
+
+  poblacionFormControl = new  FormControl('', [
+    Validators.required,
+  ]);
+
+  paisFormControl = new  FormControl('', [
+    Validators.required,
+  ]);
+
+  passwordFormControl = new  FormControl('', [
+    Validators.required
+  ]);
+
+  password2FormControl = new  FormControl('', [
+    Validators.required
+  ]);
+
+  tipoFormControl = new  FormControl('', [
+    Validators.required
+  ]);
+
+  terminosFormControl = new  FormControl('', [
+    Validators.required
+  ]);
 
 
 }
