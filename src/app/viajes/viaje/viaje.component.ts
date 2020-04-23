@@ -77,7 +77,8 @@ export class ViajeComponent implements OnInit {
 
     // Falta obtener el id de manera automática 
     localStorage.setItem('trip','lWdwEvTbnVAptd1xpr3Z');
-    var tripId = localStorage.getItem('trip');
+    //var tripId = localStorage.('trip');
+    var tripId = localStorage.this_route.snapshot.paramMap.get('trip');
     var tripAux = this.firestoreServiceViaje.getViaje(tripId).then((elem) => {
 
       var tripAux:Viaje = new Viaje();
