@@ -49,6 +49,10 @@ export class InicioSesionComponent implements OnInit {
     Validators.email,
   ]);
 
+  passwordFormControl = new FormControl('', [
+    Validators.required
+  ]);
+
   email: string;
   apellido:string;
   nombre: string;
