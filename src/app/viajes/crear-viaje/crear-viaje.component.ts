@@ -78,30 +78,28 @@ export class CrearViajeComponent implements OnInit {
   opciones = ["Vuelo", "Alojamiento", "Comidas"];
 
   getPais(){
-    console.log(this.continenteSelect);
+    
     if(this.continenteSelect===''){
       return this.paises;
     }
-    if(this.continenteSelect.localeCompare('Europa')===0){
-      this.paises=['España', 'Francia', 'Italia', 'Suecia', 'Alemania']
+    if(this.continenteSelect === 'Europa'){
       return this.europa;
-    }
-    else if(this.continenteSelect.localeCompare('Asia')===0){
-      return  this.asia;
-    }else if(this.continenteSelect.localeCompare('America del Norte')===0){
-      return  this.americaNorte;
-    }else if(this.continenteSelect.localeCompare('America del Sur')===0){
+    }else if(this.continenteSelect === 'Asia'){
+        return this.asia;
+    }else if(this.continenteSelect === 'America del Norte'){
+       return  this.americaNorte;
+    }else if(this.continenteSelect === 'America del Sur'){
       return  this.americaSur;
-    }else if(this.continenteSelect.localeCompare('America Central')===0){
+    }else if(this.continenteSelect ==='America Central'){
       return  this.americaCentro;
-    }else if(this.continenteSelect.localeCompare('Oceania')===0){
+    }else if(this.continenteSelect ==='Oceania'){
       return  this.oceania;
-    }else if(this.continenteSelect.localeCompare('Africa')===0){
-      return  this.africa;
+    }else if(this.continenteSelect === 'Africa'){
+      return this.africa;
     }else{
       return this.paises;
     }
-
+  
   }
 
   emailFormControl = new FormControl('', [
