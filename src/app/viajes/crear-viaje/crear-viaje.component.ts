@@ -38,7 +38,30 @@ export class CrearViajeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  continentes = ["Europa","Asia","America del Norte","America del sur","America Central","Oceania","Africa"]
+  continentes = ["Europa", "Asia" ,"America del Norte" ,"America del Sur","America Central",
+  "Oceania","Africa"];
+
+  europa = ['España', 'Francia', 'Italia', 'Suecia', 'Alemania'];
+  asia = ['Kazajistán', 'China', 'Corea del Norte', 'Corea del Sur', 'Japón'];
+  americaNorte = ['Canada', 'EEUU'];
+  americaSur = ['Colombia', 'Venezuela', 'Argentina', 'Perú', 'Ecuador'];
+  americaCentro = ['Costa Rica', 'Salvador', 'Guatemala'];
+  oceania = ['Australia', 'Nueva Zelanda'];
+  africa = ['Argelia,', 'Camerún', 'Burkina Fasso', 'Egipto', 'Marruecos'];
+
+  paises = [];
+
+  // continentes = [["Europa", 1],["Asia",2],["America del Norte",3],["America del sur",4],["America Central",5],
+  // ["Oceania",6],["Africa",7]]
+
+  // paises =  [['España',1], ['Francia',1], ['Italia',1], ['Suecia',1], ['Alemania',1],
+  //           ['Kazajistán',2], ['China',2], ['Corea del Norte',2], ['Corea del Sur',2], ['Japón',2],
+  //           ['Canada',3], ['EEUU',4],
+  //           ['Colombia',4], ['Venezuela',4], ['Argentina',4], ['Perú',4], ['Ecuador',4],
+  //           ['Costa Rica',5], ['Salvador',5], ['Guatemala',5],
+  //           ['Australia',6], ['Nueva Zelanda',6],
+  //           ['Argelia,',7], ['Camerún',7], ['Burkina Fasso',7], ['Egipto',7], ['Marruecos',7]
+  //           ];
   continenteSelect: string;
   paisSelect: string;
   ciudadSelect: string;
@@ -53,6 +76,33 @@ export class CrearViajeComponent implements OnInit {
   item:string;
 
   opciones = ["Vuelo", "Alojamiento", "Comidas"];
+
+  getPais(){
+    console.log(this.continenteSelect);
+    if(this.continenteSelect===''){
+      return this.paises;
+    }
+    if(this.continenteSelect.localeCompare('Europa')===0){
+      this.paises=['España', 'Francia', 'Italia', 'Suecia', 'Alemania']
+      return this.europa;
+    }
+    else if(this.continenteSelect.localeCompare('Asia')===0){
+      return  this.asia;
+    }else if(this.continenteSelect.localeCompare('America del Norte')===0){
+      return  this.americaNorte;
+    }else if(this.continenteSelect.localeCompare('America del Sur')===0){
+      return  this.americaSur;
+    }else if(this.continenteSelect.localeCompare('America Central')===0){
+      return  this.americaCentro;
+    }else if(this.continenteSelect.localeCompare('Oceania')===0){
+      return  this.oceania;
+    }else if(this.continenteSelect.localeCompare('Africa')===0){
+      return  this.africa;
+    }else{
+      return this.paises;
+    }
+
+  }
 
   emailFormControl = new FormControl('', [
     Validators.required,

@@ -63,8 +63,8 @@
 			  <mat-form-field class="election">
 			    <mat-label>Elija un pais</mat-label>
 			    <mat-select [(ngModel)]="paisSelect" name="pais">
-			      <mat-option *ngFor="let continente of continentes" [value]="continente">
-			        {{continente}}
+			      <mat-option *ngFor="let pais of getPais()" [value]="pais">
+			        {{pais}}
 			      </mat-option>
 			    </mat-select>
 			  </mat-form-field>
