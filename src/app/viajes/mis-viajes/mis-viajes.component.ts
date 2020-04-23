@@ -137,10 +137,10 @@ export class MisViajesComponent implements OnInit {
   
   }
   comprobarViajero(){
-    return localStorage.getItem('tipo') == "viajero";
+    return localStorage.getItem('usuario') == "viajero";
   }
   comprobarOrganizador(){
-    return localStorage.getItem('tipo') == "organizador";
+    return localStorage.getItem('usuario') == "organizador";
   }
 
 

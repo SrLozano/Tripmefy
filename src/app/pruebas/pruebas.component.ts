@@ -32,8 +32,8 @@ export class PruebasComponent implements OnInit {
   crearViaje(e){
     console.log("entra");
     var viaje:Viaje = new Viaje();
-    viaje.pais = "Alemania"
-    viaje.ciudad = "Berlín";
+    viaje.pais = "Francia"
+    viaje.ciudad = "París";
     viaje.continente = "Europa";
     viaje.email = "emailinventado@gmail.com";
     viaje.img = e;

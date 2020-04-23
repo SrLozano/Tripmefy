@@ -1,16 +1,12 @@
 <div class="contenedor">
   <div class="lateral-izq">
-      
       <img src='../../assets/tripmefy.png'>
-     
-
   </div>
 
   <div class="lateral-drch">
-    <h1>INICIO DE SESIÓN</h1>
     <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
-      <div class="inicio_datos">
-        <mat-form-field class="input">
+      <div class="boton_inicio">
+        <mat-form-field class="formulario">
           <mat-label>Email</mat-label>
           <input matInput [formControl]="emailFormControl" formControlName="email" [errorStateMatcher]="matcher" placeholder="Ej. pat@example.com" [(ngModel)]="email" name="email">
           <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
@@ -23,28 +19,22 @@
         
         <br>
 
-        <mat-form-field class="input" appearance="fill" >
+        <mat-form-field class="formulario" appearance="fill" >
           <mat-label>Introduce tu contraseña</mat-label>
-          <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" [formControl]="passwordFormControl">
+          <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
-
-          <mat-error *ngIf="passwordFormControl.hasError('required')">
-            Por favor, introduce una contraseña
-          </mat-error>
         </mat-form-field>
       
       </div>
 
 
-      <div class="boton_inicio">
+      <div class="boton_registro">
           <button type="submit" mat-raised-button style="width: 200px" class= "boton" >
-          INICIAR SESIÓN</button>
+          <a>INICIAR SESIÓN</a></button>
       </div>
       
-    </form>
-
-      
+    </form> 
   </div>
 </div>

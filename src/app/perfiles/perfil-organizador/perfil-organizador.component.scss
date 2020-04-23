@@ -43,11 +43,6 @@ $gris-encabezado: #F5F5F5;
 
 }
 
-.little_container_izq #img-editar{
-  margin-left: 10px;
-
-}
-
 .name{
   display: inline-block;
   color: $letters;
@@ -61,29 +56,6 @@ $gris-encabezado: #F5F5F5;
   margin-left: 5%;
   margin-top: 0%;
   font-size: 170%;
-}
-
-#puntuar{
-  display: none;
-}
-
-#comentar{
-  display: none;
-}
-
-#editar{
-  display: none;
-}
-
-#editOk{
-  display: none;
-}
-
-#graciasP{
-  display: none;
-}
-#graciasC{
-  display: none;
 }
 
 .comentarios_usuario{
@@ -117,16 +89,6 @@ $gris-encabezado: #F5F5F5;
   height: 70%;
   width: 60%;
   margin: 1% 20%;
-}
-
-.titulo-opinion{
-  display: flex;
-  justify-content: space-between;
-}
-
-.titulo-opinion img{
-  height: 25px;
-  width: 25px;
 }
 
 .comment{

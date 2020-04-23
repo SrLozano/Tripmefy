@@ -61,10 +61,9 @@ a{
 .lateral-drch{
     background-image: linear-gradient($azul-royal, $azul-claro);
     width: 50%;
+    height: 100%;
     justify-content: center;
     align-items: center;
-    background-attachment: fixed;
-    overflow: scroll;
       
 }
 
@@ -93,32 +92,30 @@ a{
         width: 100%;
         display: inline-block;
         background-color: $blanco;
-        height: 350px;
-    }
+        height: 620px;
 
+        
+       
+    }
     .lateral-izq{
         background-color: $blanco;
         width: auto;
-        height: 100%;
-        margin-top: 20%;
-    }
+        height: 70%;
 
+       
+    
+    }
     .lateral-izq img{
-        margin-top: 30px;
-        height:70%;
+        height: 70%;
     }
-
     .lateral-drch{
         background-image: none;
         background-color: $blanco;
         width: auto;
-        height: 20%;
-        background-attachment: fixed;
-        overflow: unset;  
-    }
-    .boton_inicio{
-        text-align: center;
-        margin-top: 10%;
+        height: 30%;
+
+        padding-bottom: 20px;
+       
     }
 }
 

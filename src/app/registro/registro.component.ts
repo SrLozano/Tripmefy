@@ -1,9 +1,10 @@
 import { UsuarioFirestoreService } from './../services/firestore/usuario-firestore.service';
-import { Usuario } from './../interfaces/usuario';
+import { IUsuario, Usuario } from './../interfaces/usuario';
+import { style } from '@angular/animations';
 import { Router } from '@angular/router'; //Para redirigir a una página
 import { AuthService } from './../services/auth.service'; //para registro en base de datos
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup } from '@angular/forms';
+import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -33,72 +34,37 @@ export class RegistroComponent implements OnInit {
   public password: string = '';
   public password2: string = '';
   public tipo: string = '';
-  public pais: string =  '';
-  public poblacion: string = '';
-  public terminos: boolean = false;
 
   ngOnInit(): void {
   }
 
-
   onRegister(){
-    
-    document.getElementById("password1").style.color="white";
-    document.getElementById("password2").style.color="white";
-    document.getElementById("email").style.color="white";
-
-    this.authService.registerUser(this.email, this.password) //almacenamos el usuario de registro en la bbdd (email y contraseña)
-    .then((res)=> {
-      var usuario:Usuario = new Usuario();
-      usuario.nombre = this.nombre;
-      usuario.apellidos = this.apellido;
-      usuario.email = this.email;
-      usuario.password = this.password;
-      usuario.tipo = this.tipo;
-      usuario.image = "";
-      usuario.descripcion = "";
-      usuario.ubicacion = this.MaysPrimera(this.poblacion.toLowerCase()) + ", " + this.MaysPrimera(this.pais.toLowerCase());
-
-      this.userService.createUsuario(usuario);
-      
-      localStorage.setItem('tipo', this.tipo);
-
-      this.route.navigate(['/bienvenida']);
-      
-      console.log(localStorage.getItem("tipo"));
-
-    }).catch(err => {
-      document.getElementById("email").style.color="red";
-    });
-  }
-
-  checkFields(){
-  
-    if (this.nombre==='' || this.apellido==='' || this.email==='' || this.password==='' || 
-    this.password2==='' || this.poblacion==='' || this.pais==='' || this.tipo==='' || !this.terminos 
-    ||!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$/.test(this.email) 
-    || this.password.length<8){
-
+    if(this.password.localeCompare(this.password2) != 0){ //comprobamos la igualdad de las contraseñas
+      document.getElementById("password1").style.color="red";
+      document.getElementById("password2").style.color="red";
+    }else{
       document.getElementById("password1").style.color="white";
       document.getElementById("password2").style.color="white";
 
-      return true;
-    }else if(this.password.localeCompare(this.password2) != 0){
+      this.authService.registerUser(this.email, this.password) //almacenamos el usuario de registro en la bbdd (email y contraseña)
+      .then((res)=> {
+        this.route.navigate(['/bienvenida']);
+       
+        var usuario:Usuario = new Usuario();
 
-        document.getElementById("password1").style.color="red";
-        document.getElementById("password2").style.color="red";
+        usuario.nombre = this.nombre;
+        usuario.apellidos = this.apellido;
+        usuario.email = this.email;
+        usuario.password = this.password;
+        usuario.tipo = this.tipo;
+        
+        this.userService.createUsuario(usuario);
+        
+        localStorage.setItem('tipo', this.tipo);
+      }).catch(err => console.log('errooooooor\n', err.message));
 
-        return true;
-    }else{
-        document.getElementById("password1").style.color="white";
-        document.getElementById("password2").style.color="white";
-
-        return false;
-    } 
-  }
-
-  MaysPrimera(string){
-    return string.charAt(0).toUpperCase() + string.slice(1);
+  
+    }
   }
 
   emailFormControl = new FormControl('', [
@@ -106,40 +72,10 @@ export class RegistroComponent implements OnInit {
     Validators.email,
   ]);
 
+  
+
+
   matcher = new MyErrorStateMatcher();
-
-  nombreFormControl = new  FormControl('', [
-    Validators.required,
-  ]);
-
-  apellidoFormControl = new  FormControl('', [
-    Validators.required,
-  ]);
-
-  poblacionFormControl = new  FormControl('', [
-    Validators.required,
-  ]);
-
-  paisFormControl = new  FormControl('', [
-    Validators.required,
-  ]);
-
-  passwordFormControl = new  FormControl('', [
-    Validators.required,
-    Validators.minLength(8),
-  ]);
-
-  password2FormControl = new  FormControl('', [
-    Validators.required
-  ]);
-
-  tipoFormControl = new  FormControl('', [
-    Validators.required
-  ]);
-
-  terminosFormControl = new  FormControl('', [
-    Validators.required
-  ]);
 
 
 }

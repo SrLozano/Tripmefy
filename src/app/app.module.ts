@@ -10,7 +10,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 
-
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 
@@ -61,10 +60,6 @@ import { BotonComponent } from './shared/boton/boton.component';
 import { ScrollTopComponent } from './shared/scroll-top/scroll-top.component';
 import { PedirImagenComponent } from './shared/pedir-imagen/pedir-imagen.component';
 import { PruebasComponent } from './pruebas/pruebas.component';
-import { PuntuacionPuComponent } from './shared/puntuacion-pu/puntuacion-pu.component';
-import { ComentarioPuComponent } from './shared/comentario-pu/comentario-pu.component';
-import { EdicionPuComponent } from './shared/edicion-pu/edicion-pu.component';
-import { MensajeComponent } from './shared/mensaje/mensaje.component';
 
 
 
@@ -106,22 +101,6 @@ import { MensajeComponent } from './shared/mensaje/mensaje.component';
     PedirImagenComponent,
 
     PruebasComponent,
-
-  
-
-    PuntuacionPuComponent,
-
-  
-
-    ComentarioPuComponent,
-
-  
-
-    EdicionPuComponent,
-
-  
-
-    MensajeComponent,
   ],
   imports: [
 

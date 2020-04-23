@@ -25,23 +25,21 @@ export class PedirImagenComponent implements OnInit {
   uploadPercent: Observable<number>;
   urlImage: Observable<string>;
   myUrl = "";
-  
-  @Input() public directiva:string;
+  //@Output() public url = new EventEmitter();
   @Output() url: EventEmitter<any> = new EventEmitter<any>();
-  @Output() cerrar: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private _route:ActivatedRoute,
     private _router: Router,
     private storage: AngularFireStorage,
     private firestoreService: FirestoreService
     ) {
-      this.myUrl = "";
+      
      }
 
   onUpload(e){
     const id = Math.random().toString(36).substring(2); //generamos un id aleatorio para que no haya nombres repetidos
     const file = e.target.files[0]; //cogemos el fichero que ha subido el usuario
-    const filePath = `${this.directiva}/${id}`; //utilizamos literales para meter el id
+    const filePath = `upload/viaje_${id}`; //utilizamos literales para meter el id
     const ref = this.firestoreService.getFileRef(filePath);
     const task = this.firestoreService.storageFile(filePath, file);
 
@@ -59,15 +57,14 @@ export class PedirImagenComponent implements OnInit {
    }
   getURL(){
     var url = this.inputImageUser.nativeElement.value;
+    console.log(url);
     this.url.emit(url);
-    this.cerrar.emit(true);
     alert("La imagen se ha subido correctamente");
     return url;
   }
 
-  doCerrar(){
-    this.cerrar.emit(true);
-    this.url.emit("");
+  cerrar(){
+    document.getElementById("all").style.display = "none";
   }
 
   ngOnInit(): void {

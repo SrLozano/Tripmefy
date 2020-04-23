@@ -1,4 +1,3 @@
-
 import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
 
 export interface IViaje {
@@ -46,14 +45,31 @@ export class Viaje implements IViaje
 
 
 
-
-
-
-
-
     constructor(o?:IViaje)
     {
         //this.id='';
         if(o !== undefined) Object.assign(this,o);
     }
 };
+
+
+export interface ISlides {
+
+    id:string;
+    idViaje:string;
+    url:string;
+}
+
+export class Slides implements ISlides{
+
+    id:string;
+    idViaje:string;
+    url:string;
+    
+
+    constructor(o?:ISlides)
+    {
+        //this.id='';
+        if(o !== undefined) Object.assign(this,o);
+    }
+}

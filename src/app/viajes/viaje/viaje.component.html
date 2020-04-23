@@ -1,17 +1,18 @@
-<app-header titulo="VIAJES A PAÍSES BAJOS"></app-header>
+<app-header titulo="Viaje "></app-header>
 <app-volver></app-volver>
 
 <div class="main_container_izq">
    <div class="titulo_viaje">
-      <h1><b>Viaja a </b><span class="lugar">ÁMSTERDAM</span></h1>
+      <h1><b>Viaja a </b><span class="lugar">{{viaje.ciudad}}</span></h1>
    </div>
    <div class="fotografia_viaje">
       <div class="container_carousel1">
-         <carousel [slides]="slides2"></carousel>
+         <carousel [slides]="slides3"></carousel>
       </div>
    </div>
+
    <div class="informacion_viaje">
-      <h2 class="precio" style="display: inline-block" >750€</h2>
+      <h2 class="precio" style="display: inline-block" >{{viaje.precio}}</h2>
       <img src="../../../assets/hotel.png" style="padding-left: 3%" height="5%" width="5%"/>
       <img src="../../../assets/plane.png" style="padding-left: 3%" height="5%" width="5%"/>
       <img src="../../../assets/fork.png" style="padding-left: 3%" height="5%" width="5%"/>
@@ -20,10 +21,10 @@
       </div>
       <p>Contacta con nostros a traves de:</p>
       <img src="../../../assets/phone.png" style="display: inline-block; padding: 0 3%" height="3%" width="3%"/>
-      <p class="bold" style="display: inline-block;">+34 618 838 282</p>
+      <p class="bold" style="display: inline-block;">{{viaje.tlf}}</p>
       <br>
       <img src="../../../assets/envelope.png" style="display: inline-block; padding: 0 3%" height="3%" width="3%"/>
-      <p class="bold" style="display: inline-block;">viajesEuropa@gmail.com</p>
+      <p class="bold" style="display: inline-block;">{{viaje.email}}</p>
 
    </div>
 
@@ -35,22 +36,19 @@
 
 <div class="main_container_der">
    <p>Viaje organizado por <span class="organizador">TopViajes</span></p>
-   <p>Comienza el dia <span class="bold">1 de Julio del 2020</span></p>
-   <p>Termina el dia <span class="bold">7 de Julio del 2020</span></p>
-   <p><span class="bold">6 dias y 5 noches</span></p>
-   <p class="texto" style="">
-      Cultura, lugares pintorescos, los barrios más cool de Europa, una fábrica de cerveza en el centro de la ciudad,
-      El Barrio Rojo y más... Esto es Ámsterdam, el núcleo económico de los Países Bajos, atrévete a descubrir lo que puede ofrecerte
-      el corazón de Europa con este viaje a Holanda Septentrional.
+   <p>Comienza el dia <span class="bold">{{viaje.inicio}}</span></p>
+   <p>Termina el dia <span class="bold">{{viaje.fin}}</span></p>
+   <p><span class="bold">{{viaje.duracion}}</span></p>
+   <p style="text-align: justify; margin-right: 12%;">
+      {{viaje.descripcion}}
    </p>
    <p>Con nosotros ya se vienen:</p>
    <div class="container_carousel2">
-      <carousel [slides]="slides"></carousel>
+      <carousel [slides]="usuarios_viaje"></carousel>
    </div>
-   <p>Termina el dia <span class="bold">3 de Mayo del 2020</span></p>
-   <p>fecha límite de pago: <span class="bold">20 de Mayo del 2020</span></p>
+   <p>Termina el día <span class="bold">{{viaje.limiteUnion}}</span></p>
+   <p>Fecha límite de pago: <span class="bold">{{viaje.limitePago}}</span></p>
 </div>
 
-<app-footer></app-footer>
 
 
