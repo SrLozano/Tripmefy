@@ -9,8 +9,7 @@ import {Viaje, IViaje} from '../../interfaces/viaje';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
-import {finalize} from 'rxjs/operators';
-import { FormsModule } from '@angular/forms';
+
 import { Usuario, IUsuario } from 'src/app/interfaces/usuario';
 import {IPuntuacion, Puntuacion, IComentario, Comentario} from '../../interfaces/opiniones'
 
