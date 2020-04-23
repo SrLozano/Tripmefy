@@ -1,0 +1,96 @@
+$azul-claro: #0da8de;
+$azul-royal: #004cbe;
+$blanco: #ffffff;
+$azul-marino: #20284c; /** solo en textos **/
+$gris: #cfd8dc;
+$naranja: #f4a500;
+$azul-oscuro: #002063; /** popups y detalles **/
+$transparencia: #6c6c6d; /** este lleva opacidad del 52% **/
+$gris-buscador: #c0c1c0;
+$letters: #03a9f4;
+$gris-encabezado: #F5F5F5;
+$azul-verdoso: #009788;
+
+.cerrar{
+    margin-bottom: 30px;
+}
+.cerrar:hover{
+    cursor: pointer;
+   
+}
+
+.cerrar img{
+    height: 20px;
+    width: 20px;
+    float: right;
+   
+}
+
+.outsider{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    //background: $azul-verdoso;
+    font-weight: bolder;
+    margin-top: 10%;
+    position: absolute;
+    margin-left: 25%;
+    z-index: 100;
+    background-color: $blanco;
+    width: 50%;
+    height: 50%;
+    
+}
+
+.content{
+    height: 100%;
+    width: 100%;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    padding-right: 10px;
+    padding-left: 10px;
+    /**
+    -webkit-box-shadow: 2px 7px 4px 0px rgba(207,216,220,1);
+    -moz-box-shadow: 2px 7px 4px 0px rgba(207,216,220,1);
+    box-shadow: 2px 7px 4px 0px rgba(207,216,220,1);
+    **/
+    -webkit-box-shadow: 2px 7px 4px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 7px 4px 0px rgba(0,0,0,0.75);
+    box-shadow: 2px 7px 4px 0px rgba(0,0,0,0.75);
+}
+
+
+
+.bloque-aceptar{
+    margin-top: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formulario{
+   width: 100%;
+   text-align: center;
+   margin-bottom: 20px;  
+}
+
+form{
+    width: 100%;
+    height: 30%;
+  
+}
+textarea{
+    width: 100%;
+    height: 100%;
+    
+}
+
+
+.boton{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+}
+

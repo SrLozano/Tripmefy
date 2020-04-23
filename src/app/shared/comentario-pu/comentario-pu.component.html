@@ -1,0 +1,26 @@
+<div id="all" class="outsider">
+    <div class="content">
+
+        <div class="cerrar">
+            <img src="../../../assets/cerrar.png" id="close" (click)="cerrar()">
+        </div>
+
+        <div class="formulario">
+            <h1>Haz un comentario sobre este usuario</h1>
+        </div>
+        <form>
+            <textarea name="message" [(ngModel)]="miComentario"></textarea>
+        </form>
+
+        <div class="bloque-aceptar">
+            <app-boton id = "aceptar" texto="Aceptar" (click)="getComentario()"></app-boton>
+        </div>
+
+          
+            
+        
+
+        
+    </div>
+</div>
+

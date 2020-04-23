@@ -1,0 +1,15 @@
+<div id="all" class="outsider">
+    <div class="content">
+
+        <div class="cerrar">
+            <img src="../../../assets/cerrar.png" id="close" (click)="cerrar()">
+        </div>
+
+        <div class="formulario">
+            <div class="mensaje"><h1 *ngIf="mensaje !=''">{{mensaje}}</h1></div>
+            <div class="imagen"><img *ngIf="imagen !=''" src="{{imagen}}"></div>
+        </div>
+
+    </div>
+</div>
+
