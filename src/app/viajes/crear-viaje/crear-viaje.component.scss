@@ -35,9 +35,16 @@ $gris-encabezado: #F5F5F5;
 
 }
 
+#uploader{
+	display: none;
+}
 
 .up{
   height: 60%;
+}
+
+.up img{
+	margin-top: 10%;
 }
 
 .bottom{

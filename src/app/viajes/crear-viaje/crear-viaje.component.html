@@ -6,17 +6,17 @@
 	<div id="div1">
 		<mat-card style="height: 220px; vertical-align: middle; text-align: center;">
 			<div class="up">
-			  <input hidden type="file" #uploader/>
+			  <input id="uploader" hidden type="file" #uploader/>
 			  <img src="../../../assets/plus.png" (click)="uploader.click()" (change)="onFileChanged($event)" style="display: block; margin-left: auto; margin-right: auto; cursor: pointer;" height="100px" width="100px"/>
 			</div>
 			<div class="bottom">
-			  <input type="file" (change)="onFileChanged($event)" #fileInput>
+			  <!-- <input type="file" (change)="onFileChanged($event)" #fileInput>
 			  <br>
 			  <br>
 			  <!--<button (click)="fileInput.click()">Select File</button>-->
-			  <button mat-raised-button type="file" color="primary" #fileInput>Upload</button>
+			  <!-- <button mat-raised-button type="file" color="primary" #fileInput>Upload</button> --> 
 			</div>
-		  </mat-card>
+		</mat-card>
 
 		  <h1 style="margin-top: 3%;">Añade una imagen para tu viaje</h1>
 		  <br>
