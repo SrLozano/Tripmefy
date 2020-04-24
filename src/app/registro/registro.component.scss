@@ -1,5 +1,4 @@
 $azul-claro: #0da8de;
-$letters: #03a9f4;
 $azul-royal: #004cbe;
 $blanco: #ffffff;
 $azul-marino: #20284c; /** solo en textos **/
@@ -10,7 +9,7 @@ $transparencia: #6c6c6d; /** este lleva opacidad del 52% **/
 $gris-buscador: #c0c1c0;
 
 
-/**-----CONTENEDOR Y FUENTE COMÚN----**/
+/**CONTENEDOR Y FUENTE COMÚN**/
 .contenedor{
     height: 100%;
     width: 100%;
@@ -18,35 +17,51 @@ $gris-buscador: #c0c1c0;
     position: absolute; 
     top: 0;
     left: 0;
+    
+
+}
+
+.formulario{
+  width: 30%;
+}
+
+.contenedor p{
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-/**----LATERAL IZQUIERDO DE LA PÁGINA----**/
+a{
+    text-decoration: none;
+}
+
+/**LATERAL IZQUIERDO DE LA PÁGINA**/
 .lateral-izq{
-  background-color: $blanco;
-  width: 50%;
-  height: 100%;
-  
-  justify-content: center;
-  align-items: center;
-  margin-left: auto;
-  margin-right: auto;
+    background-color: $blanco;
+    width: 50%;
+    height: 100%;
+
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
 
 }
 
 .lateral-izq img{
-  height: 350px;
-  margin-left: auto;
-  margin-right: auto;
+    height: 350px;
+    margin-left: auto;
+    margin-right: auto;
 
-  position: relative;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    
+
 }
 
-/**------LATERAL DERECHO DE LA PÁGINA------**/
+
+/**LATERAL DERECHO DE LA PÁGINA**/
 .lateral-drch{
   background-image: linear-gradient($azul-royal, $azul-claro);
   width: 50%;
@@ -58,10 +73,24 @@ $gris-buscador: #c0c1c0;
 .lateral-drch h1{
   display: none;
 }
+
 .registro_datos{
   text-align: center;
-  margin-top: 20%;
+  margin-top: 10%;
 }
+
+#error{
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: red;
+  position: absolute;
+  z-index: 8;
+  align-content: center;
+  text-align: center;
+  top: 100px;
+  width: 50%;
+  height: 30px;
+}
+
 
 .grupo-inputs{
   width: 100%;
@@ -74,25 +103,39 @@ $gris-buscador: #c0c1c0;
   width: 30%;
 }
 
-.email{
+.input{
   width: 60%;
-}
-.tipo-usuario {
-  margin: 2%;
-  text-align: center;
+  width: 50%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+      
 }
 
-.checkbox{
-  text-align: center;
-  margin-top: 10px;
+a{
+    text-decoration: none;
+    color:$azul-royal;
 }
+
 
 .boton_registro{
+    text-align: center;
+    margin-top: 2%;
+}
+.registro_datos{
   text-align: center;
-  margin-top: 2%;
+  margin-top: 30%;
+}
+.checkbox{
+  text-align: center;
+  margin-top:2%;
 }
 
-/*---------FORMATO DE COLOR DE LOS CAMPOS--------*/
+.example-margin {
+  margin: 0 2%;
+  text-align: center;
+}
+
 ::ng-deep .mat-focused .mat-form-field-label {
   /*change color of label*/
   color: white !important;
@@ -136,7 +179,7 @@ $gris-buscador: #c0c1c0;
 
 /**PARA MÓVIL**/
 @media screen and (max-device-width : 700px) {
-    /**-----CONTENEDOR Y FUENTE COMÚN----**/
+
     .contenedor{
         flex-wrap: wrap;
         width: 100%;
@@ -144,35 +187,28 @@ $gris-buscador: #c0c1c0;
         background-color: $blanco;
         height: 620px;
     }
-    /**----LATERAL IZQUIERDO DE LA PÁGINA----**/
+    
     .lateral-izq{
         background-color: $blanco;
         width: auto;
         height: 70%; 
+    
     }
-
     .lateral-izq img{
         height: 70%;
     }
-
-    /**----LATERAL DERECHO DE LA PÁGINA----**/
     .lateral-drch{
         background-image: none;
         background-color: $blanco;
         width: auto;
-        height: 30%;    
+        height: 30%;
     }
-    .lateral-drch h1{
-      margin-top: 10px;
-      display: block;
-      text-align: center;
-      font-weight: bold;
-      color: $letters;
+    #error{
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    }
-    .registro_datos{
-      margin-top: 0;
-      text-align: center;
+      color: red;
+      top: 63%;
+      width: 100%;
+      height: 30px;
     }
 
     .grupo-inputs .input{
@@ -181,16 +217,22 @@ $gris-buscador: #c0c1c0;
       width: 35%;
     }
 
-    .email{
+    .input{
       width: 74%;
     }
     .boton_registro{
-      text-align: center;
-      margin-top:0%;
-      margin-bottom: 5%;
+        padding-bottom: 20px;
+       
     }
 
-/*---------FORMATO DE COLOR DE LOS CAMPOS--------*/
+    .boton_inicio{
+      text-align: center;
+      margin-top:0%;
+    }
+
+    .formulario{
+      width: 70%;
+    }
 
     ::ng-deep .mat-focused .mat-form-field-label {
       /*change color of label*/
