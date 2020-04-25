@@ -163,7 +163,11 @@ export class UnirsePaisComponent implements OnInit {
 
   ngOnInit(): void {
 
-    
+    if(localStorage.getItem('usuario')== "null"){
+      var origin = window.location.origin + '/'; 
+      var destino = origin + "page1";
+      window.location.assign(destino);
+    }
 
     this.identificador = localStorage.getItem('continente');
     this.continente = this.identificador;
