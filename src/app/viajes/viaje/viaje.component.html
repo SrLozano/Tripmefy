@@ -35,6 +35,9 @@
    <div *ngIf="payButton" class="button">
       <button mat-raised-button color="primary" style="height: 3em; width: 10em;">Pagar</button>
    </div>
+   <div *ngIf="alreadyPaid" class="button">
+      <button mat-stroked-button disabled style="height: 3em; width: 10em;">Ya has pagado</button>
+   </div>
 
 </div>
 

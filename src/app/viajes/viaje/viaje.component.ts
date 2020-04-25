@@ -92,7 +92,7 @@ export class ViajeComponent implements OnInit {
       for(var i=0; i<solicitudes.length; i++){
         if(solicitudes[i].idUsuario == localStorage.getItem('usuario') ){
           this.show=false; // El usuario ya se ha apuntado luego se elimina la posibilidad
-          if(solicitudes[i].estado == 'Pendiente de pago'){
+          if(solicitudes[i].estado == 'aceptado'){
             this.payButton=true;  //Mostramos botón de pago
           } else if(solicitudes[i].estado == 'pagado'){
             this.payButton=false; // No mostramos botón pago si ya ha pagado
