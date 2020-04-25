@@ -1,6 +1,9 @@
 <app-header titulo="CREAR VIAJE"></app-header>
-<app-volver></app-volver>
-<h3 id="error">Por favor rellena todos los campos</h3>
+<div class="sub-cabecera">
+	<app-volver></app-volver>
+	<img id="error_img" src="../../../assets/warning.png">
+	<h3 id="error">{{error}}</h3>
+</div>
 
 <app-pedir-imagen id="pedir-imagen" directiva="users" (cerrar)="cerrarPopup($event, 'pedir-imagen')" (url)="setImagen($event)"></app-pedir-imagen>
 <div id="general">
@@ -147,8 +150,11 @@
 		<span class="texto">
 			<form class="formulario descripcion">
 				<mat-form-field class="election">
-					<textarea matInput #descripcion maxlength="300" rows=5 placeholder="Introduce una breve descripción en este area..." [(ngModel)]="desc" name ="descripcion"></textarea>
+					<textarea [formControl]="descFormControl"  matInput #descripcion maxlength="300" rows=5 placeholder="Introduce una breve descripción en este area..." [(ngModel)]="desc" name ="descripcion"></textarea>
 					<mat-hint align="end">{{descripcion.value.length}} / 300</mat-hint>
+					<mat-error *ngIf="emailFormControl.hasError('required')">
+						Por favor, introduce una descripción
+					  </mat-error>
 				</mat-form-field>
 
 			</form>
@@ -170,21 +176,27 @@
 			<form class="formulario prefijo">
 				<mat-form-field class="election">
 			      <mat-label>Pr</mat-label>
-			      <input matInput [(ngModel)]="prefijo" name="prefijo" placeholder="34" maxlength="3">
-			    </mat-form-field>
+			      <input matInput [formControl]="prefijoFormControl" [(ngModel)]="prefijo" name="prefijo" placeholder="34" maxlength="3">
+				  <mat-error *ngIf="prefijoFormControl.hasError('required')">
+					Por favor, introduce un prefijo
+				  </mat-error>
+				  <mat-error *ngIf="prefijoFormControl.hasError('minLength')">
+					Su prefijo es demasiado pequeño
+				  </mat-error>
+				</mat-form-field>
+				
 			</form>
 			<form class="formulario contacto">
 				<mat-form-field class="election">
-			      <mat-label>Telefono</mat-label>
-			      <input matInput #telef [formControl]="telefFormControl" [(ngModel)]="telefono" name="telefono" placeholder="660918814" maxlength="9">
-			      <mat-error *ngIf="telefFormControl.hasError('required')">
+			      	<mat-label>Telefono</mat-label>
+			      	<input matInput #telef [formControl]="telefFormControl" [(ngModel)]="telefono" name="telefono" placeholder="660918814" maxlength="9">
+			      	<mat-error *ngIf="telefFormControl.hasError('required')">
 				      Por favor, introduce un teléfono
 				    </mat-error>
 				    <mat-error *ngIf="telefFormControl.hasError('minLength')">
 				      Su número es demasiado pequeño
 				    </mat-error>
-			      <mat-hint align="end">{{telef.value.length}} / 9</mat-hint>
-
+			      	<mat-hint align="end">{{telef.value.length}} / 9</mat-hint>
 			    </mat-form-field>
 			</form>
 		</span>

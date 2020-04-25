@@ -10,6 +10,23 @@ $gris-buscador: #c0c1c0;
 $letters: #03a9f4;
 $gris-encabezado: #F5F5F5;
 
+.sub-cabecera{
+	width: 100%;
+	display: flex;
+}
+.sub-cabecera img{
+	margin-left: 20px;
+	margin-top: 20px;
+	width: 30px;
+	height: 30px;
+	display: none;
+}
+#error{
+	margin-left: 20px;
+	margin-top: 20px;
+	color: red;
+	display: none;
+}
 #general{ 
 	height: 86%; 
 	width: 100%; 

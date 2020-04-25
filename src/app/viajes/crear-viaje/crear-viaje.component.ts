@@ -1,7 +1,7 @@
 import { PedirImagenComponent } from './../../shared/pedir-imagen/pedir-imagen.component';
 import { IViaje, Viaje } from './../../interfaces/viaje';
 import { FirestoreService } from './../../services/firestore/firestore.service';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 import { Router } from '@angular/router'; //Para redirigir a una página
@@ -37,13 +37,16 @@ export class CrearViajeComponent implements OnInit {
   // uploadFile($event) {
   //   console.log($event.target.files[0]); // outputs the first file
   // }
+  @Input() public error:string; 
+  @Output() foto: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private route: Router, private viajeService: FirestoreService) { }
+  constructor(private route: Router, private viajeService: FirestoreService) { 
+    this.error = "";
+  }
 
   ngOnInit(): void {
   }
 
-  @Output() foto: EventEmitter<string> = new EventEmitter<string>();
 
 
   continentes = ["Europa", "Asia" ,"America del Norte" ,"America del Sur","America Central",
@@ -157,10 +160,24 @@ export class CrearViajeComponent implements OnInit {
   
     if (this.ciudadSelect==='' || this.continenteSelect==='' || this.desc==='' || this.email==='' || 
     this.endDate==='' || this.startDate==='' || this.limitPayDate==='' || this.limitDate==='' || this.miFoto===''
-    || this.maxpers === '' || this.precio === '' || this.paisSelect === '' || this.telefono === '' || this.prefijo===''
-    ||!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$/.test(this.email) || this.telefono.length<6 || this.prefijo.length<2){
+    || this.maxpers === '' || this.precio === '' || this.paisSelect === '' || this.telefono === '' || this.prefijo===''){
+      this.error = "Por favor introduce todos los campos"
+      document.getElementById("error").style.display="block";
+      document.getElementById("error_img").style.display="block";
+      return true;
+    }else if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$/.test(this.email)){
+      this.error = "Por favor introduce un formato correcto de email"
+      document.getElementById("error").style.display="block";
+      document.getElementById("error_img").style.display="block";
+      return true;
+    }else if (this.telefono.length<9 || this.prefijo.length<2){
+      this.error = "La longitud del telefono debe ser 6 y la de la extension 2"
+      document.getElementById("error").style.display="block";
+      document.getElementById("error_img").style.display="block";
       return true;
     }else{
+        document.getElementById("error").style.display="none";
+        document.getElementById("error_img").style.display="none";
         return false;
     } 
   }
@@ -172,9 +189,18 @@ export class CrearViajeComponent implements OnInit {
 
   telefFormControl = new FormControl('', [
     Validators.required,
-    Validators.minLength(3),
+    Validators.minLength(9),
   ]);
 
+  prefijoFormControl = new FormControl('', [
+    Validators.required,
+    Validators.minLength(2),
+  ]);
+
+  descFormControl = new FormControl('', [
+    Validators.required
+  ]);
+  
   date1FormControl = new FormControl('', [
     Validators.required
   ]);
