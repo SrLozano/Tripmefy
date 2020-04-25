@@ -1,5 +1,5 @@
 import { UsuarioFirestoreService } from './../../services/firestore/usuario-firestore.service';
-import {Viaje } from './../../interfaces/viaje';
+import { Viaje } from './../../interfaces/viaje';
 import { FirestoreService } from './../../services/firestore/firestore.service';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
@@ -94,7 +94,6 @@ export class CrearViajeComponent implements OnInit {
     newViaje.servicios = '';
     newViaje.viajeros = '';
   
-    
     if(this.vuelo){
       newViaje.servicios += 'Vuelo,';
     }
@@ -105,7 +104,7 @@ export class CrearViajeComponent implements OnInit {
       newViaje.servicios += 'Comidas,';
     }
     alert("El viaje se ha creado correctamente");
-    this.viajeService.createViaje(newViaje);
+    //this.viajeService.createViaje(newViaje);
     this.route.navigate(['/mis-viajes']);
   }
 
@@ -161,24 +160,34 @@ export class CrearViajeComponent implements OnInit {
     if (this.ciudadSelect==='' || this.continenteSelect==='' || this.desc==='' || 
     this.endDate==='' || this.startDate==='' || this.limitPayDate==='' || this.limitDate==='' 
     || this.maxpers === '' || this.precio === '' || this.paisSelect === '' || this.telefono === '' || this.prefijo===''){
-      this.error = "Por favor introduce todos los campos"
+      
       document.getElementById("error").style.display="block";
       document.getElementById("error_img").style.display="block";
+      document.getElementById("error1").style.display="block";
+      document.getElementById("error2").style.display="none";
+      document.getElementById("error3").style.display="none";
       return true;
     }else if(this.miFoto===''){
-      this.error = "Por favor carga una imagen"
       document.getElementById("error").style.display="block";
       document.getElementById("error_img").style.display="block";
+      document.getElementById("error2").style.display="block";
+      document.getElementById("error1").style.display="none";
+      document.getElementById("error3").style.display="none";
       return true;
     }else if (this.telefono.length<9 || this.prefijo.length<2){
-      this.error = "La longitud del telefono debe ser 6 y la de la extension 2"
       document.getElementById("error").style.display="block";
       document.getElementById("error_img").style.display="block";
+      document.getElementById("error3").style.display="block";
+      document.getElementById("error2").style.display="none";
+      document.getElementById("error1").style.display="none";
       return true;
     }else{
-        document.getElementById("error").style.display="none";
-        document.getElementById("error_img").style.display="none";
-        return false;
+      document.getElementById("error").style.display="none";
+      document.getElementById("error_img").style.display="none";
+      document.getElementById("error3").style.display="none";
+      document.getElementById("error2").style.display="none";
+      document.getElementById("error1").style.display="none";
+      return false;
     } 
   }
 
