@@ -226,7 +226,8 @@ export class PerfilViajeroComponent implements OnInit, OnDestroy {
                }
 
   ngOnInit(): void {
-
+    
+    
     
 
     
@@ -234,6 +235,12 @@ export class PerfilViajeroComponent implements OnInit, OnDestroy {
 
     var visitanteId = localStorage.getItem('usuario'); //hace referencia al usuario que está navegando 
     var userId = this._route.snapshot.paramMap.get('id'); //hace referencia al usuario propietario del perfil
+
+    if(visitanteId == "null"){
+      var origin = window.location.origin + '/'; 
+      var destino = origin + "page1";
+      window.location.assign(destino);
+    }
 
     //utilizo la subscripción a activatedRoute para que se actualice el pefil de haber cambios en la ruta
     this._activatedRoute.paramMap.subscribe((params) => {
@@ -421,7 +428,7 @@ export class PerfilViajeroComponent implements OnInit, OnDestroy {
            * 
            * De no haber viajes, aparecerá una imagen que indica que no hay viajes
            */
-          this.firestoreServiceSolicitud.getSolicitudesByUserId(this.usuario.id).subscribe(res=>{
+          this.firestoreServiceSolicitud.getSolicitudesByUserId(userId).subscribe(res=>{
               var viajes = [];
               if(res.length <= 0){
                 this.slides = [
@@ -434,23 +441,21 @@ export class PerfilViajeroComponent implements OnInit, OnDestroy {
                 for ( i = 0; i<res.length ; i++){
                   viajes.push(res[i].idViaje);
                 }
+                
 
-                this.susViajesId = viajes;
+               
               }
             
               if(viajes.length > 0){
                 this.slides = [];
                 for (i=0; i<viajes.length ; i++){
-                  if(res[i].estado == "aceptado"){
-                      this.firestoreServiceViaje.getViaje(this.susViajesId[i]).then(elem =>{
-                      
-                        
+                  
+                  if(res[i].estado != "pendiente" && res[i].estado != "rechazado" ){
+                      this.firestoreServiceViaje.getViaje(viajes[i]).then(elem =>{
+                       
                         this.slides.push({src: elem.img});
                         this.susViajes.push(['viaje', elem.id]);
 
-                        
-                      
-                        
                       });
                     }
                 }

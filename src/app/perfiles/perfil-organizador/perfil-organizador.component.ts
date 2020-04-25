@@ -229,6 +229,12 @@ export class PerfilOrganizadorComponent implements OnInit, OnDestroy {
     var visitanteId = localStorage.getItem('usuario'); //hace referencia al usuario que está navegando 
     var userId = this._route.snapshot.paramMap.get('id'); //hace referencia al usuario propietario del perfil
 
+    if(visitanteId == "null"){
+      var origin = window.location.origin + '/'; 
+      var destino = origin + "page1";
+      window.location.assign(destino);
+    }
+
     //utilizo la subscripción a activatedRoute para que se actualice el pefil de haber cambios en la ruta
     this._activatedRoute.paramMap.subscribe((params) => {
       userId = params['id'];

@@ -104,6 +104,12 @@ export class MisViajesComponent implements OnInit {
 
   ngOnInit(): void {
     //let dato = JSON.parse(localStorage.getItem('pais'));
+
+    if(localStorage.getItem('usuario')== "null"){
+      var origin = window.location.origin + '/'; 
+      var destino = origin + "page1";
+      window.location.assign(destino);
+    }
     
     //let id = localStorage.getItem('pais');
     this.escogidas = this.ciudades;
@@ -120,22 +126,22 @@ export class MisViajesComponent implements OnInit {
             for (i = 0; i < res.length ; i++){
               this.ciudadesId.push(res[i].idViaje);
             }
-            console.log(this.ciudadesId);
+            
             //console.log(this.ciudadesId);
             for(i = 0; i < this.ciudadesId.length ; i++){
-                
-                this.firestoreService.getViaje(this.ciudadesId[i]).then(elem=>{
-                
-                  console.log(elem);
-                  this.escogidas = [];//lo vaciamos al cargar la página
-                  this.ciudades = []//lo vaciamos al cargar la página
-                  this.ciudades.push(elem);
-                  this.escogidas.push(elem);
-
+              if(res[i].estado != "pendiente" && res[i].estado != "rechazado" ){
+                  this.firestoreService.getViaje(this.ciudadesId[i]).then(elem=>{
                   
-                  //una vez estan todos los viajes al pais seleccionado metidos en el array, los filtros funcionan correctamente
-                  }
-                );
+                    
+                    this.ciudades.push(elem);
+                    this.escogidas.push(elem);
+
+                    
+                    //una vez estan todos los viajes al pais seleccionado metidos en el array, los filtros funcionan correctamente
+                    }
+                  
+                   );
+                }
               }
           });
       }
@@ -148,7 +154,7 @@ export class MisViajesComponent implements OnInit {
       this.ciudades = [];
       this.firestoreServiceUser.getUsuariosFiltered(localStorage.getItem('usuario')).subscribe(res=>{
         var email = res[0].email;
-        console.log(email);
+        
         this.firestoreService.getViajesByEmail(email).subscribe(elem=>{
           var i;
           for(i = 0; i<elem.length ; i++){
