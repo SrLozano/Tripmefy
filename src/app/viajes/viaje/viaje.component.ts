@@ -114,10 +114,24 @@ export class ViajeComponent implements OnInit {
       new_solicitud.idViaje = this._route.snapshot.paramMap.get('id');
       new_solicitud.estado = "aceptado";
       this.firestoreServiceSolicitud.createSolicitud(new_solicitud);
+
   }
 
+  /*  Función que une actualiza en la solicitud de la persona el estado de aceptado a pagado
+      Se activa al pinchar sobre el botón de pagar */
+
   pagar(){
-    
+    this.firestoreServiceSolicitud.getSolicitudesByTripId(this._route.snapshot.paramMap.get('id')).subscribe(res=>{
+      var i;
+      var new_solicitud:Solicitud = new Solicitud();
+      for(i=0; i<res.length; i++){
+        if(res[i].idUsuario == localStorage.getItem('usuario')){
+          new_solicitud = res[i];
+          new_solicitud.estado = "pagado";
+          this.firestoreServiceSolicitud.updateSolicitud(new_solicitud);
+        }
+      }  
+    });
   }
 
   ngOnInit(): void {

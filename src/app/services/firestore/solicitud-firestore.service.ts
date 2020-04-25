@@ -49,4 +49,9 @@ export class SolicitudFirestoreService {
     });
 
   }  
+
+  public updateSolicitud(data:Solicitud)
+  {
+    return this.afs.doc(data.id).set(data);
+  }
 }
