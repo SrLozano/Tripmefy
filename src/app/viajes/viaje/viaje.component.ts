@@ -14,6 +14,8 @@ import { FormsModule } from '@angular/forms';
 import { Usuario } from 'src/app/interfaces/usuario';
 import { ISolicitud,Solicitud } from '../../interfaces/solicitud';
 import {SolicitudFirestoreService} from '../../services/firestore/solicitud-firestore.service';
+import { Params } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -48,6 +50,11 @@ export class ViajeComponent implements OnInit {
 
   public usuarios_viaje = [];
 
+  public show = true;
+  public payButton = false;
+  public alreadyPaid = false;
+
+
   @ViewChild('imageUser') inputImageUser;
   uploadPercent: Observable<number>;
   urlImage: Observable<string>;
@@ -73,12 +80,36 @@ export class ViajeComponent implements OnInit {
                 this.usuarios_viaje = [];
                }
 
+  /* Función que selecciona el tipo de botón a mostar al usuraio en un viaje
+     Si el usuario no se ha apuntado y es viajero se le da la opción de apuntarse,
+     si el usuario viajero no ha pagado pero está apuntado puede pagar
+     si el usuario ya ha pagado no se le muestran los botones pues no los necesita*/
+
+  showButtonJoin(solicitudes:Solicitud[]){
+    if(localStorage.getItem('tipo') == 'organizador'){
+      this.show = false;
+    }else{ // Es tipo viajero y hay que mirar las solicitudes
+      for(var i=0; i<solicitudes.length; i++){
+        if(solicitudes[i].idUsuario == localStorage.getItem('usuario') ){
+          this.show=false; // El usuario ya se ha apuntado luego se elimina la posibilidad
+          if(solicitudes[i].estado == 'Pendiente de pago'){
+            this.payButton=true;  //Mostramos botón de pago
+          } else if(solicitudes[i].estado == 'pagado'){
+            this.payButton=false; // No mostramos botón pago si ya ha pagado
+            this.alreadyPaid = true; // Activamos mensaje de confimración de pago
+          }
+        }
+      }
+    }
+  }             
+
   ngOnInit(): void {
 
-    // Falta obtener el id de manera automática 
-    localStorage.setItem('trip','lWdwEvTbnVAptd1xpr3Z');
-    var tripId = localStorage.getItem('trip');
-    //var tripId = localStorage.this_route.snapshot.paramMap.get('trip');
+    // El viaje a Roma es: lWdwEvTbnVAptd1xpr3Z
+
+    // Obtenemos el id a partir de la ruta de forma automática
+    var tripId = this._route.snapshot.paramMap.get('id');
+
     var tripAux = this.firestoreServiceViaje.getViaje(tripId).then((elem) => {
 
       var tripAux:Viaje = new Viaje();
@@ -114,17 +145,18 @@ export class ViajeComponent implements OnInit {
       });
 
       /* Esta función devuelve el array de solicitudes de un viaje */
-
         this.firestoreServiceSolicitud.getSolicitudesByTripId(this.viaje.id).subscribe(res=>{
           this.solicitudes = []
           var i;
           console.log(res.length);
           for(i=0; i<res.length; i++){
-            this.solicitudes.push({idUsuario: res[i].idUsuario});
+            this.solicitudes.push({idUsuario: res[i].idUsuario, estado: res[i].estado});
           }
-          
+
+          // Mostaremos el botón de unirse si el usuario no tiene el viaje entre sus solicitures y es viajero
+          this.showButtonJoin(this.solicitudes);
+
           /* Esta función devuelve un array con las imagenes de los usuarios en un viaje */
-      
           this.firestoreServiceUser.getUsuarios().subscribe(res=>{
           this.usuarios_viaje = []
           var i, j;
