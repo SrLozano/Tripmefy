@@ -1,3 +1,5 @@
+import { IViaje, Viaje } from './../../interfaces/viaje';
+import { FirestoreService } from './../../services/firestore/firestore.service';
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
@@ -25,15 +27,15 @@ export class CrearViajeComponent implements OnInit {
     // Upload code goes here
   }
 
-  addItem(item: string){
-    this.opciones.push(item);
-  }
+  // addItem(item: string){
+  //   this.opciones.push(item);
+  // }
 
   uploadFile($event) {
     console.log($event.target.files[0]); // outputs the first file
   }
 
-  constructor() { }
+  constructor(private viajeService: FirestoreService) { }
 
   ngOnInit(): void {
   }
@@ -51,17 +53,6 @@ export class CrearViajeComponent implements OnInit {
 
   paises = [];
 
-  // continentes = [["Europa", 1],["Asia",2],["America del Norte",3],["America del sur",4],["America Central",5],
-  // ["Oceania",6],["Africa",7]]
-
-  // paises =  [['España',1], ['Francia',1], ['Italia',1], ['Suecia',1], ['Alemania',1],
-  //           ['Kazajistán',2], ['China',2], ['Corea del Norte',2], ['Corea del Sur',2], ['Japón',2],
-  //           ['Canada',3], ['EEUU',4],
-  //           ['Colombia',4], ['Venezuela',4], ['Argentina',4], ['Perú',4], ['Ecuador',4],
-  //           ['Costa Rica',5], ['Salvador',5], ['Guatemala',5],
-  //           ['Australia',6], ['Nueva Zelanda',6],
-  //           ['Argelia,',7], ['Camerún',7], ['Burkina Fasso',7], ['Egipto',7], ['Marruecos',7]
-  //           ];
   continenteSelect: string;
   paisSelect: string;
   ciudadSelect: string;
@@ -69,14 +60,49 @@ export class CrearViajeComponent implements OnInit {
   endDate: string;
   limitDate: string;
   limitPayDate: string;
-  descripcion: string;
+  desc: string;
   email: string;
   telefono: string;
   prefijo:string;
   item:string;
+  precio:string;
+  maxpers:string;
+  vuelo:boolean;
+  alojamiento:boolean;
+  comidas:boolean;
 
-  opciones = ["Vuelo", "Alojamiento", "Comidas"];
 
+  onCreate(){
+
+    
+    var newViaje:Viaje = new Viaje();
+    newViaje.ciudad = this.ciudadSelect;
+    newViaje.continente = this.continenteSelect;
+    newViaje.descripcion = this.desc;
+    newViaje.email = this.email;
+    newViaje.fin = this.endDate;
+    //newViaje.img = this. preguntar a mia como hag esto
+    newViaje.inicio = this.startDate
+    newViaje.limitePago = this.limitPayDate;
+    newViaje.limiteUnion = this.limitDate;
+    newViaje.maximo = this.maxpers;
+    newViaje.unidas = '0';
+    newViaje.pais = this.paisSelect;
+    newViaje.precio = this.precio;
+    newViaje.tlf = this.prefijo + ' ' + this.telefono;
+    if(this.vuelo){
+      newViaje.servicios += 'Vuelo,';
+    }
+    if(this.alojamiento){
+      newViaje.servicios += 'Alojamiento,';
+    }
+    if(this.comidas){
+      newViaje.servicios += 'Comidas,';
+    }
+    console.log("esto es:", newViaje);
+
+    
+  }
   getPais(){
     
     if(this.continenteSelect===''){

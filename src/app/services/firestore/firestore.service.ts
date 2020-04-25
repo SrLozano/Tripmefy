@@ -22,9 +22,7 @@ export class FirestoreService {
    
     
   }
-
- 
-    
+  
   public createViaje(data: IViaje):Promise<string>
   {
     //return this.firestore.collection<IContacto>('contactos').add({... data}).then(r=>{

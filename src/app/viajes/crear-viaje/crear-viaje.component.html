@@ -22,26 +22,38 @@
 		  <br>
 		  <h2 style="display: inline-block; margin-right:20px ;">Establece un precio: </h2>
 
-		  <mat-form-field appearance="fill">
-			<mat-label>Amount</mat-label>
-			<input matInput type="number" class="example-right-align">
-			<span matPrefix>€&nbsp;</span>
-		  </mat-form-field>
+		<mat-form-field appearance="fill">
+		<mat-label>Amount</mat-label>
+		<input matInput type="number" class="example-right-align " [(ngModel)]="precio" name="precio">
+		<span matPrefix>€&nbsp;</span>
+		</mat-form-field>
 
-		  <br>
-		  <br>
+		<br>
+		<h2 style="display: inline-block; margin-right:20px ;">Máximo de participantes: </h2>
+		<mat-form-field appearance="fill" id="maximo">
+		<mat-label>Máximo</mat-label>
+		<input matInput type="number" class="example-right-align " [(ngModel)]="maxpers" name="maxpers">
+		<span matPrefix>€&nbsp;</span>
+		</mat-form-field>
+		<br>
 
-		  <h2> El precio incluye...</h2>
-		  <mat-checkbox *ngFor='let opcion of opciones' style="display: block; margin-top: 5px;">
-			  {{opcion}}
-		  </mat-checkbox>
+		<h2> El precio incluye...</h2>
+		<mat-checkbox style="display: block; margin-top: 5px;" [(ngModel)]="vuelo" name="vuelo">
+			Vuelo
+		</mat-checkbox>
+		<mat-checkbox style="display: block; margin-top: 5px;" [(ngModel)]="alojamiento" name="alojamiento">
+			Alojamiento
+		</mat-checkbox>
+		<mat-checkbox style="display: block; margin-top: 5px;" [(ngModel)]="comidas" name="comidas">
+			Comidas
+		</mat-checkbox>
 
-		  <mat-form-field appearance="fill" style="margin-top: 10px; margin-right: 5%;">
+		  <!-- <mat-form-field appearance="fill" style="margin-top: 10px; margin-right: 5%;">
 			<mat-label>Introduce más opciones</mat-label>
-			<input matInput [(ngModel)]="item">	
+			<input matInput [(ngModel)]="item" name="item">	
 		  </mat-form-field>
 
-		  <button mat-raised-button type="file" color="primary" (click)="addItem(item)">Añadir</button>
+		  <button mat-raised-button type="file" color="primary" (click)="addItem(item)">Añadir</button> -->
 
 	</div>
 
@@ -133,7 +145,7 @@
 		<span class="texto">
 			<form class="formulario descripcion">
 				<mat-form-field class="election">
-					<textarea matInput #descripcion maxlength="300" rows=5 placeholder="Introduce una breve descripción en este area..."></textarea>
+					<textarea matInput #descripcion maxlength="300" rows=5 placeholder="Introduce una breve descripción en este area..." [(ngModel)]="desc" name ="descripcion"></textarea>
 					<mat-hint align="end">{{descripcion.value.length}} / 300</mat-hint>
 				</mat-form-field>
 
@@ -176,7 +188,7 @@
 		</span>
 		<br>
 		<div class="divBotonAceptar">
-			<button mat-raised-button color="primary" class="botonAceptar">Listo</button>
+			<button mat-raised-button color="primary" class="botonAceptar" (click)="onCreate()">Listo</button>
 		</div>
 
 
