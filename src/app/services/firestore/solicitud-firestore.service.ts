@@ -34,4 +34,6 @@ export class SolicitudFirestoreService {
   {  
     return this.firestore.collection<Solicitud>('Solicitud',ref=>ref.where('idOrganizador','==',id)).valueChanges();
   }
+
+  
 }

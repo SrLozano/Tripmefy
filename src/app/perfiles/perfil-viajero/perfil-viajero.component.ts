@@ -441,17 +441,20 @@ export class PerfilViajeroComponent implements OnInit, OnDestroy {
               if(viajes.length > 0){
                 this.slides = [];
                 for (i=0; i<viajes.length ; i++){
-                    this.firestoreServiceViaje.getViaje(this.susViajesId[i]).then(elem =>{
+                  if(res[i].estado == "aceptado"){
+                      this.firestoreServiceViaje.getViaje(this.susViajesId[i]).then(elem =>{
 
 
-                      this.slides.push({src: elem.img});
-                      this.susViajes.push(['viaje', elem.id]);
+                        this.slides.push({src: elem.img});
+                        this.susViajes.push(['viaje', elem.id]);
 
 
 
 
-                    });
+                      });
+                    }
                 }
+
               }
           })
 
