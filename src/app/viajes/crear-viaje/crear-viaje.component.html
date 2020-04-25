@@ -1,5 +1,6 @@
 <app-header titulo="CREAR VIAJE"></app-header>
 <app-volver></app-volver>
+<h3 id="error">Por favor rellena todos los campos</h3>
 
 <app-pedir-imagen id="pedir-imagen" directiva="users" (cerrar)="cerrarPopup($event, 'pedir-imagen')" (url)="setImagen($event)"></app-pedir-imagen>
 <div id="general">
@@ -189,7 +190,7 @@
 		</span>
 		<br>
 		<div class="divBotonAceptar">
-			<button mat-raised-button color="primary" class="botonAceptar" (click)="onCreate()">Listo</button>
+			<button mat-raised-button color="primary" class="botonAceptar" (click)="onCreate()" [disabled]="checkFields()">Listo</button>
 		</div>
 
 

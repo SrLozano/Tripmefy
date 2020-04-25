@@ -95,6 +95,7 @@ export class CrearViajeComponent implements OnInit {
     newViaje.precio = this.precio;
     newViaje.tlf = '+' + this.prefijo + ' ' + this.telefono;
     newViaje.servicios = '';
+    newViaje.viajeros = '';
     if(this.vuelo){
       newViaje.servicios += 'Vuelo,';
     }
@@ -109,18 +110,11 @@ export class CrearViajeComponent implements OnInit {
     this.route.navigate(['/mis-viajes']);
 
 
-    //console.log("este es el viaje", newViaje)
   }
   chooseImagen(){
     document.getElementById("pedir-imagen").style.display = "block";
     document.getElementById("general").style.display = "none";
   }
-
-  upImg(){
-
-  }
-
-
 
   setImagen(e){
     this.miFoto = e;
@@ -157,6 +151,18 @@ export class CrearViajeComponent implements OnInit {
       return this.paises;
     }
   
+  }
+
+  checkFields(){
+  
+    if (this.ciudadSelect==='' || this.continenteSelect==='' || this.desc==='' || this.email==='' || 
+    this.endDate==='' || this.startDate==='' || this.limitPayDate==='' || this.limitDate==='' || this.miFoto===''
+    || this.maxpers === '' || this.precio === '' || this.paisSelect === '' || this.telefono === '' || this.prefijo===''
+    ||!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$/.test(this.email) || this.telefono.length<6 || this.prefijo.length<2){
+      return true;
+    }else{
+        return false;
+    } 
   }
 
   emailFormControl = new FormControl('', [
