@@ -22,7 +22,7 @@ import { ActivatedRoute }  from '@angular/router';
 export class CarouselComponent {
   @Input() slides;
   @Input() links;
-  
+
   currentSlide = 0;
   /**misLinks se emplea para pasar por parametro los links correspodientes a las imágenes, en el mismo orden.
    * Debe tener la siguiente estructura:
@@ -34,37 +34,37 @@ export class CarouselComponent {
    * ]
    */
   primero = "";
-  segundo = ""; 
+  segundo = "";
 
   constructor(private _activatedRoute: ActivatedRoute) {
-    
+
   }
 
   onPreviousClick() {
     const previous = this.currentSlide - 1;
     this.currentSlide = previous < 0 ? this.slides.length - 1 : previous;
     console.log("previous clicked, new current slide is: ", this.currentSlide);
-    
-    
+
+
   }
 
   onNextClick() {
     const next = this.currentSlide + 1;
     this.currentSlide = next === this.slides.length ? 0 : next;
     console.log("next clicked, new current slide is: ", this.currentSlide);
- 
+
   }
 
   onClick(){
-   
-    if(this.links == undefined || this.links.length<1){
+
+    if(this.links == undefined || this.links.length <= 0){
       //si no tenemos links devolvemos un cero y ya, no hacemos nada
       return 0;
     }else{
        //si tenemos links hacemos lo siguiente
-      
+
        var origin = window.location.origin + '/'; //obtenemos la parte de la izquierda de la url
-    
+
       //var datos = window.location.pathname;
       //var routerLink = datos.split('/');
 
@@ -73,18 +73,18 @@ export class CarouselComponent {
       //var segundo = 'yhySIyMyRGwIqtwEeuZV';
       this.primero = primero;
       this.segundo = segundo;
-      
+
 
       var destino = origin + primero + segundo;
-     
+
       window.location.assign(destino);
-    }    
-   
+    }
+
   }
 
-  
+
 
   ngOnInit(): void {
-    
+
   }
 }

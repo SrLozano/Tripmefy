@@ -430,7 +430,7 @@ export class PerfilOrganizadorComponent implements OnInit, OnDestroy {
                   { src: "../../../assets/noViajes.png"},
                   
                 ];
-                this.susViajes = [];
+                
               }
                 
           })

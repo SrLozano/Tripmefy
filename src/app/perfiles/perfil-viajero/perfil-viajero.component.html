@@ -4,20 +4,20 @@
 <app-puntuacion-pu id = "puntuar" (cerrado)="cerrar($event, 'puntuar' )" (puntuacion)="newPuntuacion($event)" ></app-puntuacion-pu>
 <app-comentario-pu id = "comentar" (cerrado)="cerrar($event, 'comentar')" (comentario)="newComentario($event)" ></app-comentario-pu>
 <app-edicion-pu id = "editar" user="usuario" descripcion="{{descripcion}}" (cerrado)="cerrar($event, 'editar')" (newDescripcion)="setDescripcion($event)" (foto)="setFoto($event)" (signal)="uploadUser($event)" ></app-edicion-pu>
-<app-mensaje id="graciasC" mensaje="¡ Gracias por comentar !" imagen="../../../assets/comment.png" (cerrado)="cerrar($event, 'graciasC')"></app-mensaje>   
-<app-mensaje id="graciasP" mensaje="¡ Gracias por puntuar !" imagen="../../../assets/ok.png" (cerrado)="cerrar($event, 'graciasP')"></app-mensaje> 
-<app-mensaje id="editOk" mensaje="¡ Has modificado tu perfil !"  imagen="../../../assets/usuario.png" (cerrado)="cerrar($event, 'editOk')"></app-mensaje> 
+<app-mensaje id="graciasC" mensaje="¡ Gracias por comentar !" imagen="../../../assets/comment.png" (cerrado)="cerrar($event, 'graciasC')"></app-mensaje>
+<app-mensaje id="graciasP" mensaje="¡ Gracias por puntuar !" imagen="../../../assets/ok.png" (cerrado)="cerrar($event, 'graciasP')"></app-mensaje>
+<app-mensaje id="editOk" mensaje="¡ Has modificado tu perfil !"  imagen="../../../assets/usuario.png" (cerrado)="cerrar($event, 'editOk')"></app-mensaje>
 <div id="general">
-   
+
    <!-- DATOS -->
    <div id="div1">
       <div id="tarjeta">
          <mat-card>
-         <mat-card-content>   
+         <mat-card-content>
             <div class="little_container_izq">
-               
+
                <span class="name">{{usuario.nombre}}</span>
-               <img (click)="editar()" id="img-editar" src="../../../assets/engranaje.png" *ngIf="permisoEditar"> 
+               <img (click)="editar()" id="img-editar" src="../../../assets/engranaje.png" *ngIf="permisoEditar">
 
                <div>
                   <span class="texto_perfil">{{usuario.ubicacion}}</span>
@@ -28,19 +28,19 @@
                <img *ngIf="usuario.image != ''" src="{{usuario.image}}" style="display: inline-block; max-width: 200px; max-height: 200px; " >
                <img *ngIf="usuario.image == ''" src="../../../assets/usuario.png" style="display: inline-block; max-width: 100px; max-height: 100px; ">
             </div>
-            
-            
+
+
          </mat-card-content>
-         </mat-card> 
+         </mat-card>
       </div>
-      
+
    </div>
    <div id="div2">
       <p class="texto" id="myDescripcion">
       {{usuario.descripcion}}
       </p>
 
-      
+
    </div>
    <div id="div3">
       <div id="opinions">
@@ -53,10 +53,10 @@
          <div class="stars">
             <span *ngFor="let i of Arr(stars).fill(1)" >
                <img src="../../../assets/star.png" class="llena" style="height: 5%; width: 5%; vertical-align: middle; margin-right: 2%">
-            </span>  
+            </span>
             <span *ngFor="let i of Arr(emptystars).fill(1)" >
-               <img src="../../../assets/empty_star.png" class="vacia" style="height: 5%; width: 5%; vertical-align: middle; margin-right: 2%;">    
-            </span> 
+               <img src="../../../assets/empty_star.png" class="vacia" style="height: 5%; width: 5%; vertical-align: middle; margin-right: 2%;">
+            </span>
             <app-boton *ngIf="permisoOpinar" texto="Puntua a este usuario" (click)="puntuar()"></app-boton>
          </div>
          <!--OPINIONES-->
@@ -65,24 +65,24 @@
             <img src="../../../assets/comentario.png" *ngIf="permisoOpinar" (click)="comentar()">
          </div>
          <div class="comment" *ngFor="let comment of comentarios">
-              <div class="comment-division-1">               
-                  <img src= '{{ comment["photo"] }}' [routerLink]="[comment['tipo-url'], comment['id'] ]"  style="height: 100%; width: 100%; vertical-align: middle; display: inline-block; ">            
+              <div class="comment-division-1">
+                  <img src= '{{ comment["photo"] }}' [routerLink]="[comment['tipo-url'], comment['id'] ]"  style="height: 100%; width: 100%; vertical-align: middle; display: inline-block; ">
                </div>
-         
+
                <div class="comment-division-2">
-                  <p class="bold_text" style="display: inline-block;">{{ comment["person"]}}</p>   
-                  <p>{{ comment["comment"] }}</p> 
-               </div>             
-         </div> 
+                  <p class="bold_text" style="display: inline-block;">{{ comment["person"]}}</p>
+                  <p>{{ comment["comment"] }}</p>
+               </div>
+         </div>
 
       </div>
-      
+
    </div>
    <!--VIAJES-->
    <div id="div4">
       <span class="name viajes_usuario">Viajes del usuario</span>
       <div class="container_carousel1">
-         <carousel [slides]="slides"></carousel>
+         <carousel [slides]="slides" [links]="susViajes"></carousel>
       </div>
    </div>
 </div>
@@ -94,7 +94,7 @@
 <div class="main_container_izq">
    <mat-card>
       <mat-card-content>
-         
+
          <div class="little_container_izq">
             <span class="name">Alejandro Chamorro</span>
             <div>
@@ -113,22 +113,22 @@
          <div class="little_container_der">
             <img src="../../../assets/person-2.jpg" style="display: inline-block; width: 100%; max-height: 300px; " >
          </div>
-         
-         
+
+
       </mat-card-content>
-   </mat-card> 
-   
+   </mat-card>
+
 
 </div>
 
 <div class="main_container_der">
-     
+
       <p class="texto">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda vitae iusto non magnam inventore amet sapiente earum minima cum 
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda vitae iusto non magnam inventore amet sapiente earum minima cum
       quam fuga voluptatem quae ab sequi quia cupiditate nesciunt, voluptate architecto.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda vitae iusto non magnam inventore amet sapiente earum minima cum 
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda vitae iusto non magnam inventore amet sapiente earum minima cum
       quam fuga voluptatem quae ab sequi quia cupiditate nesciunt, voluptate architecto.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda vitae iusto non magnam inventore amet sapiente earum minima cum 
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda vitae iusto non magnam inventore amet sapiente earum minima cum
       quam fuga voluptatem quae ab sequi quia cupiditate nesciunt, voluptate architecto.
       </p>
 
@@ -136,8 +136,8 @@
       <div class="container_carousel1">
          <carousel [slides]="slides"></carousel>
       </div>
-  
-  
+
+
 </div>
 
 -->
