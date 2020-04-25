@@ -18,6 +18,15 @@ $gris-encabezado: #F5F5F5;
 	position: absolute; 
 	left: 0;
 }
+
+#pedir-imagen{
+	display:none;
+	position: relative;
+	z-index: 8;
+	top: 20%;
+
+}
+
 #div1 { 
   width: 30%; 
   height: 100%; 

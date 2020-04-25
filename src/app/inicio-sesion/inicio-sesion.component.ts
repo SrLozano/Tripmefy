@@ -38,7 +38,7 @@ export class InicioSesionComponent implements OnInit {
     this.userService.getUsuariosByEmail(this.email).subscribe(res=>{
       var i;
         for(i=0; i<res.length; i++){ //nunca va a haber más de un usuario con ese email
-          localStorage.setItem("id", res[i].id);
+          localStorage.setItem("usuario", res[i].id);
           localStorage.setItem("tipo", res[i].tipo);
         }
       })  

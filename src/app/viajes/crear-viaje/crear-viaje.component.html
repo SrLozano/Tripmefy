@@ -1,13 +1,15 @@
 <app-header titulo="CREAR VIAJE"></app-header>
 <app-volver></app-volver>
 
+<app-pedir-imagen id="pedir-imagen" directiva="users" (cerrar)="cerrarPopup($event, 'pedir-imagen')" (url)="setImagen($event)"></app-pedir-imagen>
+
 <div id="general">
 
 	<div id="div1">
 		<mat-card style="height: 220px; vertical-align: middle; text-align: center;">
 			<div class="up">
-			  <input id="uploader" hidden type="file" #uploader/>
-			  <img src="../../../assets/plus.png" (click)="uploader.click()" (change)="onFileChanged($event)" style="display: block; margin-left: auto; margin-right: auto; cursor: pointer;" height="100px" width="100px"/>
+			  <!-- <input id="uploader" hidden type="file" #uploader/> -->
+			  <img src="../../../assets/plus.png" (click)="chooseImagen()"  style="display: block; margin-left: auto; margin-right: auto; cursor: pointer;" height="100px" width="100px"/>
 			</div>
 			<div class="bottom">
 			  <!-- <input type="file" (change)="onFileChanged($event)" #fileInput>

@@ -1,6 +1,7 @@
+import { PedirImagenComponent } from './../../shared/pedir-imagen/pedir-imagen.component';
 import { IViaje, Viaje } from './../../interfaces/viaje';
 import { FirestoreService } from './../../services/firestore/firestore.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 
@@ -40,6 +41,9 @@ export class CrearViajeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  @Output() foto: EventEmitter<string> = new EventEmitter<string>();
+
+
   continentes = ["Europa", "Asia" ,"America del Norte" ,"America del Sur","America Central",
   "Oceania","Africa"];
 
@@ -70,26 +74,25 @@ export class CrearViajeComponent implements OnInit {
   vuelo:boolean;
   alojamiento:boolean;
   comidas:boolean;
+  miFoto = "";
 
 
   onCreate(){
-
-    
     var newViaje:Viaje = new Viaje();
     newViaje.ciudad = this.ciudadSelect;
     newViaje.continente = this.continenteSelect;
     newViaje.descripcion = this.desc;
     newViaje.email = this.email;
     newViaje.fin = this.endDate;
-    //newViaje.img = this. preguntar a mia como hag esto
+    newViaje.img = this.miFoto;
     newViaje.inicio = this.startDate
     newViaje.limitePago = this.limitPayDate;
     newViaje.limiteUnion = this.limitDate;
     newViaje.maximo = this.maxpers;
-    newViaje.unidas = '0';
     newViaje.pais = this.paisSelect;
     newViaje.precio = this.precio;
-    newViaje.tlf = this.prefijo + ' ' + this.telefono;
+    newViaje.tlf = '+' + this.prefijo + ' ' + this.telefono;
+    newViaje.servicios = '';
     if(this.vuelo){
       newViaje.servicios += 'Vuelo,';
     }
@@ -99,10 +102,35 @@ export class CrearViajeComponent implements OnInit {
     if(this.comidas){
       newViaje.servicios += 'Comidas,';
     }
-    console.log("esto es:", newViaje);
 
+    this.viajeService.createViaje(newViaje);
+
+    //console.log("este es el viaje", newViaje)
+  }
+  chooseImagen(){
+    document.getElementById("pedir-imagen").style.display = "block";
+    document.getElementById("general").style.display = "none";
+
+  }
+
+  upImg(){
+
+  }
+
+
+
+  setImagen(e){
+    this.miFoto = e;
     
   }
+
+  cerrarPopup(e, id){
+    if(e == true){
+      document.getElementById(id).style.display = "none";
+      document.getElementById("general").style.display = "block";
+    }
+  }
+
   getPais(){
     
     if(this.continenteSelect===''){
