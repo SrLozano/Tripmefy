@@ -28,8 +28,12 @@
 
    </div>
 
-   <div class="button">
+   <!--Botones: Implemetacion en la función showButtonJoin del typescript-->
+   <div *ngIf="show" class="button">
       <button mat-raised-button color="primary" style="height: 3em; width: 10em;">Me uno al viaje</button>
+   </div>
+   <div *ngIf="payButton" class="button">
+      <button mat-raised-button color="primary" style="height: 3em; width: 10em;">Pagar</button>
    </div>
 
 </div>
