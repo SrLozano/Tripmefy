@@ -83,34 +83,38 @@ export class CrearViajeComponent implements OnInit {
 
 
   onCreate(){
-    var newViaje:Viaje = new Viaje();
-    newViaje.ciudad = this.ciudadSelect;
-    newViaje.continente = this.continenteSelect;
-    newViaje.descripcion = this.desc;
-    newViaje.email = this.email;
-    newViaje.fin = this.endDate;
-    newViaje.img = this.miFoto;
-    newViaje.inicio = this.startDate
-    newViaje.limitePago = this.limitPayDate;
-    newViaje.limiteUnion = this.limitDate;
-    newViaje.maximo = this.maxpers;
-    newViaje.pais = this.paisSelect;
-    newViaje.precio = this.precio;
-    newViaje.tlf = '+' + this.prefijo + ' ' + this.telefono;
-    newViaje.servicios = '';
-    newViaje.viajeros = '';
-    if(this.vuelo){
-      newViaje.servicios += 'Vuelo,';
+    if(localStorage.getItem('usuario')==='' || localStorage.getItem('usuario')===null || localStorage.getItem('usuario')===undefined){
+      this.route.navigate(['/page1']);
+    }else{
+      var newViaje:Viaje = new Viaje();
+      newViaje.ciudad = this.ciudadSelect;
+      newViaje.continente = this.continenteSelect;
+      newViaje.descripcion = this.desc;
+      newViaje.email = this.email;
+      newViaje.fin = this.endDate;
+      newViaje.img = this.miFoto;
+      newViaje.inicio = this.startDate
+      newViaje.limitePago = this.limitPayDate;
+      newViaje.limiteUnion = this.limitDate;
+      newViaje.maximo = this.maxpers;
+      newViaje.pais = this.paisSelect;
+      newViaje.precio = this.precio;
+      newViaje.tlf = '+' + this.prefijo + ' ' + this.telefono;
+      newViaje.servicios = '';
+      newViaje.viajeros = '';
+      if(this.vuelo){
+        newViaje.servicios += 'Vuelo,';
+      }
+      if(this.alojamiento){
+        newViaje.servicios += 'Alojamiento,';
+      }
+      if(this.comidas){
+        newViaje.servicios += 'Comidas,';
+      }
+      alert("El viaje se ha creado correctamente");
+      this.viajeService.createViaje(newViaje);
+      this.route.navigate(['/mis-viajes']);
     }
-    if(this.alojamiento){
-      newViaje.servicios += 'Alojamiento,';
-    }
-    if(this.comidas){
-      newViaje.servicios += 'Comidas,';
-    }
-    alert("El viaje se ha creado correctamente");
-    this.viajeService.createViaje(newViaje);
-    this.route.navigate(['/mis-viajes']);
 
 
   }
@@ -200,7 +204,7 @@ export class CrearViajeComponent implements OnInit {
   descFormControl = new FormControl('', [
     Validators.required
   ]);
-  
+
   date1FormControl = new FormControl('', [
     Validators.required
   ]);
