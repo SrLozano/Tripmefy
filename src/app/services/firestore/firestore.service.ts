@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, QuerySnapshot,Query } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
-import { IViaje,Viaje } from '../../interfaces/viaje';
+import { IViaje,Viaje, Slides, ISlides } from '../../interfaces/viaje';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,7 @@ import { IViaje,Viaje } from '../../interfaces/viaje';
 export class FirestoreService {
   
   private afs:AngularFirestoreCollection<Viaje>;
+  private sli:AngularFirestoreCollection<Slides>;
  
   //private db: AngularFirestore;
 
@@ -19,7 +20,7 @@ export class FirestoreService {
               private storage: AngularFireStorage) 
   {
     this.afs=this.firestore.collection('Viaje');
-   
+    this.sli=this.firestore.collection('Slides');
     
   }
 
@@ -114,5 +115,10 @@ export class FirestoreService {
   public getFileRef(nombreArchivo: string) {
     return this.storage.ref(nombreArchivo);
   }
+
+  public getSlides(idViaje: string):Observable<Slides[]>
+  {
+    return this.firestore.collection<Slides>('Slides',ref=>ref.where('idViaje','==',idViaje)).valueChanges();
+  } 
 
 }
