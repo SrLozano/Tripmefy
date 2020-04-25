@@ -4,6 +4,8 @@ import { FirestoreService } from './../../services/firestore/firestore.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
+import { Router } from '@angular/router'; //Para redirigir a una página
+
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -20,23 +22,23 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class CrearViajeComponent implements OnInit {
 
-	onFileChanged(event) {
-    const file = event.target.files[0]
-  }
+	// onFileChanged(event) {
+  //   const file = event.target.files[0]
+  // }
 
-  onUpload() {
-    // Upload code goes here
-  }
+  // onUpload() {
+  //   // Upload code goes here
+  // }
 
   // addItem(item: string){
   //   this.opciones.push(item);
   // }
 
-  uploadFile($event) {
-    console.log($event.target.files[0]); // outputs the first file
-  }
+  // uploadFile($event) {
+  //   console.log($event.target.files[0]); // outputs the first file
+  // }
 
-  constructor(private viajeService: FirestoreService) { }
+  constructor(private route: Router, private viajeService: FirestoreService) { }
 
   ngOnInit(): void {
   }
@@ -102,15 +104,16 @@ export class CrearViajeComponent implements OnInit {
     if(this.comidas){
       newViaje.servicios += 'Comidas,';
     }
-
+    alert("El viaje se ha creado correctamente");
     this.viajeService.createViaje(newViaje);
+    this.route.navigate(['/mis-viajes']);
+
 
     //console.log("este es el viaje", newViaje)
   }
   chooseImagen(){
     document.getElementById("pedir-imagen").style.display = "block";
     document.getElementById("general").style.display = "none";
-
   }
 
   upImg(){

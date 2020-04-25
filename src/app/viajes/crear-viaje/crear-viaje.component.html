@@ -2,7 +2,6 @@
 <app-volver></app-volver>
 
 <app-pedir-imagen id="pedir-imagen" directiva="users" (cerrar)="cerrarPopup($event, 'pedir-imagen')" (url)="setImagen($event)"></app-pedir-imagen>
-
 <div id="general">
 
 	<div id="div1">
@@ -101,7 +100,7 @@
 			<form class="formulario">
 				<mat-form-field class="election">
 			      <mat-label>Elige una fecha</mat-label>
-			      <input matInput #date1 maxlength="10" [formControl]="date1FormControl" placeholder="DD/MM/YYYY" [(ngModel)]="startDate" name="startDate">
+			      <input matInput #date1 type="date" maxlength="10" [formControl]="date1FormControl" placeholder="DD/MM/YYYY" [(ngModel)]="startDate" name="startDate">
 			      <mat-error *ngIf="date1FormControl.hasError('required')">
 				      Por favor, introduce una fecha
 				    </mat-error>
@@ -111,7 +110,7 @@
 			<form class="formulario">
 				<mat-form-field class="election">
 			      <mat-label>Elige una fecha</mat-label>
-			      <input matInput #date2 maxlength="10" [formControl]="date2FormControl" placeholder="DD/MM/YYYY" [(ngModel)]="endDate" name="endDate">
+			      <input matInput #date2 type="date" maxlength="10" [formControl]="date2FormControl" placeholder="DD/MM/YYYY" [(ngModel)]="endDate" name="endDate">
 			      <mat-error *ngIf="date2FormControl.hasError('required')">
 				      Por favor, introduce una fecha
 				    </mat-error>
@@ -123,7 +122,7 @@
 			<form class="formulario">
 				<mat-form-field class="election">
 			      <mat-label>Elige una fecha</mat-label>
-			      <input matInput #date3 maxlength="10" [formControl]="date3FormControl" placeholder="DD/MM/YYYY" [(ngModel)]="limitDate" name="limitDate">
+			      <input matInput #date3 type="date" maxlength="10" [formControl]="date3FormControl" placeholder="DD/MM/YYYY" [(ngModel)]="limitDate" name="limitDate">
 			      <mat-error *ngIf="date3FormControl.hasError('required')">
 				      Por favor, introduce una fecha
 				    </mat-error>
@@ -135,7 +134,7 @@
 			<form class="formulario">
 				<mat-form-field class="election">
 			      <mat-label>Elige una fecha</mat-label>
-			      <input matInput #date4 maxlength="10" [formControl]="date4FormControl" placeholder="DD/MM/YYYY" [(ngModel)]="limitPayDate" name="limitPayDate">
+			      <input matInput #date4 type="date" maxlength="10" [formControl]="date4FormControl" placeholder="DD/MM/YYYY" [(ngModel)]="limitPayDate" name="limitPayDate">
 			      <mat-error *ngIf="date4FormControl.hasError('required')">
 				      Por favor, introduce una fecha
 				    </mat-error>

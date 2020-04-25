@@ -122,6 +122,9 @@ import { MensajeComponent } from './shared/mensaje/mensaje.component';
   
 
     MensajeComponent,
+
+  
+
   ],
   imports: [
 

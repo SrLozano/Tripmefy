@@ -1,6 +1,8 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute }  from '@angular/router';
+import { Router } from '@angular/router'; //Para redirigir a una página
+
 
 @Component({
   selector: 'app-header',
@@ -10,7 +12,7 @@ import { ActivatedRoute }  from '@angular/router';
 export class HeaderComponent implements OnInit {
 @Input() public titulo:string;
   constructor(private authSvc : AuthService,
-             private _route:ActivatedRoute,) {
+             private _route:ActivatedRoute, private route: Router) {
     this.titulo = "";
    }
 
@@ -36,6 +38,10 @@ export class HeaderComponent implements OnInit {
     var destino = origin + primero + segundo;
    
     window.location.assign(destino);
+  }
+
+  toInicio(){
+    this.route.navigate(['/mis-viajes']);
   }
 
   onLogout():void{
