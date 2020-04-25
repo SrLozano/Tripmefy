@@ -57,3 +57,25 @@ export class Viaje implements IViaje
         if(o !== undefined) Object.assign(this,o);
     }
 };
+
+
+export interface ISlides {
+
+    id:string;
+    idViaje:string;
+    url:string;
+}
+
+export class Slides implements ISlides{
+
+    id:string;
+    idViaje:string;
+    url:string;
+    
+
+    constructor(o?:ISlides)
+    {
+        //this.id='';
+        if(o !== undefined) Object.assign(this,o);
+    }
+}
