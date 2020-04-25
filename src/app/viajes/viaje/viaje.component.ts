@@ -26,7 +26,7 @@ import { AuthService } from '../../services/auth.service';
 
 export class ViajeComponent implements OnInit {
 
-  /* Array de prueba para los carouseles en caso de encontrarse offline*/
+  /* Array de prueba para los carouseles en caso de encontrarse offline
 
   public slides = [
     { src: "../../../assets/person-1.jpg"},
@@ -43,6 +43,7 @@ export class ViajeComponent implements OnInit {
     { src: "../../../assets/Amsterdam-03.jpg" },
     { src: "../../../assets/Amsterdam-04.jpg" }
   ];
+  */
 
   public slides3 = [];
 
@@ -101,7 +102,23 @@ export class ViajeComponent implements OnInit {
         }
       }
     }
-  }             
+  }   
+  
+  /*  Función que une a una persona a la base de datos en el apartado de solicitues para el viaje en cuestión
+      Se activa al pinchar sobre el botón de unirse */
+
+  unirse(){
+      var new_solicitud:Solicitud = new Solicitud();
+      new_solicitud.idUsuario = localStorage.getItem('usuario');
+      new_solicitud.idOrganizador = "";
+      new_solicitud.idViaje = this._route.snapshot.paramMap.get('id');
+      new_solicitud.estado = "aceptado";
+      this.firestoreServiceSolicitud.createSolicitud(new_solicitud);
+  }
+
+  pagar(){
+    
+  }
 
   ngOnInit(): void {
 
@@ -148,7 +165,6 @@ export class ViajeComponent implements OnInit {
         this.firestoreServiceSolicitud.getSolicitudesByTripId(this.viaje.id).subscribe(res=>{
           this.solicitudes = []
           var i;
-          console.log(res.length);
           for(i=0; i<res.length; i++){
             this.solicitudes.push({idUsuario: res[i].idUsuario, estado: res[i].estado});
           }
