@@ -10,6 +10,23 @@ $gris-buscador: #c0c1c0;
 $letters: #03a9f4;
 $gris-encabezado: #F5F5F5;
 
+.sub-cabecera{
+	width: 100%;
+	display: flex;
+}
+.sub-cabecera img{
+	margin-left: 20px;
+	margin-top: 20px;
+	width: 30px;
+	height: 30px;
+	display: none;
+}
+#error{
+	margin-left: 20px;
+	margin-top: 20px;
+	color: red;
+	display: none;
+}
 #general{ 
 	height: 86%; 
 	width: 100%; 
@@ -18,6 +35,15 @@ $gris-encabezado: #F5F5F5;
 	position: absolute; 
 	left: 0;
 }
+
+#pedir-imagen{
+	display:none;
+	position: relative;
+	z-index: 8;
+	top: 20%;
+
+}
+
 #div1 { 
   width: 30%; 
   height: 100%; 
@@ -35,9 +61,16 @@ $gris-encabezado: #F5F5F5;
 
 }
 
+#uploader{
+	display: none;
+}
 
 .up{
   height: 60%;
+}
+
+.up img{
+	margin-top: 10%;
 }
 
 .bottom{
@@ -51,6 +84,10 @@ $gris-encabezado: #F5F5F5;
 span > .texto{
 	padding-right: 5%;
 	float: left;
+}
+
+#maximo{
+	width: 100px;
 }
 
 .formulario{

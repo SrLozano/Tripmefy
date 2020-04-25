@@ -1,47 +1,64 @@
 <app-header titulo="CREAR VIAJE"></app-header>
-<app-volver></app-volver>
+<div class="sub-cabecera">
+	<app-volver></app-volver>
+	<img id="error_img" src="../../../assets/warning.png">
+	<h3 id="error">{{error}}</h3>
+</div>
 
+<app-pedir-imagen id="pedir-imagen" directiva="users" (cerrar)="cerrarPopup($event, 'pedir-imagen')" (url)="setImagen($event)"></app-pedir-imagen>
 <div id="general">
 
 	<div id="div1">
 		<mat-card style="height: 220px; vertical-align: middle; text-align: center;">
 			<div class="up">
-			  <input hidden type="file" #uploader/>
-			  <img src="../../../assets/plus.png" (click)="uploader.click()" (change)="onFileChanged($event)" style="display: block; margin-left: auto; margin-right: auto; cursor: pointer;" height="100px" width="100px"/>
+			  <!-- <input id="uploader" hidden type="file" #uploader/> -->
+			  <img src="../../../assets/plus.png" (click)="chooseImagen()"  style="display: block; margin-left: auto; margin-right: auto; cursor: pointer;" height="100px" width="100px"/>
 			</div>
 			<div class="bottom">
-			  <input type="file" (change)="onFileChanged($event)" #fileInput>
+			  <!-- <input type="file" (change)="onFileChanged($event)" #fileInput>
 			  <br>
 			  <br>
 			  <!--<button (click)="fileInput.click()">Select File</button>-->
-			  <button mat-raised-button type="file" color="primary" #fileInput>Upload</button>
+			  <!-- <button mat-raised-button type="file" color="primary" #fileInput>Upload</button> --> 
 			</div>
-		  </mat-card>
+		</mat-card>
 
 		  <h1 style="margin-top: 3%;">Añade una imagen para tu viaje</h1>
 		  <br>
 		  <h2 style="display: inline-block; margin-right:20px ;">Establece un precio: </h2>
 
-		  <mat-form-field appearance="fill">
-			<mat-label>Amount</mat-label>
-			<input matInput type="number" class="example-right-align">
-			<span matPrefix>€&nbsp;</span>
-		  </mat-form-field>
+		<mat-form-field appearance="fill">
+		<mat-label>Amount</mat-label>
+		<input matInput type="number" class="example-right-align " [(ngModel)]="precio" name="precio">
+		<span matPrefix>€&nbsp;</span>
+		</mat-form-field>
 
-		  <br>
-		  <br>
+		<br>
+		<h2 style="display: inline-block; margin-right:20px ;">Máximo de participantes: </h2>
+		<mat-form-field appearance="fill" id="maximo">
+		<mat-label>Máximo</mat-label>
+		<input matInput type="number" class="example-right-align " [(ngModel)]="maxpers" name="maxpers">
+		<span matPrefix>€&nbsp;</span>
+		</mat-form-field>
+		<br>
 
-		  <h2> El precio incluye...</h2>
-		  <mat-checkbox *ngFor='let opcion of opciones' style="display: block; margin-top: 5px;">
-			  {{opcion}}
-		  </mat-checkbox>
+		<h2> El precio incluye...</h2>
+		<mat-checkbox style="display: block; margin-top: 5px;" [(ngModel)]="vuelo" name="vuelo">
+			Vuelo
+		</mat-checkbox>
+		<mat-checkbox style="display: block; margin-top: 5px;" [(ngModel)]="alojamiento" name="alojamiento">
+			Alojamiento
+		</mat-checkbox>
+		<mat-checkbox style="display: block; margin-top: 5px;" [(ngModel)]="comidas" name="comidas">
+			Comidas
+		</mat-checkbox>
 
-		  <mat-form-field appearance="fill" style="margin-top: 10px; margin-right: 5%;">
+		  <!-- <mat-form-field appearance="fill" style="margin-top: 10px; margin-right: 5%;">
 			<mat-label>Introduce más opciones</mat-label>
-			<input matInput [(ngModel)]="item">	
+			<input matInput [(ngModel)]="item" name="item">	
 		  </mat-form-field>
 
-		  <button mat-raised-button type="file" color="primary" (click)="addItem(item)">Añadir</button>
+		  <button mat-raised-button type="file" color="primary" (click)="addItem(item)">Añadir</button> -->
 
 	</div>
 
@@ -63,8 +80,8 @@
 			  <mat-form-field class="election">
 			    <mat-label>Elija un pais</mat-label>
 			    <mat-select [(ngModel)]="paisSelect" name="pais">
-			      <mat-option *ngFor="let continente of continentes" [value]="continente">
-			        {{continente}}
+			      <mat-option *ngFor="let pais of getPais()" [value]="pais">
+			        {{pais}}
 			      </mat-option>
 			    </mat-select>
 			  </mat-form-field>
@@ -87,7 +104,7 @@
 			<form class="formulario">
 				<mat-form-field class="election">
 			      <mat-label>Elige una fecha</mat-label>
-			      <input matInput #date1 maxlength="10" [formControl]="date1FormControl" placeholder="DD/MM/YYYY" [(ngModel)]="startDate" name="startDate">
+			      <input matInput #date1 type="date" maxlength="10" [formControl]="date1FormControl" placeholder="DD/MM/YYYY" [(ngModel)]="startDate" name="startDate">
 			      <mat-error *ngIf="date1FormControl.hasError('required')">
 				      Por favor, introduce una fecha
 				    </mat-error>
@@ -97,7 +114,7 @@
 			<form class="formulario">
 				<mat-form-field class="election">
 			      <mat-label>Elige una fecha</mat-label>
-			      <input matInput #date2 maxlength="10" [formControl]="date2FormControl" placeholder="DD/MM/YYYY" [(ngModel)]="endDate" name="endDate">
+			      <input matInput #date2 type="date" maxlength="10" [formControl]="date2FormControl" placeholder="DD/MM/YYYY" [(ngModel)]="endDate" name="endDate">
 			      <mat-error *ngIf="date2FormControl.hasError('required')">
 				      Por favor, introduce una fecha
 				    </mat-error>
@@ -109,7 +126,7 @@
 			<form class="formulario">
 				<mat-form-field class="election">
 			      <mat-label>Elige una fecha</mat-label>
-			      <input matInput #date3 maxlength="10" [formControl]="date3FormControl" placeholder="DD/MM/YYYY" [(ngModel)]="limitDate" name="limitDate">
+			      <input matInput #date3 type="date" maxlength="10" [formControl]="date3FormControl" placeholder="DD/MM/YYYY" [(ngModel)]="limitDate" name="limitDate">
 			      <mat-error *ngIf="date3FormControl.hasError('required')">
 				      Por favor, introduce una fecha
 				    </mat-error>
@@ -121,7 +138,7 @@
 			<form class="formulario">
 				<mat-form-field class="election">
 			      <mat-label>Elige una fecha</mat-label>
-			      <input matInput #date4 maxlength="10" [formControl]="date4FormControl" placeholder="DD/MM/YYYY" [(ngModel)]="limitPayDate" name="limitPayDate">
+			      <input matInput #date4 type="date" maxlength="10" [formControl]="date4FormControl" placeholder="DD/MM/YYYY" [(ngModel)]="limitPayDate" name="limitPayDate">
 			      <mat-error *ngIf="date4FormControl.hasError('required')">
 				      Por favor, introduce una fecha
 				    </mat-error>
@@ -133,8 +150,11 @@
 		<span class="texto">
 			<form class="formulario descripcion">
 				<mat-form-field class="election">
-					<textarea matInput #descripcion maxlength="300" rows=5 placeholder="Introduce una breve descripción en este area..."></textarea>
+					<textarea [formControl]="descFormControl"  matInput #descripcion maxlength="300" rows=5 placeholder="Introduce una breve descripción en este area..." [(ngModel)]="desc" name ="descripcion"></textarea>
 					<mat-hint align="end">{{descripcion.value.length}} / 300</mat-hint>
+					<mat-error *ngIf="emailFormControl.hasError('required')">
+						Por favor, introduce una descripción
+					  </mat-error>
 				</mat-form-field>
 
 			</form>
@@ -156,27 +176,33 @@
 			<form class="formulario prefijo">
 				<mat-form-field class="election">
 			      <mat-label>Pr</mat-label>
-			      <input matInput [(ngModel)]="prefijo" name="prefijo" placeholder="34" maxlength="3">
-			    </mat-form-field>
+			      <input matInput [formControl]="prefijoFormControl" [(ngModel)]="prefijo" name="prefijo" placeholder="34" maxlength="3">
+				  <mat-error *ngIf="prefijoFormControl.hasError('required')">
+					Por favor, introduce un prefijo
+				  </mat-error>
+				  <mat-error *ngIf="prefijoFormControl.hasError('minLength')">
+					Su prefijo es demasiado pequeño
+				  </mat-error>
+				</mat-form-field>
+				
 			</form>
 			<form class="formulario contacto">
 				<mat-form-field class="election">
-			      <mat-label>Telefono</mat-label>
-			      <input matInput #telef [formControl]="telefFormControl" [(ngModel)]="telefono" name="telefono" placeholder="660918814" maxlength="9">
-			      <mat-error *ngIf="telefFormControl.hasError('required')">
+			      	<mat-label>Telefono</mat-label>
+			      	<input matInput #telef [formControl]="telefFormControl" [(ngModel)]="telefono" name="telefono" placeholder="660918814" maxlength="9">
+			      	<mat-error *ngIf="telefFormControl.hasError('required')">
 				      Por favor, introduce un teléfono
 				    </mat-error>
 				    <mat-error *ngIf="telefFormControl.hasError('minLength')">
 				      Su número es demasiado pequeño
 				    </mat-error>
-			      <mat-hint align="end">{{telef.value.length}} / 9</mat-hint>
-
+			      	<mat-hint align="end">{{telef.value.length}} / 9</mat-hint>
 			    </mat-form-field>
 			</form>
 		</span>
 		<br>
 		<div class="divBotonAceptar">
-			<button mat-raised-button color="primary" class="botonAceptar">Listo</button>
+			<button mat-raised-button color="primary" class="botonAceptar" (click)="onCreate()" [disabled]="checkFields()">Listo</button>
 		</div>
 
 

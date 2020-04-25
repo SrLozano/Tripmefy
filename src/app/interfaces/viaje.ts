@@ -28,7 +28,7 @@ export class Viaje implements IViaje
     ciudad:string;
     continente:string;
     descripcion?:string;
-    duracion?:string;
+    duracion?:string; //Esto se omite
     email:string;
     fin?:string;
     id:string;
