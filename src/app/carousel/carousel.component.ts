@@ -57,7 +57,7 @@ export class CarouselComponent {
 
   onClick(){
    
-    if(this.links.length <= 0){
+    if(this.links == undefined || this.links.length<1){
       //si no tenemos links devolvemos un cero y ya, no hacemos nada
       return 0;
     }else{
