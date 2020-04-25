@@ -30,4 +30,8 @@ export class SolicitudFirestoreService {
   {  
     return this.firestore.collection<Solicitud>('Solicitud',ref=>ref.where('idViaje','==',id)).valueChanges();
   }
+  public getSolicitudesByOrganizadorId(id:String):Observable<Solicitud[]>
+  {  
+    return this.firestore.collection<Solicitud>('Solicitud',ref=>ref.where('idOrganizador','==',id)).valueChanges();
+  }
 }

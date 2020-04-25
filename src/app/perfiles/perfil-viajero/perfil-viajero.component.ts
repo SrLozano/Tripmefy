@@ -2,10 +2,12 @@ import { Component, OnInit, Input, OnDestroy, ElementRef, ViewChild, NgZone} fro
 import { ActivatedRoute }  from '@angular/router';
 import {Router} from '@angular/router';
 import {UsuarioFirestoreService} from '../../services/firestore/usuario-firestore.service';
+import {SolicitudFirestoreService} from '../../services/firestore/solicitud-firestore.service';
 import {OpinionesFirestoreService} from '../../services/firestore/opiniones-firestore.service';
 import {FirestoreService} from '../../services/firestore/firestore.service';
 import {Subscription} from 'rxjs';
 import {Viaje, IViaje} from '../../interfaces/viaje';
+import {Solicitud, ISolicitud} from '../../interfaces/solicitud';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
@@ -30,7 +32,7 @@ export class PerfilViajeroComponent implements OnInit, OnDestroy {
   urlImage: Observable<string>;
   myUrl = "";
   descripcion:string = "";
-  titulo = "ORGANIZADOR";
+  titulo = "VIAJERO";
 
   /****usuario****/
   public usuarios:Usuario[];
@@ -39,6 +41,9 @@ export class PerfilViajeroComponent implements OnInit, OnDestroy {
 
   /**viajes **/
   actualLink:string;
+  public susViajesId = [
+  
+  ];
   public susViajes = [
   
   ];
@@ -210,6 +215,7 @@ export class PerfilViajeroComponent implements OnInit, OnDestroy {
               private firestoreServiceUser: UsuarioFirestoreService,
               private firestoreServiceViaje: FirestoreService,
               private firestoreServiceOpiniones: OpinionesFirestoreService,
+              private firestoreServiceSolicitud: SolicitudFirestoreService,
               private _activatedRoute: ActivatedRoute,
               private zone: NgZone
               ) {
@@ -415,25 +421,40 @@ export class PerfilViajeroComponent implements OnInit, OnDestroy {
            * 
            * De no haber viajes, aparecerá una imagen que indica que no hay viajes
            */
-
-          this.firestoreServiceViaje.getViajesByEmail(this.usuario.email).subscribe(res=>{
-              if(res.length>0){
-                this.susViajes = [];
-                this.slides = []; //esto es para que no aparezca la imagen de no hay viajes si hay viajes
-                var i;
-                for (i = 0; i<res.length ; i++){
-                  this.slides.push({src: res[i].img});
-                  this.susViajes.push(['viaje', res[i].id]);
-                }
-              }else{
+          this.firestoreServiceSolicitud.getSolicitudesByUserId(this.usuario.id).subscribe(res=>{
+              var viajes = [];
+              if(res.length <= 0){
                 this.slides = [
                   { src: "../../../assets/noViajes.png"},
                   
                 ];
-                this.susViajes = [];
-              }
+              }else{
                 
+                var i;
+                for ( i = 0; i<res.length ; i++){
+                  viajes.push(res[i].idViaje);
+                }
+
+                this.susViajesId = viajes;
+              }
+            
+              if(viajes.length > 0){
+                this.slides = [];
+                for (i=0; i<viajes.length ; i++){
+                    this.firestoreServiceViaje.getViaje(this.susViajesId[i]).then(elem =>{
+                     
+                      
+                      this.slides.push({src: elem.img});
+                      this.susViajes.push(['viaje', elem.id]);
+
+                      
+                    
+                      
+                    });
+                }
+              }
           })
+            
           
         
           
