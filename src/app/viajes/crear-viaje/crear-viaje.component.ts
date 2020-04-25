@@ -45,6 +45,9 @@ export class CrearViajeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(localStorage.getItem('usuario')==='' || localStorage.getItem('usuario') === null || localStorage.getItem('usuario') === undefined){
+      this.route.navigate(['/page1']);
+    }
   }
 
 
@@ -83,40 +86,35 @@ export class CrearViajeComponent implements OnInit {
 
 
   onCreate(){
-    if(localStorage.getItem('usuario')==='' || localStorage.getItem('usuario')===null || localStorage.getItem('usuario')===undefined){
-      this.route.navigate(['/page1']);
-    }else{
-      var newViaje:Viaje = new Viaje();
-      newViaje.ciudad = this.ciudadSelect;
-      newViaje.continente = this.continenteSelect;
-      newViaje.descripcion = this.desc;
-      newViaje.email = this.email;
-      newViaje.fin = this.endDate;
-      newViaje.img = this.miFoto;
-      newViaje.inicio = this.startDate
-      newViaje.limitePago = this.limitPayDate;
-      newViaje.limiteUnion = this.limitDate;
-      newViaje.maximo = this.maxpers;
-      newViaje.pais = this.paisSelect;
-      newViaje.precio = this.precio;
-      newViaje.tlf = '+' + this.prefijo + ' ' + this.telefono;
-      newViaje.servicios = '';
-      newViaje.viajeros = '';
-      if(this.vuelo){
-        newViaje.servicios += 'Vuelo,';
-      }
-      if(this.alojamiento){
-        newViaje.servicios += 'Alojamiento,';
-      }
-      if(this.comidas){
-        newViaje.servicios += 'Comidas,';
-      }
-      alert("El viaje se ha creado correctamente");
-      this.viajeService.createViaje(newViaje);
-      this.route.navigate(['/mis-viajes']);
+    
+    var newViaje:Viaje = new Viaje();
+    newViaje.ciudad = this.ciudadSelect;
+    newViaje.continente = this.continenteSelect;
+    newViaje.descripcion = this.desc;
+    newViaje.email = this.email;
+    newViaje.fin = this.endDate;
+    newViaje.img = this.miFoto;
+    newViaje.inicio = this.startDate
+    newViaje.limitePago = this.limitPayDate;
+    newViaje.limiteUnion = this.limitDate;
+    newViaje.maximo = this.maxpers;
+    newViaje.pais = this.paisSelect;
+    newViaje.precio = this.precio;
+    newViaje.tlf = '+' + this.prefijo + ' ' + this.telefono;
+    newViaje.servicios = '';
+    newViaje.viajeros = '';
+    if(this.vuelo){
+      newViaje.servicios += 'Vuelo,';
     }
-
-
+    if(this.alojamiento){
+      newViaje.servicios += 'Alojamiento,';
+    }
+    if(this.comidas){
+      newViaje.servicios += 'Comidas,';
+    }
+    alert("El viaje se ha creado correctamente");
+    this.viajeService.createViaje(newViaje);
+    this.route.navigate(['/mis-viajes']);
   }
   chooseImagen(){
     document.getElementById("pedir-imagen").style.display = "block";
@@ -163,9 +161,14 @@ export class CrearViajeComponent implements OnInit {
   checkFields(){
   
     if (this.ciudadSelect==='' || this.continenteSelect==='' || this.desc==='' || this.email==='' || 
-    this.endDate==='' || this.startDate==='' || this.limitPayDate==='' || this.limitDate==='' || this.miFoto===''
+    this.endDate==='' || this.startDate==='' || this.limitPayDate==='' || this.limitDate==='' 
     || this.maxpers === '' || this.precio === '' || this.paisSelect === '' || this.telefono === '' || this.prefijo===''){
       this.error = "Por favor introduce todos los campos"
+      document.getElementById("error").style.display="block";
+      document.getElementById("error_img").style.display="block";
+      return true;
+    }else if(this.miFoto===''){
+      this.error = "Por favor carga una imagen"
       document.getElementById("error").style.display="block";
       document.getElementById("error_img").style.display="block";
       return true;
