@@ -50,6 +50,10 @@ export class ViajeComponent implements OnInit {
   public solicitudes = [];
 
   public usuarios_viaje = [];
+  public img_usuarios_viaje = [];
+
+  public links: string[];
+
 
   public show = true;
   public payButton = false;
@@ -140,7 +144,7 @@ export class ViajeComponent implements OnInit {
 
     // Obtenemos el id a partir de la ruta de forma automática
     var tripId = this._route.snapshot.paramMap.get('id');
-
+    
     var tripAux = this.firestoreServiceViaje.getViaje(tripId).then((elem) => {
 
       var tripAux:Viaje = new Viaje();
@@ -197,7 +201,12 @@ export class ViajeComponent implements OnInit {
               // Encontramos el usuario de la solicitud
               if(this.solicitudes[i].idUsuario == res[j].id){ 
                 // Guardamos las imagenes para el carousel
-                this.usuarios_viaje.push({src: res[j].image}); 
+                this.usuarios_viaje.push({src: res[j].image});
+                if (res[j].tipo == 'viajero') {
+                  this.img_usuarios_viaje.push(['perfil-viajero',res[j].id]);
+                }else{
+                  this.img_usuarios_viaje.push(['perfil-organizador',res[j].id]);
+                }
               }
             } 
           }
