@@ -30,6 +30,8 @@ export class InicioSesionComponent implements OnInit {
   })
   constructor(private route: Router, private authSvc : AuthService, private userService: UsuarioFirestoreService) { }
 
+  password:string;
+
   ngOnInit(): void {
   }
 
@@ -46,6 +48,15 @@ export class InicioSesionComponent implements OnInit {
           localStorage.setItem("tipo", res[i].tipo);
         }
       })  
+  }
+
+  checkFields(){
+    if (this.password==='' || this.email === '' || !/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$/.test(this.email)){
+
+      return true;
+    }else{
+        return false;
+    } 
   }
 
   emailFormControl = new FormControl('', [
