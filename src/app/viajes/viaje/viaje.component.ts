@@ -145,6 +145,15 @@ export class ViajeComponent implements OnInit {
     // Obtenemos el id a partir de la ruta de forma automática
     var tripId = this._route.snapshot.paramMap.get('id');
     
+    /*SI SE INTENTA ACCEDER A ESTA PAGINA SIN HABER INICIADO SESION RETORNAREMOS
+    A LA PAGINA PRINCIPAL */
+    if (localStorage.getItem('usuario')==null){
+      localStorage.clear();
+      console.log("Any user is logged");
+      var pagInicio = window.location.origin + '/page1'; 
+      window.location.assign(pagInicio);
+    }
+    
     var tripAux = this.firestoreServiceViaje.getViaje(tripId).then((elem) => {
 
       var tripAux:Viaje = new Viaje();
