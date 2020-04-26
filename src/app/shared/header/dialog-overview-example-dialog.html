@@ -1,0 +1,15 @@
+<style>
+  button{
+    text-align: center;
+  }
+</style>
+
+<h1 mat-dialog-title>Hola viajero ;)</h1>
+<div mat-dialog-content>
+  <p>¿Estas seguro de que deseas abandonar la página?</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="onYesClick()" style="width: 200px" cdkFocusInitial>Me quiero ir</button>
+  <button mat-raised-button color="primary" (click)="onNoClick()" style="width: 200px">Quiero seguir aquí</button>
+
+</div>

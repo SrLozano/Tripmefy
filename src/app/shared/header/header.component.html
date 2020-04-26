@@ -7,6 +7,9 @@
         <img (click)="toInicio()" src="../../../assets/tripmefy2.png">
     </div>
     <div class="menu-lateral">
+        <p (click)="onNotification()"> 
+            <mat-icon matBadge="15" matBadgeColor="warn">question_answer</mat-icon>
+        </p>
         <p (click)="onLogout()" class="menu">Logout</p>
         <p class="menu" (click)="irPerfil()">Perfil</p>
         <p class="menu" routerLink="/logros">Logros</p>
