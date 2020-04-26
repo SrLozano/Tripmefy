@@ -8,7 +8,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
+import {MatDialogModule} from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
+import {MatBadgeModule} from '@angular/material/badge';
 
 
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -94,11 +96,6 @@ import { MensajeComponent } from './shared/mensaje/mensaje.component';
     BienvenidaComponent,
     VolverComponent,
 
-
-
-
-
-
     ScrollTopComponent,
 
     BotonComponent,
@@ -106,25 +103,10 @@ import { MensajeComponent } from './shared/mensaje/mensaje.component';
     PedirImagenComponent,
 
     PruebasComponent,
-
-  
-
     PuntuacionPuComponent,
-
-  
-
     ComentarioPuComponent,
-
-  
-
     EdicionPuComponent,
-
-  
-
     MensajeComponent,
-
-  
-
   ],
   imports: [
 
@@ -147,6 +129,7 @@ import { MensajeComponent } from './shared/mensaje/mensaje.component';
     MatCardModule,
     MatSelectModule,
     MatDatepickerModule,
+    MatBadgeModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
@@ -154,6 +137,7 @@ import { MensajeComponent } from './shared/mensaje/mensaje.component';
     MatRadioModule,
     MatCheckboxModule,
     ReactiveFormsModule,
+    MatDialogModule,
 
   ],
   providers: [],
