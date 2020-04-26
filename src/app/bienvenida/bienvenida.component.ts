@@ -39,6 +39,14 @@ export class BienvenidaComponent implements OnInit {
     // localStorage.setItem('usuario', 'viajero');
     //localStorage.setItem('usuario', 'organizador');
 
+    /*SI SE INTENTA ACCEDER A ESTA PAGINA SIN HABER INICIADO SESION RETORNAREMOS
+    A LA PAGINA PRINCIPAL */
+    if (localStorage.getItem('usuario')==null){
+      localStorage.clear();
+      console.log("Any user is logged");
+      var pagInicio = window.location.origin + '/page1'; 
+      window.location.assign(pagInicio);
+    }
 
 
 
