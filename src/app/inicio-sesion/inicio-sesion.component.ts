@@ -50,7 +50,7 @@ export class InicioSesionComponent implements OnInit {
   ]);
 
   passwordFormControl = new FormControl('', [
-    Validators.required
+    Validators.required,
   ]);
 
   email: string;

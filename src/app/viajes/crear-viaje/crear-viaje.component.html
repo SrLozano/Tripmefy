@@ -1,8 +1,12 @@
 <app-header titulo="CREAR VIAJE"></app-header>
 <div class="sub-cabecera">
-	<app-volver></app-volver>
+	<app-volver (click)='back()'></app-volver>
 	<img id="error_img" src="../../../assets/warning.png">
-	<h3 id="error">{{error}}</h3>
+	<div id="error">
+		<h3 id="error1">Por favor introduce todos los campos</h3>
+		<h3 id="error2">Por favor carga una imagen</h3>
+		<h3 id="error3">La longitud del telefono debe ser 6 y la de la extension 2</h3>
+	</div>
 </div>
 
 <app-pedir-imagen id="pedir-imagen" directiva="users" (cerrar)="cerrarPopup($event, 'pedir-imagen')" (url)="setImagen($event)"></app-pedir-imagen>
@@ -38,7 +42,7 @@
 		<mat-form-field appearance="fill" id="maximo">
 		<mat-label>Máximo</mat-label>
 		<input matInput type="number" class="example-right-align " [(ngModel)]="maxpers" name="maxpers">
-		<span matPrefix>€&nbsp;</span>
+		<span matPrefix></span>
 		</mat-form-field>
 		<br>
 
@@ -53,12 +57,6 @@
 			Comidas
 		</mat-checkbox>
 
-		  <!-- <mat-form-field appearance="fill" style="margin-top: 10px; margin-right: 5%;">
-			<mat-label>Introduce más opciones</mat-label>
-			<input matInput [(ngModel)]="item" name="item">	
-		  </mat-form-field>
-
-		  <button mat-raised-button type="file" color="primary" (click)="addItem(item)">Añadir</button> -->
 
 	</div>
 
@@ -152,7 +150,7 @@
 				<mat-form-field class="election">
 					<textarea [formControl]="descFormControl"  matInput #descripcion maxlength="300" rows=5 placeholder="Introduce una breve descripción en este area..." [(ngModel)]="desc" name ="descripcion"></textarea>
 					<mat-hint align="end">{{descripcion.value.length}} / 300</mat-hint>
-					<mat-error *ngIf="emailFormControl.hasError('required')">
+					<mat-error *ngIf="descFormControl.hasError('required')">
 						Por favor, introduce una descripción
 					  </mat-error>
 				</mat-form-field>
@@ -161,18 +159,7 @@
 		</span>
 		<br>
 		<span class="texto">Contacto:
-			<form class="formulario contacto email">
-				<mat-form-field class="election">
-			      <mat-label>Email</mat-label>
-			      <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher" placeholder="Ej. pat@example.com" [(ngModel)]="email" name="email">
-				    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-				      Por favor, introduce una dirección válida
-				    </mat-error>
-				    <mat-error *ngIf="emailFormControl.hasError('required')">
-				      Por favor, introduce una dirección de correo
-				    </mat-error>
-			    </mat-form-field>
-			</form>+
+			+
 			<form class="formulario prefijo">
 				<mat-form-field class="election">
 			      <mat-label>Pr</mat-label>

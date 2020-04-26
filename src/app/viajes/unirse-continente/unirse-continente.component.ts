@@ -21,7 +21,11 @@ export class UnirseContinenteComponent implements OnInit {
  
 
   ngOnInit(): void {
-  
+    if(localStorage.getItem('usuario')== "null"){
+      var origin = window.location.origin + '/'; 
+      var destino = origin + "page1";
+      window.location.assign(destino);
+    }
     
   }
   

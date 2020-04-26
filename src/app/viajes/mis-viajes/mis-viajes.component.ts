@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute }  from '@angular/router';
 import {Router} from '@angular/router';
 import { HAMMER_LOADER } from '@angular/platform-browser';
+import {SolicitudFirestoreService} from '../../services/firestore/solicitud-firestore.service';
+import {Viaje, IViaje} from '../../interfaces/viaje';
+import {FirestoreService} from '../../services/firestore/firestore.service';
+import {UsuarioFirestoreService} from '../../services/firestore/usuario-firestore.service';
 
 @Component({
   selector: 'app-mis-viajes',
@@ -15,7 +19,8 @@ export class MisViajesComponent implements OnInit {
   precio = "Todos";
   escogidas = [];
   buscar = "";
-
+  ciudadesId = [];
+  ciudades = [];
   estaVacio(){
     return this.escogidas.length < 1;
   }
@@ -85,57 +90,87 @@ export class MisViajesComponent implements OnInit {
   }
   
   //ciudades = [['Sevilla', 'hola'], ['Barcelona'], ['Galicia'], ['Madrid']];
-  ciudades = [
-    {
-      "id":"1",
-      "pais": "España",
-      "ciudad": "Sevilla",
-      "mensaje": "La capital andaluza destila alegría y bullicio en cada una de las calles y plazas que configuran su casco histórico, que alberga un interesante conjunto de construcciones declaradas Patrimonio Mundial y barrios de hondo sabor popular, como el de Triana o La Macarena. ",
-      "precio": "80€",
-      "unidas": "1",
-      "maximo": "5"
-    },
-    {
-      "id":"2",
-      "pais": "España",
-      "ciudad": "Barcelona",
-      "mensaje": "Situada a orillas del Mediterráneo, Barcelona es una ciudad cosmopolita con una gran importancia tanto cultural como comercial, financiera y turística. Barcelona es una de las ciudades europeas más visitadas",
-      "precio": "300€",
-      "unidas": "1",
-      "maximo": "5"
-    },
-    {
-      "id":"3",
-      "pais": "España",
-      "ciudad": "Galicia",
-      "mensaje": "Patrimonio cultural, museos, alojamiento, fiestas... Todos los recursos turísticos de Galicia a tu alcance",
-      "precio": "450€",
-      "unidas": "1",
-      "maximo": "5"
-    },
-    {
-      "id":"4",
-      "pais": "España",
-      "ciudad": "Madrid",
-      "mensaje": "Déjate seducir por la magnífica ciudad de Madrid visitando todos sus museos y paseando por sus calles peculiares. La oferta incluye vuelos desde Cádiz y alojamiento en hotel 4*.",
-      "precio": "625€",
-      "unidas": "1",
-      "maximo": "5"
-    }
-    
-  ]
+  
   myciudad= this.ciudades[0];
 
-  constructor(private _route:ActivatedRoute, private _router: Router) { }
+  constructor(private _route:ActivatedRoute, 
+              private _router: Router,
+              private firestoreServiceSolicitud: SolicitudFirestoreService,
+              private firestoreService: FirestoreService,
+              private firestoreServiceUser: UsuarioFirestoreService,) {
+                this.ciudades = [];
+                this.escogidas = [];
+               }
 
   ngOnInit(): void {
     //let dato = JSON.parse(localStorage.getItem('pais'));
+
+    if(localStorage.getItem('usuario')== "null"){
+      var origin = window.location.origin + '/'; 
+      var destino = origin + "page1";
+      window.location.assign(destino);
+    }
     
     //let id = localStorage.getItem('pais');
     this.escogidas = this.ciudades;
+    
+    /**SI EL USUARIO ES VIAJERO
+     * Deben buscarse las solicitudes del usuario y meter los datos de sus viajes en el array
+     */
+    if(localStorage.getItem('tipo') == 'viajero'){
+        this.escogidas = [];
+        this.ciudades = [];
+        this.firestoreServiceSolicitud.getSolicitudesByUserId(localStorage.getItem('usuario')).subscribe(res=>{
+            var i;
+            this.ciudadesId = [];
+            for (i = 0; i < res.length ; i++){
+              this.ciudadesId.push(res[i].idViaje);
+            }
+            
+            //console.log(this.ciudadesId);
+            for(i = 0; i < this.ciudadesId.length ; i++){
+              if(res[i].estado != "pendiente" && res[i].estado != "rechazado" ){
+                  this.firestoreService.getViaje(this.ciudadesId[i]).then(elem=>{
+                  
+                    
+                    this.ciudades.push(elem);
+                    this.escogidas.push(elem);
+
+                    
+                    //una vez estan todos los viajes al pais seleccionado metidos en el array, los filtros funcionan correctamente
+                    }
+                  
+                   );
+                }
+              }
+          });
+      }
+
+    /**SI EL USUARIO ES ORGANIZADOR
+     * Deben buscarse su email y buscar aquellos viajes que tengan como email el email del organizador
+     */
+    if(localStorage.getItem('tipo') == 'organizador'){
+      this.escogidas = [];
+      this.ciudades = [];
+      this.firestoreServiceUser.getUsuariosFiltered(localStorage.getItem('usuario')).subscribe(res=>{
+        var email = res[0].email;
+        
+        this.firestoreService.getViajesByEmail(email).subscribe(elem=>{
+          var i;
+          for(i = 0; i<elem.length ; i++){
+            //console.log(elem[i].descripcion);
+            this.ciudades.push(elem[i]);
+            this.escogidas.push(elem[i]);
+            //console.log(this.ciudades[i].descripcion);
+          }
+          
+        });
+      });
+      }
+
+    }
 
   
-  }
   comprobarViajero(){
     return localStorage.getItem('tipo') == "viajero";
   }

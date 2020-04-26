@@ -54,4 +54,5 @@ export class SolicitudFirestoreService {
   {
     return this.afs.doc(data.id).set(data);
   }
+
 }

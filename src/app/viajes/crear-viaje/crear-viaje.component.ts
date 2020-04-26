@@ -1,11 +1,10 @@
-import { PedirImagenComponent } from './../../shared/pedir-imagen/pedir-imagen.component';
-import { IViaje, Viaje } from './../../interfaces/viaje';
+import { UsuarioFirestoreService } from './../../services/firestore/usuario-firestore.service';
+import { Viaje } from './../../interfaces/viaje';
 import { FirestoreService } from './../../services/firestore/firestore.service';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
+import { FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import { ErrorStateMatcher} from '@angular/material/core';
 import { Router } from '@angular/router'; //Para redirigir a una página
-
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -22,32 +21,20 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class CrearViajeComponent implements OnInit {
 
-	// onFileChanged(event) {
-  //   const file = event.target.files[0]
-  // }
-
-  // onUpload() {
-  //   // Upload code goes here
-  // }
-
-  // addItem(item: string){
-  //   this.opciones.push(item);
-  // }
-
-  // uploadFile($event) {
-  //   console.log($event.target.files[0]); // outputs the first file
-  // }
   @Input() public error:string; 
   @Output() foto: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private route: Router, private viajeService: FirestoreService) { 
+  constructor(private route: Router, private viajeService: FirestoreService, private userService: UsuarioFirestoreService) { 
     this.error = "";
   }
 
   ngOnInit(): void {
-    if(localStorage.getItem('usuario')==='' || localStorage.getItem('usuario') === null || localStorage.getItem('usuario') === undefined){
+     if(!localStorage.getItem('usuario') || 0 === localStorage.getItem('usuario').length){
       this.route.navigate(['/page1']);
     }
+    this.userService.getUsuariosFiltered(localStorage.getItem('usuario')).subscribe(res=>{
+        this.email = res[0].email;      
+    })
   }
 
 
@@ -84,6 +71,9 @@ export class CrearViajeComponent implements OnInit {
   comidas:boolean;
   miFoto = "";
 
+  refresh(): void {
+    window.location.reload();
+  }
 
   onCreate(){
     
@@ -91,7 +81,7 @@ export class CrearViajeComponent implements OnInit {
     newViaje.ciudad = this.ciudadSelect;
     newViaje.continente = this.continenteSelect;
     newViaje.descripcion = this.desc;
-    newViaje.email = this.email;
+    newViaje.email = this.email; 
     newViaje.fin = this.endDate;
     newViaje.img = this.miFoto;
     newViaje.inicio = this.startDate
@@ -103,6 +93,7 @@ export class CrearViajeComponent implements OnInit {
     newViaje.tlf = '+' + this.prefijo + ' ' + this.telefono;
     newViaje.servicios = '';
     newViaje.viajeros = '';
+  
     if(this.vuelo){
       newViaje.servicios += 'Vuelo,';
     }
@@ -113,9 +104,11 @@ export class CrearViajeComponent implements OnInit {
       newViaje.servicios += 'Comidas,';
     }
     alert("El viaje se ha creado correctamente");
-    this.viajeService.createViaje(newViaje);
+    //this.viajeService.createViaje(newViaje);
     this.route.navigate(['/mis-viajes']);
   }
+
+
   chooseImagen(){
     document.getElementById("pedir-imagen").style.display = "block";
     document.getElementById("general").style.display = "none";
@@ -131,6 +124,10 @@ export class CrearViajeComponent implements OnInit {
       document.getElementById(id).style.display = "none";
       document.getElementById("general").style.display = "block";
     }
+  }
+
+  back(){
+    this.route.navigate(['/mis-viajes']);
   }
 
   getPais(){
@@ -160,39 +157,40 @@ export class CrearViajeComponent implements OnInit {
 
   checkFields(){
   
-    if (this.ciudadSelect==='' || this.continenteSelect==='' || this.desc==='' || this.email==='' || 
+    if (this.ciudadSelect==='' || this.continenteSelect==='' || this.desc==='' || 
     this.endDate==='' || this.startDate==='' || this.limitPayDate==='' || this.limitDate==='' 
     || this.maxpers === '' || this.precio === '' || this.paisSelect === '' || this.telefono === '' || this.prefijo===''){
-      this.error = "Por favor introduce todos los campos"
+      
       document.getElementById("error").style.display="block";
       document.getElementById("error_img").style.display="block";
+      document.getElementById("error1").style.display="block";
+      document.getElementById("error2").style.display="none";
+      document.getElementById("error3").style.display="none";
       return true;
     }else if(this.miFoto===''){
-      this.error = "Por favor carga una imagen"
       document.getElementById("error").style.display="block";
       document.getElementById("error_img").style.display="block";
-      return true;
-    }else if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$/.test(this.email)){
-      this.error = "Por favor introduce un formato correcto de email"
-      document.getElementById("error").style.display="block";
-      document.getElementById("error_img").style.display="block";
+      document.getElementById("error2").style.display="block";
+      document.getElementById("error1").style.display="none";
+      document.getElementById("error3").style.display="none";
       return true;
     }else if (this.telefono.length<9 || this.prefijo.length<2){
-      this.error = "La longitud del telefono debe ser 6 y la de la extension 2"
       document.getElementById("error").style.display="block";
       document.getElementById("error_img").style.display="block";
+      document.getElementById("error3").style.display="block";
+      document.getElementById("error2").style.display="none";
+      document.getElementById("error1").style.display="none";
       return true;
     }else{
-        document.getElementById("error").style.display="none";
-        document.getElementById("error_img").style.display="none";
-        return false;
+      document.getElementById("error").style.display="none";
+      document.getElementById("error_img").style.display="none";
+      document.getElementById("error3").style.display="none";
+      document.getElementById("error2").style.display="none";
+      document.getElementById("error1").style.display="none";
+      return false;
     } 
   }
 
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
 
   telefFormControl = new FormControl('', [
     Validators.required,

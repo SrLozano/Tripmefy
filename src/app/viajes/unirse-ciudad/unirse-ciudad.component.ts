@@ -242,6 +242,12 @@ export class UnirseCiudadComponent implements OnInit, OnDestroy {
     //let dato = JSON.parse(localStorage.getItem('pais'));
     
     //let id = localStorage.getItem('pais');
+    if(localStorage.getItem('usuario')== "null"){
+      var origin = window.location.origin + '/'; 
+      var destino = origin + "page1";
+      window.location.assign(destino);
+    }
+    
     let id = this._route.snapshot.paramMap.get('id'); //para saber el pais a traves de la URL
     localStorage.setItem('pais', id);//se establece el local Storage
     
