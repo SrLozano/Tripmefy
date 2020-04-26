@@ -7,6 +7,7 @@
   </div>
   
   <div class="lateral-drch">
+    <app-volver class="volver" (click)='back()'></app-volver>
     <h1>REGISTRO</h1>
     
     <form  (ngSubmit)="onRegister()">
@@ -115,6 +116,9 @@
       <div class="boton_registro"> <!--Botón de registro-->
           <button mat-raised-button style="width: 200px" class= "boton" type="submit" [disabled]="checkFields()">
          REGISTRATE</button>
+         <br>
+         <br>
+         <p>¿Ya estás registrado? <a href="/inicio-sesion">Inicia sesión</a></p>
       </div>
     </form>
   </div>

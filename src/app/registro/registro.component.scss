@@ -38,7 +38,6 @@ a{
     background-color: $blanco;
     width: 50%;
     height: 100%;
-
     justify-content: center;
     align-items: center;
     margin-left: auto;
@@ -68,15 +67,11 @@ a{
   justify-content: center;
   align-items: center;
   background-attachment: fixed;
-  overflow: scroll;     
+  overflow: scroll; 
+  color: white;    
 }
 .lateral-drch h1{
   display: none;
-}
-
-.registro_datos{
-  text-align: center;
-  margin-top: 10%;
 }
 
 #error{
@@ -105,7 +100,6 @@ a{
 
 .input{
   width: 60%;
-  width: 50%;
   height: 100%;
   justify-content: center;
   align-items: center;
@@ -116,6 +110,9 @@ a{
     text-decoration: none;
     color:$azul-royal;
 }
+.volver{
+  color: white;
+}
 
 
 .boton_registro{
@@ -124,7 +121,7 @@ a{
 }
 .registro_datos{
   text-align: center;
-  margin-top: 30%;
+  margin-top: 20%;
 }
 .checkbox{
   text-align: center;

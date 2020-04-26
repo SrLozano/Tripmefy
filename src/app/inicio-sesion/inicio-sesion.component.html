@@ -7,6 +7,7 @@
   </div>
 
   <div class="lateral-drch">
+    <app-volver class="volver" (click)='back()'></app-volver>
     <h1>INICIO DE SESIÓN</h1>
     <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
       <div class="inicio_datos">
@@ -25,7 +26,7 @@
 
         <mat-form-field class="input" appearance="fill" >
           <mat-label>Introduce tu contraseña</mat-label>
-          <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" [formControl]="passwordFormControl">
+          <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" [formControl]="passwordFormControl" [(ngModel)]="password" name="password">
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
@@ -40,8 +41,10 @@
 
 
       <div class="boton_inicio">
-          <button type="submit" mat-raised-button style="width: 200px" class= "boton" >
+          <button type="submit" mat-raised-button style="width: 200px" class= "boton" [disabled]="checkFields()">
           INICIAR SESIÓN</button>
+          <br><br>
+          <p>¿Aún no estás registrado? <a href="/registro">Regístrate</a></p>
       </div>
       
     </form>

@@ -56,15 +56,28 @@ $gris-buscador: #c0c1c0;
   align-items: center;
   background-attachment: fixed;
   overflow: scroll;
+  padding-top: 15%;
+  padding-left: 20px;
+  color: white;    
 }
+
 
 .lateral-drch h1{
   display: none;
 }
 
+.lateral-drch a{
+  text-decoration: none;
+  color:$azul-royal;
+}
+
+.volver{
+  color: white;
+}
+
 .inicio_datos{
   text-align: center;
-  margin-top: 45%;
+  margin-top: 30px;
 }
 
 .input{
