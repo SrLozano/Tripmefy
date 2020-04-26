@@ -13,10 +13,9 @@ $azul-verdoso: #009788;
 
 
 button{
-    padding: 10px 15px;
     background-color: $azul-verdoso;
     color: $blanco;
-    font-weight: bolder;
+    vertical-align: center;
 }
 button:hover{
     -webkit-box-shadow: 2px 2px 2px 0px rgba(207,216,220,1);
