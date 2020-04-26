@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { AuthService } from '../services/auth.service';
-import { IUsuario, Usuario } from './../interfaces/usuario';
+import { Router } from '@angular/router'; //Para redirigir a una página
 
 
 
@@ -28,9 +28,13 @@ export class InicioSesionComponent implements OnInit {
   password: new FormControl ('', Validators.required),
 
   })
-  constructor(private authSvc : AuthService, private userService: UsuarioFirestoreService) { }
+  constructor(private route: Router, private authSvc : AuthService, private userService: UsuarioFirestoreService) { }
 
   ngOnInit(): void {
+  }
+
+  back(){
+    this.route.navigate(['/page1']);
   }
 
   onLogin(form){

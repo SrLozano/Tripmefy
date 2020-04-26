@@ -1,6 +1,5 @@
 import { UsuarioFirestoreService } from './../services/firestore/usuario-firestore.service';
-import { IUsuario, Usuario } from './../interfaces/usuario';
-import { style } from '@angular/animations';
+import { Usuario } from './../interfaces/usuario';
 import { Router } from '@angular/router'; //Para redirigir a una página
 import { AuthService } from './../services/auth.service'; //para registro en base de datos
 import { Component, OnInit, Input} from '@angular/core';
@@ -44,6 +43,10 @@ export class RegistroComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  back(){
+    this.route.navigate(['/page1']);
+  }
+  
   onRegister(){
     
     document.getElementById("password1").style.color="white";

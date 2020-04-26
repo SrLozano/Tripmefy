@@ -7,6 +7,7 @@
   </div>
 
   <div class="lateral-drch">
+    <app-volver class="volver" (click)='back()'></app-volver>
     <h1>INICIO DE SESIÓN</h1>
     <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
       <div class="inicio_datos">
@@ -42,6 +43,8 @@
       <div class="boton_inicio">
           <button type="submit" mat-raised-button style="width: 200px" class= "boton" >
           INICIAR SESIÓN</button>
+          <br><br>
+          <p>¿Aún no estás registrado? <a href="/registro">Regístrate</a></p>
       </div>
       
     </form>
