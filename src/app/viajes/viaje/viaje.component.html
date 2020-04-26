@@ -13,9 +13,9 @@
 
    <div class="informacion_viaje">
       <h2 class="precio" style="display: inline-block" >{{viaje.precio}}</h2>
-      <img src="../../../assets/hotel.png" style="padding-left: 3%" height="5%" width="5%"/>
-      <img src="../../../assets/plane.png" style="padding-left: 3%" height="5%" width="5%"/>
-      <img src="../../../assets/fork.png" style="padding-left: 3%" height="5%" width="5%"/>
+      <img src="../../../assets/hotel.png" style="padding-left: 3%" height="10%" width="10%"/>
+      <img src="../../../assets/plane.png" style="padding-left: 3%" height="10%" width="10%"/>
+      <img src="../../../assets/fork.png" style="padding-left: 3%" height="10%" width="10%"/>
       <div style= "display: inline-block" >
      
       </div>
@@ -30,10 +30,13 @@
 
    <!--Botones: Implemetacion en la función showButtonJoin del typescript-->
    <div *ngIf="show" class="button">
-      <button mat-raised-button color="primary" style="height: 3em; width: 10em;">Me uno al viaje</button>
+      <button (click)="unirse()" mat-raised-button color="primary" style="height: 3em; width: 10em;">Me uno al viaje</button>
    </div>
    <div *ngIf="payButton" class="button">
-      <button mat-raised-button color="primary" style="height: 3em; width: 10em;">Pagar</button>
+      <button (click)="pagar()" mat-raised-button color="primary" style="height: 3em; width: 10em;">Pagar</button>
+   </div>
+   <div *ngIf="alreadyPaid" class="button">
+      <button mat-stroked-button disabled style="height: 3em; width: 10em;">Ya has pagado</button>
    </div>
 
 </div>

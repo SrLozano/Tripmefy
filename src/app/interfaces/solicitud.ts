@@ -15,7 +15,7 @@ export class Solicitud implements ISolicitud
     estado:string;
 
 
-    constructor(o:ISolicitud)
+    constructor(o?:ISolicitud)
     {
         if(o !== undefined) Object.assign(this,o);
     }

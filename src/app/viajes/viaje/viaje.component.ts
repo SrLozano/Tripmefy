@@ -26,7 +26,7 @@ import { AuthService } from '../../services/auth.service';
 
 export class ViajeComponent implements OnInit {
 
-  /* Array de prueba para los carouseles en caso de encontrarse offline*/
+  /* Array de prueba para los carouseles en caso de encontrarse offline
 
   public slides = [
     { src: "../../../assets/person-1.jpg"},
@@ -43,6 +43,7 @@ export class ViajeComponent implements OnInit {
     { src: "../../../assets/Amsterdam-03.jpg" },
     { src: "../../../assets/Amsterdam-04.jpg" }
   ];
+  */
 
   public slides3 = [];
 
@@ -92,7 +93,7 @@ export class ViajeComponent implements OnInit {
       for(var i=0; i<solicitudes.length; i++){
         if(solicitudes[i].idUsuario == localStorage.getItem('usuario') ){
           this.show=false; // El usuario ya se ha apuntado luego se elimina la posibilidad
-          if(solicitudes[i].estado == 'Pendiente de pago'){
+          if(solicitudes[i].estado == 'aceptado'){
             this.payButton=true;  //Mostramos botón de pago
           } else if(solicitudes[i].estado == 'pagado'){
             this.payButton=false; // No mostramos botón pago si ya ha pagado
@@ -101,7 +102,37 @@ export class ViajeComponent implements OnInit {
         }
       }
     }
-  }             
+  }   
+  
+  /*  Función que une a una persona a la base de datos en el apartado de solicitues para el viaje en cuestión
+      Se activa al pinchar sobre el botón de unirse */
+
+  unirse(){
+      var new_solicitud:Solicitud = new Solicitud();
+      new_solicitud.idUsuario = localStorage.getItem('usuario');
+      new_solicitud.idOrganizador = "";
+      new_solicitud.idViaje = this._route.snapshot.paramMap.get('id');
+      new_solicitud.estado = "aceptado";
+      this.firestoreServiceSolicitud.createSolicitud(new_solicitud);
+
+  }
+
+  /*  Función que une actualiza en la solicitud de la persona el estado de aceptado a pagado
+      Se activa al pinchar sobre el botón de pagar */
+
+  pagar(){
+    this.firestoreServiceSolicitud.getSolicitudesByTripId(this._route.snapshot.paramMap.get('id')).subscribe(res=>{
+      var i;
+      var new_solicitud:Solicitud = new Solicitud();
+      for(i=0; i<res.length; i++){
+        if(res[i].idUsuario == localStorage.getItem('usuario')){
+          new_solicitud = res[i];
+          new_solicitud.estado = "pagado";
+          this.firestoreServiceSolicitud.updateSolicitud(new_solicitud);
+        }
+      }  
+    });
+  }
 
   ngOnInit(): void {
 
@@ -148,7 +179,6 @@ export class ViajeComponent implements OnInit {
         this.firestoreServiceSolicitud.getSolicitudesByTripId(this.viaje.id).subscribe(res=>{
           this.solicitudes = []
           var i;
-          console.log(res.length);
           for(i=0; i<res.length; i++){
             this.solicitudes.push({idUsuario: res[i].idUsuario, estado: res[i].estado});
           }

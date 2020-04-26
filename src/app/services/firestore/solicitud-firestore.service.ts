@@ -35,5 +35,24 @@ export class SolicitudFirestoreService {
     return this.firestore.collection<Solicitud>('Solicitud',ref=>ref.where('idOrganizador','==',id)).valueChanges();
   }
 
-  
+  public createSolicitud(data: ISolicitud):Promise<string>
+  {
+    //return this.firestore.collection<IContacto>('contactos').add({... data}).then(r=>{
+    //  return r.id;});   
+    
+    data.id=this.firestore.createId();
+    
+    localStorage.setItem('solicitud', data.id);
+       
+    return this.afs.doc(data.id).set({... data}).then(r=>{
+      return data.id;  
+    });
+
+  }  
+
+  public updateSolicitud(data:Solicitud)
+  {
+    return this.afs.doc(data.id).set(data);
+  }
+
 }
