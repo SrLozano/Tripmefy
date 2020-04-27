@@ -1,5 +1,4 @@
 <div class="content">
-
     <div class="menu-izq">
         <img src="../../../assets/notificacion.png">
     </div>
@@ -17,9 +16,30 @@
         <p  class="menu">Contact</p> 
         <img src="../../../assets/menu.png">
     </div>
-    
 </div>
 <div class="titulo">
     <h1>{{titulo}}</h1>
+</div>
+
+
+<div class="form-popup" id="myForm">
+    <form action="/action_page.php" class="form-container">
+      <h1><b>Tus notificaciones</b></h1>
+      <br>
+      <div class="mensaje" *ngFor="let solicitud of solicitudes">
+          <div class="nombre_individuo">
+            <b>{{solicitud.nombre}} </b>
+          </div>
+          <div class="eleccion1">
+            <mat-icon (click)="accept()" style="cursor:pointer">done_outline</mat-icon>
+          </div>
+          <div class="eleccion2">
+            <mat-icon (click)="aCasa()" style="cursor:pointer">highlight_off</mat-icon>
+        </div>
+        <hr>
+      </div>
+      <br>
+      <button type="button" class="btn cancel" (click)="close()">Close</button> 
+    </form>
 </div>
 
