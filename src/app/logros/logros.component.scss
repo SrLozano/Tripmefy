@@ -36,12 +36,18 @@ $azul-verdoso: #009788;
     box-shadow: 2px 7px 4px 0px rgba(0,0,0,0.75);
 }
 
-.logro img{
+img{
     margin: auto;
     display: block;
     width: 150px;
-    opacity: 0.4;
+    //opacity: 0.4;
     //filter: grayscale(100%);
+}
+.activa img{
+    opacity: 0.4;
+}
+.inactiva img{
+    filter: grayscale(100%);
 }
 
 .logro p{
