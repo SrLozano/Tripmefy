@@ -34,6 +34,10 @@ export class SolicitudFirestoreService {
   {  
     return this.firestore.collection<Solicitud>('Solicitud',ref=>ref.where('idOrganizador','==',id)).valueChanges();
   }
+  public getSolicitudesByOrganizadorEmail(email:String):Observable<Solicitud[]>
+  {  
+    return this.firestore.collection<Solicitud>('Solicitud',ref=>ref.where('idOrganizador','==',email)).valueChanges();
+  }
 
   public createSolicitud(data: ISolicitud):Promise<string>
   {

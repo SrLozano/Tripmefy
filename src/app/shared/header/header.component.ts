@@ -3,6 +3,10 @@ import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute }  from '@angular/router';
 import { Router } from '@angular/router'; //Para redirigir a una página
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {SolicitudFirestoreService} from '../../services/firestore/solicitud-firestore.service';
+import {UsuarioFirestoreService} from '../../services/firestore/usuario-firestore.service';
+import { Usuario } from 'src/app/interfaces/usuario';
+
 
 export interface DialogData {
   animal: string;
@@ -18,11 +22,33 @@ export interface DialogData {
 export class HeaderComponent implements OnInit {
 @Input() public titulo:string;
   constructor(private authSvc : AuthService,
+              private firestoreServiceSolicitud:SolicitudFirestoreService,
+              private firestoreServiceUser: UsuarioFirestoreService,
              private _route:ActivatedRoute, private route: Router, public dialog: MatDialog) {
     this.titulo = "";
    }
 
+  public solicitudes = [];
+  usuario:Usuario;
+
   ngOnInit(): void {
+
+    /*  Este pedazo de código obtiene el nombre del usuario cuyo organizador que está navegando
+        en esta página ha organizado algún viaje, de manera que posteriormente podamos imprimir
+        las solicitudes que deben ser aceptadas en un viaje por el organizador */
+
+    this.firestoreServiceUser.getUsuario(localStorage.getItem('usuario')).then((elem) => {
+      var organizadorEmail = elem.email;
+      this.firestoreServiceSolicitud.getSolicitudesByOrganizadorEmail(organizadorEmail).subscribe(res=>{
+        var i; 
+        for (i = 0; i<res.length ; i++){
+          //Añadimos el nombre y el id del usuario
+          this.firestoreServiceUser.getUsuario(res[i].idUsuario).then((elem) => { 
+            this.solicitudes.push({nombre: elem[i].nombre, id: elem[i].idUsuario});
+        });
+        }
+      });
+    });  
   }
 
   /* Redirigir a la página de perfil pulsando sobre perfil */
