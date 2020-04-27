@@ -120,7 +120,7 @@ export class ViajeComponent implements OnInit {
       new_solicitud.idUsuario = localStorage.getItem('usuario');
       new_solicitud.idViaje = this._route.snapshot.paramMap.get('id');
       new_solicitud.estado = "pendiente";
-      this.firestoreServiceUser.getUsuariosByEmail(this.viaje.email).subscribe(res=>{
+      this.firestoreServiceUser.getUsuariosByEmail(this.viaje.email).subscribe(res=>{ //Para coger el idOrganizador
         new_solicitud.idOrganizador = res[0].email;
         this.firestoreServiceSolicitud.createSolicitud(new_solicitud);
       });
@@ -213,7 +213,7 @@ export class ViajeComponent implements OnInit {
             // Recorremos la base de datos
             for(j=0; j<res.length; j++){ 
               // Encontramos el usuario de la solicitud
-              if(this.solicitudes[i].idUsuario == res[j].id){ 
+              if(this.solicitudes[i].idUsuario == res[j].id && this.solicitudes[i].estado != "pendiente"){ 
                 // Guardamos las imagenes para el carousel
                 this.usuarios_viaje.push({src: res[j].image});
                 if (res[j].tipo == 'viajero') {
