@@ -5,12 +5,18 @@ import { Router } from '@angular/router'; //Para redirigir a una página
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {SolicitudFirestoreService} from '../../services/firestore/solicitud-firestore.service';
 import {UsuarioFirestoreService} from '../../services/firestore/usuario-firestore.service';
+import {HeaderFirestoreService} from '../../services/firestore/header-firestore.service';
 import { Usuario } from 'src/app/interfaces/usuario';
+import { NgModule } from '@angular/core';
+import { database } from 'firebase';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormsModule} from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+
 
 
 export interface DialogData {
-  animal: string;
-  name: string;
+  name: string[];
 }
 
 @Component({
@@ -24,6 +30,7 @@ export class HeaderComponent implements OnInit {
   constructor(private authSvc : AuthService,
               private firestoreServiceSolicitud:SolicitudFirestoreService,
               private firestoreServiceUser: UsuarioFirestoreService,
+              private firestoreServiceHeader: HeaderFirestoreService,
              private _route:ActivatedRoute, private route: Router, public dialog: MatDialog) {
     this.titulo = "";
    }
@@ -31,6 +38,9 @@ export class HeaderComponent implements OnInit {
   public solicitudes = [];
   usuario:Usuario;
 
+  animal: string;
+  name: string;
+  
   ngOnInit(): void {
 
     /*  Este pedazo de código obtiene el nombre del usuario cuyo organizador que está navegando
@@ -42,13 +52,16 @@ export class HeaderComponent implements OnInit {
       this.firestoreServiceSolicitud.getSolicitudesByOrganizadorEmail(organizadorEmail).subscribe(res=>{
         var i; 
         for (i = 0; i<res.length ; i++){
-          //Añadimos el nombre y el id del usuario
+          //Nos quedamos con el nombre y el id del usuario de nuestras solicitudes:
           this.firestoreServiceUser.getUsuario(res[i].idUsuario).then((elem) => { 
-            this.solicitudes.push({nombre: elem[i].nombre, id: elem[i].idUsuario});
+            this.solicitudes.push({nombre: elem.nombre});
         });
         }
       });
     });  
+
+    //  Se comunica el array de solicitudes con el html de dialog-overview-notifications.html
+    this.firestoreServiceHeader.setArray(this.solicitudes);
   }
 
   /* Redirigir a la página de perfil pulsando sobre perfil */
@@ -97,8 +110,13 @@ export class HeaderComponent implements OnInit {
   }
 
   onNotification():void{
+    var array_nombres = [];
+    for (var i=0; i<this.solicitudes.length; i++){
+      array_nombres.push(this.solicitudes[i].nombre);
+    }
     const dialogRef = this.dialog.open(DialogOverviewNNotificationDialog, {
       width: '250px',
+      data: {name: array_nombres}
     });
   }
 }
@@ -110,10 +128,17 @@ export class HeaderComponent implements OnInit {
 })
 export class DialogOverviewNNotificationDialog { //FUNCIONES POP-UP NOTIFICATION
 
+  public solicitudes = [];
+
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewNNotificationDialog>,
+    private firestoreServiceHeader: HeaderFirestoreService,
     @Inject(MAT_DIALOG_DATA) public data: DialogData, private authSvc : AuthService) {}
-
+    
+    ngOnInit(): void {
+    //  Se comunica el array de solicitudes con el html de dialog-overview-notifications.html
+    //solicitudes = this.firestoreServiceHeader.getArray();
+    }
 }
 
 
@@ -126,6 +151,7 @@ export class DialogOverviewExampleDialog { //FUNCIONES POP-UP LOGUT
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData, private authSvc : AuthService) {}
+
 
   onNoClick(): void {
     this.dialogRef.close();
