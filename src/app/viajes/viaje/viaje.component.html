@@ -38,6 +38,9 @@
    <div *ngIf="alreadyPaid" class="button">
       <button mat-stroked-button disabled style="height: 3em; width: 10em;">Ya has pagado</button>
    </div>
+   <div *ngIf="pendingRequest" class="button_waiting">
+      <button mat-stroked-button disabled style="height: 3em; width: 12em;">Esperando aprobación</button>
+   </div>
 
 </div>
 

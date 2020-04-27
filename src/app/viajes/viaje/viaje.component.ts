@@ -58,6 +58,7 @@ export class ViajeComponent implements OnInit {
   public show = true;
   public payButton = false;
   public alreadyPaid = false;
+  public pendingRequest = false;
 
 
   @ViewChild('imageUser') inputImageUser;
@@ -87,7 +88,7 @@ export class ViajeComponent implements OnInit {
 
   /* Función que selecciona el tipo de botón a mostar al usuraio en un viaje
      Si el usuario no se ha apuntado y es viajero se le da la opción de apuntarse,
-     si el usuario viajero no ha pagado pero está apuntado puede pagar
+     si el usuario viajero no ha pagado pero está apuntado y aceptado puede pagar
      si el usuario ya ha pagado no se le muestran los botones pues no los necesita*/
 
   showButtonJoin(solicitudes:Solicitud[]){
@@ -97,11 +98,14 @@ export class ViajeComponent implements OnInit {
       for(var i=0; i<solicitudes.length; i++){
         if(solicitudes[i].idUsuario == localStorage.getItem('usuario') ){
           this.show=false; // El usuario ya se ha apuntado luego se elimina la posibilidad
-          if(solicitudes[i].estado == 'aceptado'){
-            this.payButton=true;  //Mostramos botón de pago
+          if(solicitudes[i].estado == 'pendiente'){
+            this.pendingRequest=true;  //Mostramos de esperar confirmación
+          } else if(solicitudes[i].estado == 'aceptado'){
+              this.pendingRequest=false;  //Mostramos de esperar confirmación
+              this.payButton=true;  //Mostramos botón de pago
           } else if(solicitudes[i].estado == 'pagado'){
-            this.payButton=false; // No mostramos botón pago si ya ha pagado
-            this.alreadyPaid = true; // Activamos mensaje de confimración de pago
+              this.payButton=false; // No mostramos botón pago si ya ha pagado
+              this.alreadyPaid = true; // Activamos mensaje de confimración de pago
           }
         }
       }
@@ -114,11 +118,12 @@ export class ViajeComponent implements OnInit {
   unirse(){
       var new_solicitud:Solicitud = new Solicitud();
       new_solicitud.idUsuario = localStorage.getItem('usuario');
-      new_solicitud.idOrganizador = "";
       new_solicitud.idViaje = this._route.snapshot.paramMap.get('id');
-      new_solicitud.estado = "aceptado";
-      this.firestoreServiceSolicitud.createSolicitud(new_solicitud);
-
+      new_solicitud.estado = "pendiente";
+      this.firestoreServiceUser.getUsuariosByEmail(this.viaje.email).subscribe(res=>{
+        new_solicitud.idOrganizador = res[0].email;
+        this.firestoreServiceSolicitud.createSolicitud(new_solicitud);
+      });
   }
 
   /*  Función que une actualiza en la solicitud de la persona el estado de aceptado a pagado
