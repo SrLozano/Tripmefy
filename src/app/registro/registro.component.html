@@ -12,25 +12,22 @@
     
     <form  (ngSubmit)="onRegister()">
       <div class="registro_datos">
-        <div id="error"><p>{{error}}</p></div>
-        
+        <div id="error1"><p>Introduce los campos obligatorios</p></div>
+        <div id="error2"><p>Introduce una contraseña de 8 caracteres</p></div>
+        <div id="error3"><p>Introduce el email en el formato correcto example@examle.com</p></div>
+        <div id="error4"><p>Las contraseñas no coinciden</p></div>
+        <div id="error5"><p>El email ya existe</p></div>
+
+
         <div class="grupo-inputs" >
           <mat-form-field class="input">  <!--Pide el nombre-->
-            <mat-error *ngIf="nombreFormControl.hasError('required')">
-              Por favor, introduce un nombre
-            </mat-error>
-  
             <mat-label>Nombre</mat-label>
-            <input matInput [(ngModel)]="nombre" name="nombre" [formControl]="nombreFormControl" required>   
+            <input matInput [(ngModel)]="nombre" name="nombre" required>   
           </mat-form-field>
           
           <mat-form-field class="input"> <!--Pide el apellido-->
-            <mat-error *ngIf="apellidoFormControl.hasError('required')">
-              Por favor, introduce un apellido
-            </mat-error>
-  
             <mat-label>Apellido</mat-label>
-            <input matInput [(ngModel)]="apellido" name="apellido" [formControl]="apellidoFormControl"  required>
+            <input matInput [(ngModel)]="apellido" name="apellido"   required>
           </mat-form-field>
         </div> <!-- Fin grupo inputs-->
   
@@ -38,49 +35,31 @@
   
         <div class="grupo-inputs">
           <mat-form-field class="input">  <!--Pide la población-->
-            <mat-error *ngIf="poblacionFormControl.hasError('required')">
-              Por favor, introduce una poblacion
-            </mat-error>
-  
             <mat-label>Población</mat-label>
-            <input matInput [(ngModel)]="poblacion" name="polacion" [formControl]="poblacionFormControl" required> 
+            <input matInput [(ngModel)]="poblacion" name="polacion"  required> 
           </mat-form-field>
   
           <mat-form-field class="input"> <!--Pide el país-->
-            <mat-error *ngIf="paisFormControl.hasError('required')">
-              Por favor, introduce un pais
-            </mat-error>
-  
             <mat-label>País</mat-label>
-            <input matInput [(ngModel)]="pais" name="pais" [formControl]="paisFormControl" required>
+            <input matInput [(ngModel)]="pais" name="pais"  required>
           </mat-form-field>
         </div> <!-- Fin grupo inputs-->
   
         <br>
   
         <mat-form-field class="email input"> <!--Pide el email-->
-          <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-            Por favor, introduce una dirección válida
-          </mat-error>
-          <mat-error *ngIf="emailFormControl.hasError('required')">
-            Por favor, introduce una dirección de correo
-          </mat-error>
-  
           <mat-label>Email</mat-label>
-          <input id="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher" 
-          placeholder="Ej. pat@example.com" [(ngModel)]="email" name="email" required>
+          <input id="email" matInput  type="email" placeholder="Ej. pat@example.com" [(ngModel)]="email" name="email" required>
         </mat-form-field>
         
         <br>
   
         
         <mat-form-field class="input" appearance="fill" > <!--Pide la contraseña-->
-          <mat-error *ngIf="passwordFormControl.hasError('required') || passwordFormControl.hasError('minLength')" >
-            Por favor, introduce una contraseña de minimo 8 caracteres
-          </mat-error>
+          
           <mat-label>Introduce tu contraseña</mat-label>
           <input id="password1" matInput [(ngModel)]="password" name="password"  [type]="hide ? 'password' : 'text'"  
-          [formControl]="passwordFormControl" required>
+          required>
           <button  mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
@@ -88,13 +67,10 @@
           
         <br>
         <mat-form-field class="input" appearance="fill"> <!--Pide la contraseña de comprobación -->
-          <mat-error *ngIf="passwordFormControl.hasError('required')">
-            Por favor, repite tu contraseña
-          </mat-error>
+          
 
           <mat-label>Confirma la contraseña</mat-label>
-          <input id="password2" matInput [(ngModel)]="password2" name="password2" [type]="hide ? 'password' : 'text'" 
-          [formControl]="password2FormControl" required>
+          <input id="password2" matInput [(ngModel)]="password2" name="password2" [type]="hide ? 'password' : 'text'" required>
           <button  mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
@@ -112,7 +88,7 @@
       <section class="checkbox"> <!--Pide la aceptacion de la politica-->
         <mat-checkbox class="" [(ngModel)]="terminos" name="terminos">Acepto los términos y la política de privacidad</mat-checkbox>
       </section>
-
+    
       <div class="boton_registro"> <!--Botón de registro-->
           <button mat-raised-button style="width: 200px" class= "boton" type="submit" [disabled]="checkFields()">
          REGISTRATE</button>

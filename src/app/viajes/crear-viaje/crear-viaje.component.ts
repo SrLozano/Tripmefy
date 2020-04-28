@@ -1,18 +1,9 @@
 import { UsuarioFirestoreService } from './../../services/firestore/usuario-firestore.service';
 import { Viaje } from './../../interfaces/viaje';
 import { FirestoreService } from './../../services/firestore/firestore.service';
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import { ErrorStateMatcher} from '@angular/material/core';
+import { Component, OnInit, Output, EventEmitter, } from '@angular/core';
 import { Router } from '@angular/router'; //Para redirigir a una página
 
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
 
 @Component({
   selector: 'app-crear-viaje',
@@ -21,11 +12,10 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class CrearViajeComponent implements OnInit {
 
-  @Input() public error:string; 
   @Output() foto: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(private route: Router, private viajeService: FirestoreService, private userService: UsuarioFirestoreService) { 
-    this.error = "";
+   
   }
 
   ngOnInit(): void {
@@ -52,28 +42,25 @@ export class CrearViajeComponent implements OnInit {
 
   paises = [];
 
-  continenteSelect: string;
-  paisSelect: string;
-  ciudadSelect: string;
-  startDate: string;
-  endDate: string;
-  limitDate: string;
-  limitPayDate: string;
-  desc: string;
-  email: string;
-  telefono: string;
-  prefijo:string;
-  item:string;
-  precio:string;
-  maxpers:string;
-  vuelo:boolean;
-  alojamiento:boolean;
-  comidas:boolean;
-  miFoto = "";
+  public continenteSelect: string = "";
+  public paisSelect: string = "";
+  public ciudadSelect: string = "";
+  public startDate: string = "";
+  public endDate: string = "";
+  public limitDate: string = "";
+  public limitPayDate: string = "";
+  public desc: string = "";
+  public email: string = "";
+  public telefono: string = "";
+  public prefijo:string = "";
+  public item:string = "";
+  public precio:string = "";
+  public maxpers:string = "";
+  public vuelo:boolean = false;
+  public alojamiento:boolean = false;
+  public comidas:boolean = false;
+  public miFoto = "";
 
-  refresh(): void {
-    window.location.reload();
-  }
 
   onCreate(){
     
@@ -104,7 +91,6 @@ export class CrearViajeComponent implements OnInit {
       newViaje.servicios += 'Comidas,';
     }
     alert("El viaje se ha creado correctamente");
-    //this.viajeService.createViaje(newViaje);
     this.route.navigate(['/mis-viajes']);
   }
 
@@ -191,42 +177,5 @@ export class CrearViajeComponent implements OnInit {
     } 
   }
 
-
-  telefFormControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(9),
-  ]);
-
-  prefijoFormControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(2),
-  ]);
-
-  descFormControl = new FormControl('', [
-    Validators.required
-  ]);
-
-  date1FormControl = new FormControl('', [
-    Validators.required
-  ]);
-
-  date2FormControl = new FormControl('', [
-    Validators.required
-  ]);
-
-  date3FormControl = new FormControl('', [
-    Validators.required
-  ]);
-
-  date4FormControl = new FormControl('', [
-    Validators.required
-  ]);
-
-  ciudadFormControl = new FormControl('', [
-    Validators.required
-  ]);
-
-
-  matcher = new MyErrorStateMatcher();
 
 }

@@ -1,3 +1,4 @@
+import { Usuario } from 'src/app/interfaces/usuario';
 import { UsuarioFirestoreService } from './../services/firestore/usuario-firestore.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
@@ -6,15 +7,6 @@ import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router'; //Para redirigir a una página
 
 
-
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
-
 @Component({
   selector: 'app-inicio-sesion',
   templateUrl: './inicio-sesion.component.html',
@@ -22,16 +14,14 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class InicioSesionComponent implements OnInit {
 
-  hide = true;
-  loginForm = new FormGroup({
-  email: new FormControl ('', Validators.required),
-  password: new FormControl ('', Validators.required),
+  public hide = true;
 
-  })
   constructor(private route: Router, private authSvc : AuthService, private userService: UsuarioFirestoreService) { }
 
-  password:string;
+  public password:string;
+  public email:string;
 
+ 
   ngOnInit(): void {
   }
 
@@ -39,7 +29,10 @@ export class InicioSesionComponent implements OnInit {
     this.route.navigate(['/page1']);
   }
 
-  onLogin(form){
+  onLogin(){
+    var form:Usuario = new Usuario();
+    form.email = this.email;
+    form.password = this.password;
     this.authSvc.loginByEmail(form);
     this.userService.getUsuariosByEmail(this.email).subscribe(res=>{
       var i;
@@ -58,21 +51,5 @@ export class InicioSesionComponent implements OnInit {
         return false;
     } 
   }
-
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
-
-  passwordFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-
-  email: string;
-  apellido:string;
-  nombre: string;
-
-
-  matcher = new MyErrorStateMatcher();
 
 }

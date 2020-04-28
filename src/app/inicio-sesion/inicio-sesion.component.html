@@ -9,34 +9,22 @@
   <div class="lateral-drch">
     <app-volver class="volver" (click)='back()'></app-volver>
     <h1>INICIO DE SESIÓN</h1>
-    <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
+    <form (ngSubmit)="onLogin()">
       <div class="inicio_datos">
         <mat-form-field class="input">
           <mat-label>Email</mat-label>
-          <input matInput [formControl]="emailFormControl" formControlName="email" [errorStateMatcher]="matcher" placeholder="Ej. pat@example.com" [(ngModel)]="email" name="email">
-          <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                Por favor, introduce una dirección válida
-          </mat-error>
-          <mat-error *ngIf="emailFormControl.hasError('required')">
-                Por favor, introduce una dirección de correo
-          </mat-error>
+          <input matInput  placeholder="Ej. pat@example.com" [(ngModel)]="email" name="email" required>
         </mat-form-field>
         
         <br>
 
         <mat-form-field class="input" appearance="fill" >
           <mat-label>Introduce tu contraseña</mat-label>
-          <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" [formControl]="passwordFormControl" [(ngModel)]="password" name="password">
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="password" name="password" required>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" >
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
-
-          <mat-error *ngIf="passwordFormControl.hasError('required')">
-            Por favor, introduce una contraseña
-          </mat-error>
-          
         </mat-form-field>
-      
       </div>
 
 

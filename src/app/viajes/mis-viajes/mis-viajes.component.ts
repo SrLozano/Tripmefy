@@ -1,3 +1,4 @@
+import { CrearViajeComponent } from './../crear-viaje/crear-viaje.component';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute }  from '@angular/router';
 import {Router} from '@angular/router';
@@ -6,6 +7,7 @@ import {SolicitudFirestoreService} from '../../services/firestore/solicitud-fire
 import {Viaje, IViaje} from '../../interfaces/viaje';
 import {FirestoreService} from '../../services/firestore/firestore.service';
 import {UsuarioFirestoreService} from '../../services/firestore/usuario-firestore.service';
+import { PreloadAllModules } from '@angular/router';
 
 @Component({
   selector: 'app-mis-viajes',
@@ -13,6 +15,8 @@ import {UsuarioFirestoreService} from '../../services/firestore/usuario-firestor
   styleUrls: ['./mis-viajes.component.scss']
 })
 export class MisViajesComponent implements OnInit {
+  
+  
 
   title = 'España';
   estePais = "";
@@ -24,6 +28,7 @@ export class MisViajesComponent implements OnInit {
   estaVacio(){
     return this.escogidas.length < 1;
   }
+
 
   busqueda(){
     

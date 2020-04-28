@@ -71,7 +71,11 @@ export class RegistroComponent implements OnInit {
       this.route.navigate(['/bienvenida']);
 
     }).catch(err => {
-      this.error = "Este usuario ya existe";
+      document.getElementById("error5").style.display="block";      
+      document.getElementById("error1").style.display="none";
+      document.getElementById("error2").style.display="none";
+      document.getElementById("error3").style.display="none";
+      document.getElementById("error4").style.display="none";
       document.getElementById("email").style.color="red";
     });
   }
@@ -79,31 +83,49 @@ export class RegistroComponent implements OnInit {
   checkFields(){
     if (this.nombre==='' || this.apellido==='' || this.email==='' || this.password==='' || 
     this.password2==='' || this.poblacion==='' || this.pais==='' || this.tipo==='' || !this.terminos ){
-
       document.getElementById("password1").style.color="white";
       document.getElementById("password2").style.color="white";
-      this.error = "Introduce los campos obligatorios";
+      document.getElementById("error1").style.display="block";
+      document.getElementById("error2").style.display="none";
+      document.getElementById("error3").style.display="none";
+      document.getElementById("error4").style.display="none";
+      document.getElementById("error5").style.display="none";
+
       return true;
     }else if(this.password.localeCompare(this.password2) != 0){
-
-        document.getElementById("password1").style.color="red";
-        document.getElementById("password2").style.color="red";
+      document.getElementById("password1").style.color="red";
+      document.getElementById("password2").style.color="red";
+      document.getElementById("error1").style.display="none";
+      document.getElementById("error2").style.display="none";
+      document.getElementById("error3").style.display="none";
+      document.getElementById("error4").style.display="block";
+      document.getElementById("error5").style.display="none";
 
         return true;
     }else if(this.password.length<8){
-
-      this.error = "Introduce una contraseña de 8 caracteres";
+      document.getElementById("error1").style.display="none";
+      document.getElementById("error2").style.display="block";
+      document.getElementById("error3").style.display="none";
+      document.getElementById("error4").style.display="none";
+      document.getElementById("error5").style.display="none";
 
       return true;
     }else if(!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$/.test(this.email) ){
-
-      this.error = "Introduce el email en el formato correcto example@examle.com";
+      document.getElementById("error1").style.display="none";
+      document.getElementById("error2").style.display="none";
+      document.getElementById("error3").style.display="block";
+      document.getElementById("error4").style.display="none";
+      document.getElementById("error5").style.display="none";
       
       return true;
     }else{
-        this.error = "";
         document.getElementById("password1").style.color="white";
         document.getElementById("password2").style.color="white";
+        document.getElementById("error1").style.display="none";
+        document.getElementById("error2").style.display="none";
+        document.getElementById("error3").style.display="none";
+        document.getElementById("error4").style.display="none";
+        document.getElementById("error5").style.display="none";
 
         return false;
     } 

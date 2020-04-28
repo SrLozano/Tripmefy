@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { Page1Component } from './page1/page1.component';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { RegistroComponent } from './registro/registro.component';
@@ -16,7 +16,7 @@ import { PrivacidadComponent } from './privacidad/privacidad.component';
 import { LogrosComponent } from './logros/logros.component';
 import { BienvenidaComponent } from './bienvenida/bienvenida.component';
 import { PedirImagenComponent } from './shared/pedir-imagen/pedir-imagen.component';
-import {PruebasComponent} from './pruebas/pruebas.component';
+import { PruebasComponent} from './pruebas/pruebas.component';
 
 const routes: Routes = [
   {path:'page1', component:Page1Component},
