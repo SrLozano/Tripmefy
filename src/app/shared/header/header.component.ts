@@ -13,9 +13,6 @@ import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { ISolicitud,Solicitud } from '../../interfaces/solicitud';
 
-
-
-
 export interface DialogData {
   name: string[];
 }
@@ -37,16 +34,31 @@ export class HeaderComponent implements OnInit {
 
   public solicitudes = [];
   public numberOfSolicitudes = 0;
+  public mensajes = [];
+  public numberOfMensajes = 0;
   usuario:Usuario;
 
-  animal: string;
-  name: string;
+  public payButton = true;
+  public alreadyPaid = false;
   
   ngOnInit(): void {
 
     /*  Este pedazo de código obtiene el nombre del usuario cuyo organizador que está navegando
         en esta página ha organizado algún viaje, de manera que posteriormente podamos imprimir
         las solicitudes que deben ser aceptadas en un viaje por el organizador */
+    
+    if(localStorage.getItem('tipo') == 'viajero'){
+      this.firestoreServiceSolicitud.getSolicitudesByUserId(localStorage.getItem('usuario')).subscribe(res=>{
+        var i;
+        for (i = 0; i<res.length; i++){
+          if(res[i].estado == "aceptado"){
+            console.log("inicializado:onInit")
+            this.mensajes.push({idViaje: res[i].idViaje});
+          }
+        }
+      });
+    }
+    
 
     this.firestoreServiceUser.getUsuario(localStorage.getItem('usuario')).then((elem) => {
       var organizadorEmail = elem.email;
@@ -103,23 +115,53 @@ export class HeaderComponent implements OnInit {
     this.authSvc.logOut();
   }
 
+  /* Esta función rellena los arrays de solicitudes o de mensajes dependiendo de 
+     si el usuario es organizador o viajero, de tal forma que sea posible mostrale
+     notificaciones significativas. */
+  
   onNotification():void{
-    this.firestoreServiceUser.getUsuario(localStorage.getItem('usuario')).then((elem) => {
-      var organizadorEmail = elem.email;
-      this.firestoreServiceSolicitud.getSolicitudesByOrganizadorEmail(organizadorEmail).subscribe(res=>{
-        var i; 
-        this.numberOfSolicitudes = res.length;
-        for (i = 0; i<this.solicitudes.length ; i++){
-          this.solicitudes[i].idSolicitud = res[i].id;
-        }
+
+    if(localStorage.getItem('tipo') == 'organizador'){
+      this.firestoreServiceUser.getUsuario(localStorage.getItem('usuario')).then((elem) => {
+        var organizadorEmail = elem.email;
+        this.firestoreServiceSolicitud.getSolicitudesByOrganizadorEmail(organizadorEmail).subscribe(res=>{
+          var i; 
+          this.numberOfSolicitudes = res.length;
+          for (i = 0; i<this.solicitudes.length ; i++){
+            this.solicitudes[i].idSolicitud = res[i].id;
+          }
+        });
       });
-    });
-    document.getElementById("myForm").style.display = "block";
+      document.getElementById("myForm").style.display = "block";
+    }else if(localStorage.getItem('tipo') == 'viajero'){
+     /* this.firestoreServiceSolicitud.getSolicitudesByUserId(localStorage.getItem('usuario')).subscribe(res=>{
+        var i;
+        for (i = 0; i<res.length; i++){
+          if(res[i].estado == "aceptado"){
+            this.mensajes[i].idViaje = res[i].idViaje;
+            console.log("añadido:onNotif");
+            console.log(this.mensajes[i].idViaje);
+          }
+        }
+      }); */
+      document.getElementById("myFormViajero").style.display = "block";
+    }
+    console.log("jhdjdj");
+    console.log(this.mensajes[0].idViaje);
   }
+
+  /* Esta pareja de funciones se encarga de limpiar los arrays para que no se acumulen los resultados
+    y de cerrar los popups asociados. */
 
   close():void {
     document.getElementById("myForm").style.display = "none";
   }
+
+  close1():void {
+    document.getElementById("myFormViajero").style.display = "none";
+  }
+
+  /* Función que acepta a alguien en un viaje desde la vista del organizador*/
 
   accept(id:string):void{
     console.log("Has aceptado");
@@ -140,6 +182,9 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  /* Función que rechaza a alguien en un viaje desde la vista del organizador, 
+     el viajero se queda en casa. */
+
   aCasa(id:string):void{
     console.log("Has rechazado");
     //Borramos de la lista de solicitudes del organizador
@@ -156,6 +201,24 @@ export class HeaderComponent implements OnInit {
       new_solicitud.estado = "rechazado";
       this.firestoreServiceSolicitud.updateSolicitud(new_solicitud);
     });
-
   }
+
+   /*  Función que une actualiza en la solicitud de la persona el estado de aceptado a pagado
+      Se activa al pinchar sobre el botón de pagar */
+
+      pagar(){
+        this.firestoreServiceSolicitud.getSolicitudesByTripId(this._route.snapshot.paramMap.get('id')).subscribe(res=>{
+          var i;
+          var new_solicitud:Solicitud = new Solicitud();
+          for(i=0; i<res.length; i++){
+            if(res[i].idUsuario == localStorage.getItem('usuario')){
+              new_solicitud = res[i];
+              new_solicitud.estado = "pagado";
+              this.firestoreServiceSolicitud.updateSolicitud(new_solicitud);
+            }
+          }  
+        });
+        this.payButton=false;      // No mostramos botón pago si ya ha pagado
+        this.alreadyPaid = true;   // Activamos mensaje de confimración de pago
+      }
 }

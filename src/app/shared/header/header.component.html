@@ -43,3 +43,23 @@
     </form>
 </div>
 
+<div class="form-popup-Viajero" id="myFormViajero">
+  <form action="/action_page.php" class="form-container">
+    <h1><b>Tus notificaciones</b></h1>
+    <br>
+    <div class="mensaje" *ngFor="let mensaje of mensajes">
+        <div class="nombre_individuoViajero">
+          <b>{{mensaje.idViaje}} </b>
+        </div>
+        <div *ngIf="payButton" class="eleccion1Viajero">
+          <button (click)="pagar()" mat-raised-button color="primary" style="height: 3em; width: 10em;">Pagar</button>
+       </div>
+       <div *ngIf="alreadyPaid" class="eleccion1Viajero">
+        <button mat-stroked-button disabled style="height: 3em; width: 10em;">Ya has pagado</button>
+     </div>
+      <hr>
+    </div>
+    <br>
+    <button type="button" class="btn cancel" (click)="close1()">Close</button> 
+  </form>
+</div>
