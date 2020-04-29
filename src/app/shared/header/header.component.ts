@@ -11,6 +11,8 @@ import { database } from 'firebase';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { ISolicitud,Solicitud } from '../../interfaces/solicitud';
+
 
 
 
@@ -34,6 +36,7 @@ export class HeaderComponent implements OnInit {
    }
 
   public solicitudes = [];
+  public numberOfSolicitudes = 0;
   usuario:Usuario;
 
   animal: string;
@@ -49,14 +52,18 @@ export class HeaderComponent implements OnInit {
       var organizadorEmail = elem.email;
       this.firestoreServiceSolicitud.getSolicitudesByOrganizadorEmail(organizadorEmail).subscribe(res=>{
         var i; 
+        this.numberOfSolicitudes = res.length;
         for (i = 0; i<res.length ; i++){
-          //Nos quedamos con el nombre y el id del usuario de nuestras solicitudes:
-          this.firestoreServiceUser.getUsuario(res[i].idUsuario).then((elem) => { 
-            this.solicitudes.push({nombre: elem.nombre});
-        });
+          if (res[i].estado=="pendiente"){
+            //Nos quedamos con el nombre y el id del usuario de nuestras solicitudes:
+            this.firestoreServiceUser.getUsuario(res[i].idUsuario).then((elem) => { 
+              this.solicitudes.push({nombre: elem.nombre, idSolicitud: "--"});
+            });
+          }
         }
       });
     });  
+    
   }
 
   /* Redirigir a la página de perfil pulsando sobre perfil */
@@ -93,10 +100,20 @@ export class HeaderComponent implements OnInit {
   }
 
   onLogout():void{
-
+    this.authSvc.logOut();
   }
 
   onNotification():void{
+    this.firestoreServiceUser.getUsuario(localStorage.getItem('usuario')).then((elem) => {
+      var organizadorEmail = elem.email;
+      this.firestoreServiceSolicitud.getSolicitudesByOrganizadorEmail(organizadorEmail).subscribe(res=>{
+        var i; 
+        this.numberOfSolicitudes = res.length;
+        for (i = 0; i<this.solicitudes.length ; i++){
+          this.solicitudes[i].idSolicitud = res[i].id;
+        }
+      });
+    });
     document.getElementById("myForm").style.display = "block";
   }
 
@@ -104,11 +121,41 @@ export class HeaderComponent implements OnInit {
     document.getElementById("myForm").style.display = "none";
   }
 
-  accept():void{
+  accept(id:string):void{
     console.log("Has aceptado");
+    //Borramos de la lista de solicitudes del organizador
+    var i;
+    for (i = 0; i<this.solicitudes.length;i++){
+      if(this.solicitudes[i].idSolicitud == id){
+        this.solicitudes.splice(i, 1);
+      }
+    }
+
+    //Actualizamos la solicitud en la base de datos
+    var new_solicitud:Solicitud = new Solicitud();
+    this.firestoreServiceSolicitud.getSolicitud(id).then((elem) => {
+      new_solicitud = elem;
+      new_solicitud.estado = "aceptado";
+      this.firestoreServiceSolicitud.updateSolicitud(new_solicitud);
+    });
   }
 
-  aCasa():void{
+  aCasa(id:string):void{
     console.log("Has rechazado");
+    //Borramos de la lista de solicitudes del organizador
+    var i;
+    for (i = 0; i<this.solicitudes.length;i++){
+      if(this.solicitudes[i].idSolicitud == id){
+        this.solicitudes.splice(i, 1);
+      }
+    }
+    //Actualizamos la solicitud en la base de datos
+    var new_solicitud:Solicitud = new Solicitud();
+    this.firestoreServiceSolicitud.getSolicitud(id).then((elem) => {
+      new_solicitud = elem;
+      new_solicitud.estado = "rechazado";
+      this.firestoreServiceSolicitud.updateSolicitud(new_solicitud);
+    });
+
   }
 }

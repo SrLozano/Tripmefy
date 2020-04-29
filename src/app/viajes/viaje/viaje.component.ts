@@ -58,6 +58,7 @@ export class ViajeComponent implements OnInit {
   public show = true;
   public payButton = false;
   public alreadyPaid = false;
+  public pendienteButton = false;
 
 
   @ViewChild('imageUser') inputImageUser;
@@ -99,9 +100,12 @@ export class ViajeComponent implements OnInit {
           this.show=false; // El usuario ya se ha apuntado luego se elimina la posibilidad
           if(solicitudes[i].estado == 'aceptado'){
             this.payButton=true;  //Mostramos botón de pago
-          } else if(solicitudes[i].estado == 'pagado'){
-            this.payButton=false; // No mostramos botón pago si ya ha pagado
-            this.alreadyPaid = true; // Activamos mensaje de confimración de pago
+          }else if(solicitudes[i].estado == 'pendiente'){
+            this.pendienteButton=true;
+          }else if(solicitudes[i].estado == 'pagado'){
+            this.pendienteButton=false;// La solicitud ya no esta pendiente
+            this.payButton=false;      // No mostramos botón pago si ya ha pagado
+            this.alreadyPaid = true;   // Activamos mensaje de confimración de pago
           }
         }
       }
@@ -114,10 +118,13 @@ export class ViajeComponent implements OnInit {
   unirse(){
       var new_solicitud:Solicitud = new Solicitud();
       new_solicitud.idUsuario = localStorage.getItem('usuario');
-      new_solicitud.idOrganizador = "";
       new_solicitud.idViaje = this._route.snapshot.paramMap.get('id');
-      new_solicitud.estado = "aceptado";
-      this.firestoreServiceSolicitud.createSolicitud(new_solicitud);
+      new_solicitud.estado = "pendiente";
+      this.firestoreServiceViaje.getViaje(this._route.snapshot.paramMap.get('id')).then((elem) => {
+        new_solicitud.idOrganizador = elem.email;
+        this.firestoreServiceSolicitud.createSolicitud(new_solicitud);
+      });
+      
 
   }
 
@@ -208,7 +215,7 @@ export class ViajeComponent implements OnInit {
             // Recorremos la base de datos
             for(j=0; j<res.length; j++){ 
               // Encontramos el usuario de la solicitud
-              if(this.solicitudes[i].idUsuario == res[j].id){ 
+              if(this.solicitudes[i].idUsuario == res[j].id && (this.solicitudes[i].estado=='aceptado' || this.solicitudes[i].estado=='pagado')){ 
                 // Guardamos las imagenes para el carousel
                 this.usuarios_viaje.push({src: res[j].image});
                 if (res[j].tipo == 'viajero') {

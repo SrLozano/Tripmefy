@@ -6,8 +6,8 @@
         <img (click)="toInicio()" src="../../../assets/tripmefy2.png">
     </div>
     <div class="menu-lateral">
-        <p (click)="onNotification()"> 
-            <mat-icon matBadge="15" matBadgeColor="warn">question_answer</mat-icon>
+        <p (click)="onNotification()" class="menu"> 
+            <mat-icon matBadge="{{numberOfSolicitudes}}" matBadgeColor="warn">question_answer</mat-icon>
         </p>
         <p (click)="onLogout()" class="menu">Logout</p>
         <p class="menu" (click)="irPerfil()">Perfil</p>
@@ -31,10 +31,10 @@
             <b>{{solicitud.nombre}} </b>
           </div>
           <div class="eleccion1">
-            <mat-icon (click)="accept()" style="cursor:pointer">done_outline</mat-icon>
+            <mat-icon (click)="accept(solicitud.idSolicitud)" style="cursor:pointer">done_outline</mat-icon>
           </div>
           <div class="eleccion2">
-            <mat-icon (click)="aCasa()" style="cursor:pointer">highlight_off</mat-icon>
+            <mat-icon (click)="aCasa(solicitud.idSolicitud)" style="cursor:pointer">highlight_off</mat-icon>
         </div>
         <hr>
       </div>

@@ -21,6 +21,14 @@ export class SolicitudFirestoreService {
 
   private afs:AngularFirestoreCollection<Solicitud>;
 
+  public getSolicitud(id: string):Promise<Solicitud>
+  {
+    return this.afs.doc(id).get().toPromise().then(r=>{
+      var solicitud = r.data() as Solicitud;
+      return solicitud;
+    });
+  }
+
   public getSolicitudesByUserId(id:String):Observable<Solicitud[]>
   {  
     return this.firestore.collection<Solicitud>('Solicitud',ref=>ref.where('idUsuario','==',id)).valueChanges();
