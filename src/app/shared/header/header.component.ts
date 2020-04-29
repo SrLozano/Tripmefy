@@ -5,6 +5,7 @@ import { Router } from '@angular/router'; //Para redirigir a una página
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {SolicitudFirestoreService} from '../../services/firestore/solicitud-firestore.service';
 import {UsuarioFirestoreService} from '../../services/firestore/usuario-firestore.service';
+import {FirestoreService} from '../../services/firestore/firestore.service';
 import { Usuario } from 'src/app/interfaces/usuario';
 import { NgModule } from '@angular/core';
 import { database } from 'firebase';
@@ -28,6 +29,7 @@ export class HeaderComponent implements OnInit {
   constructor(private authSvc : AuthService,
               private firestoreServiceSolicitud:SolicitudFirestoreService,
               private firestoreServiceUser: UsuarioFirestoreService,
+              private firestoreServiceViaje: FirestoreService,
              private _route:ActivatedRoute, private route: Router, public dialog: MatDialog) {
     this.titulo = "";
    }
@@ -53,7 +55,7 @@ export class HeaderComponent implements OnInit {
         for (i = 0; i<res.length; i++){
           if(res[i].estado == "aceptado"){
             console.log("inicializado:onInit")
-            this.mensajes.push({idViaje: res[i].idViaje});
+            this.mensajes.push({idViaje: res[i].idViaje, nombreViaje: "--"});
           }
         }
       });
@@ -134,19 +136,17 @@ export class HeaderComponent implements OnInit {
       });
       document.getElementById("myForm").style.display = "block";
     }else if(localStorage.getItem('tipo') == 'viajero'){
-     /* this.firestoreServiceSolicitud.getSolicitudesByUserId(localStorage.getItem('usuario')).subscribe(res=>{
-        var i;
-        for (i = 0; i<res.length; i++){
-          if(res[i].estado == "aceptado"){
-            this.mensajes[i].idViaje = res[i].idViaje;
-            console.log("añadido:onNotif");
-            console.log(this.mensajes[i].idViaje);
-          }
-        }
-      }); */
       document.getElementById("myFormViajero").style.display = "block";
     }
-    console.log("jhdjdj");
+    var i;
+    for (i = 0; i<this.mensajes.length; i++){
+      //console.log(this.mensajes[i].idViaje);
+      this.firestoreServiceViaje.getViaje(this.mensajes[i].idViaje).then((elem) => {
+        /* console.log(this.mensajes[i].idViaje);
+        this.mensajes[i].nombreViaje = elem.ciudad;
+        console.log(elem.ciudad); */
+      });
+    }
     console.log(this.mensajes[0].idViaje);
   }
 
