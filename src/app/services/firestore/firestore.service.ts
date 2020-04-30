@@ -40,11 +40,9 @@ export class FirestoreService {
   public getViaje(id: string):Promise<Viaje>
   {
     return this.afs.doc(id).get().toPromise().then(r=>{
-      //Si quisieras forzar que se ejecute constructor de Contacto:
-      //return new Contacto(r.data() as IContacto);
-      var contacto = r.data() as Viaje;
-      console.log(contacto);
-      return contacto;
+      
+      var viaje = r.data() as Viaje;
+      return viaje;
     });
   }
  

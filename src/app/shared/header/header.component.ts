@@ -38,6 +38,10 @@ export class HeaderComponent implements OnInit {
   public numberOfSolicitudes = 0;
   public mensajes = [];
   public numberOfMensajes = 0;
+  
+  //Esta variable escogera el numero a mostrar (solicitudes o mensajes)->Ir a OnInit
+  public isViajero = false; 
+
   usuario:Usuario;
 
   public payButton = true;
@@ -50,11 +54,13 @@ export class HeaderComponent implements OnInit {
         las solicitudes que deben ser aceptadas en un viaje por el organizador */
     
     if(localStorage.getItem('tipo') == 'viajero'){
+      this.numberOfSolicitudes = 0;
       this.firestoreServiceSolicitud.getSolicitudesByUserId(localStorage.getItem('usuario')).subscribe(res=>{
         var i;
         for (i = 0; i<res.length; i++){
           if(res[i].estado == "aceptado"){
-            console.log("inicializado:onInit")
+            console.log("inicializado:onInit");
+            this.numberOfMensajes = this.numberOfMensajes + 1;
             this.mensajes.push({idViaje: res[i].idViaje, nombreViaje: "--"});
           }
         }
@@ -147,7 +153,7 @@ export class HeaderComponent implements OnInit {
         console.log(elem.ciudad); */
       });
     }
-    console.log(this.mensajes[0].idViaje);
+    //console.log(this.mensajes[0].idViaje);
   }
 
   /* Esta pareja de funciones se encarga de limpiar los arrays para que no se acumulen los resultados
