@@ -72,6 +72,67 @@ $gris-encabezado: #F5F5F5;
   margin-right: 12%;
 }
 
+.form-popup-Viajero {
+  display: none;
+  position: fixed;
+  left: 35%;
+  top:23%;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+.form-container {
+  padding: 10px;
+  background-color: white;
+  width: 400px;
+}
+
+.nombre_individuoViajero{
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 5%;
+}
+
+.eleccion1Viajero{
+  display: inline-block;
+  width: 100%;
+  margin-left: 30%;
+}
+
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.form-container .btn {
+  background-color: #4CAF50;
+  color: red;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 10em;
+  margin-bottom:10px;
+  opacity: 0.8;
+  margin-left: 30%;
+}
+
+.form-container .cancel {
+  background-color: rgb(238, 238, 238);
+}
+
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
 /**PARA MÓVIL**/
 @media screen and (max-device-width : 700px){
   .main_container_izq, .main_container_der{

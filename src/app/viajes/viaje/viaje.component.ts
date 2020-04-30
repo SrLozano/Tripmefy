@@ -127,6 +127,17 @@ export class ViajeComponent implements OnInit {
       
 
   }
+  /* Esta función abre el PopUp de pago */
+
+  abridPopUpPagar(){
+    document.getElementById("myFormPagar").style.display = "block";
+  }
+
+  /* Esta función cierra el PopUp de pago */
+
+  close1():void {
+    document.getElementById("myFormPagar").style.display = "none";
+  }
 
   /*  Función que une actualiza en la solicitud de la persona el estado de aceptado a pagado
       Se activa al pinchar sobre el botón de pagar */

@@ -33,7 +33,7 @@
       <button (click)="unirse()" mat-raised-button color="primary" style="height: 3em; width: 10em;">Me uno al viaje</button>
    </div>
    <div *ngIf="payButton" class="button">
-      <button (click)="pagar()" mat-raised-button color="primary" style="height: 3em; width: 10em;">Pagar</button>
+      <button (click)="abridPopUpPagar()" mat-raised-button color="primary" style="height: 3em; width: 10em;">Pagar</button>
    </div>
    <div *ngIf="alreadyPaid" class="button">
       <button mat-stroked-button disabled style="height: 3em; width: 10em;">Ya has pagado</button>
@@ -59,3 +59,29 @@
    <p>Termina el día <span class="bold">{{viaje.limiteUnion}}</span></p>
    <p>Fecha límite de pago: <span class="bold">{{viaje.limitePago}}</span></p>
 </div>
+
+<div class="form-popup-Viajero" id="myFormPagar">
+   <form action="/action_page.php" class="form-container">
+     <h1><b>¡Confirmación para irte de aventura!</b></h1>
+     <br>
+     <div class="mensaje">
+         <div class="nombre_individuoViajero">
+           <b> ¿Estás seguro de que deseas pagar este viaje?</b>
+         </div>
+         <br>
+         <div *ngIf="payButton" class="eleccion1Viajero">
+           <button (click)="pagar()" mat-raised-button color="primary" style="height: 3em; width: 10em;">Pagar</button>
+        </div>
+        <div *ngIf="alreadyPaid" class="eleccion1Viajero">
+         <button mat-stroked-button disabled style="height: 3em; width: 10em;">Ya has pagado</button>
+      </div>
+     </div>
+     <br>
+     <div *ngIf="payButton" class="eleccion1Viajero">
+      <button (click)="close1()" mat-raised-button color="warn" style="height: 3em; width: 10em;">Close</button>
+     </div>
+     <div *ngIf="alreadyPaid" class="eleccion1Viajero">
+      <button (click)="close1()" mat-raised-button color="primary" style="height: 3em; width: 10em;">Buscar más viajes</button>
+   </div>
+   </form>
+ </div>

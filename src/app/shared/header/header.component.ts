@@ -55,13 +55,18 @@ export class HeaderComponent implements OnInit {
     
     if(localStorage.getItem('tipo') == 'viajero'){
       this.numberOfSolicitudes = 0;
+      this.isViajero = true;
       this.firestoreServiceSolicitud.getSolicitudesByUserId(localStorage.getItem('usuario')).subscribe(res=>{
         var i;
         for (i = 0; i<res.length; i++){
           if(res[i].estado == "aceptado"){
             console.log("inicializado:onInit");
             this.numberOfMensajes = this.numberOfMensajes + 1;
-            this.mensajes.push({idViaje: res[i].idViaje, nombreViaje: "--"});
+            
+            this.firestoreServiceViaje.getViaje(res[i].idViaje).then((elem) => {
+              this.mensajes.push({idViaje: "--", nombreViaje: elem.ciudad});
+            });
+            
           }
         }
       });
@@ -142,17 +147,29 @@ export class HeaderComponent implements OnInit {
       });
       document.getElementById("myForm").style.display = "block";
     }else if(localStorage.getItem('tipo') == 'viajero'){
+      this.firestoreServiceSolicitud.getSolicitudesByUserId(localStorage.getItem('usuario')).subscribe(res=>{
+        var i;
+        for (i = 0; i<res.length; i++){
+          if(res[i].estado == "aceptado"){
+            this.mensajes[i].idViaje = res[i].id;
+            
+          }
+        }
+      });
       document.getElementById("myFormViajero").style.display = "block";
     }
+    
     var i;
     for (i = 0; i<this.mensajes.length; i++){
       //console.log(this.mensajes[i].idViaje);
+      /*
       this.firestoreServiceViaje.getViaje(this.mensajes[i].idViaje).then((elem) => {
-        /* console.log(this.mensajes[i].idViaje);
+        console.log(this.mensajes[i].idViaje);
         this.mensajes[i].nombreViaje = elem.ciudad;
-        console.log(elem.ciudad); */
-      });
-    }
+        console.log(elem.ciudad);
+      });*/
+      //this.mensajes = this.firestoreServiceViaje.getViajeName(this.mensajes, this.mensajes[i].idViaje);
+    }  
     //console.log(this.mensajes[0].idViaje);
   }
 
@@ -212,7 +229,16 @@ export class HeaderComponent implements OnInit {
    /*  Función que une actualiza en la solicitud de la persona el estado de aceptado a pagado
       Se activa al pinchar sobre el botón de pagar */
 
-      pagar(){
+      pagar(id:string){
+        var i;
+        for (i = 0; i<this.mensajes.length;i++){
+          if(this.mensajes[i].idViaje == id){
+            // SI QUEREMOS QUE SE ELIMINE EL MENSAJE NADA MAS DARLE AL BOTON DE PAGAR DESCOMENTAR ESTO
+            //this.mensajes.splice(i, 1);  
+            this.numberOfMensajes = this.numberOfMensajes -1;
+          }
+        }
+
         this.firestoreServiceSolicitud.getSolicitudesByTripId(this._route.snapshot.paramMap.get('id')).subscribe(res=>{
           var i;
           var new_solicitud:Solicitud = new Solicitud();

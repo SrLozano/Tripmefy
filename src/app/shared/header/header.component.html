@@ -6,9 +6,12 @@
         <img (click)="toInicio()" src="../../../assets/tripmefy2.png">
     </div>
     <div class="menu-lateral">
-        <p (click)="onNotification()" class="menu"> 
-            <mat-icon matBadge="{{numberOfSolicitudes}}" matBadgeColor="warn">question_answer</mat-icon>
+        <p *ngIf="isViajero" (click)="onNotification()" class="menu"> 
+            <mat-icon matBadge="{{numberOfMensajes}}" matBadgeColor="warn">question_answer</mat-icon>
         </p>
+        <p *ngIf="isViajero == false" (click)="onNotification()" class="menu"> 
+          <mat-icon matBadge="{{numberOfSolicitudes}}" matBadgeColor="warn">question_answer</mat-icon>
+      </p>
         <p (click)="onLogout()" class="menu">Logout</p>
         <p class="menu" (click)="irPerfil()">Perfil</p>
         <p class="menu" routerLink="/logros">Logros</p>
@@ -49,10 +52,10 @@
     <br>
     <div class="mensaje" *ngFor="let mensaje of mensajes">
         <div class="nombre_individuoViajero">
-          <b>{{mensaje.idViaje}} </b>
+          <b>Viaje a {{mensaje.nombreViaje}} aceptado</b>
         </div>
         <div *ngIf="payButton" class="eleccion1Viajero">
-          <button (click)="pagar()" mat-raised-button color="primary" style="height: 3em; width: 10em;">Pagar</button>
+          <button (click)="pagar(mensaje.idViaje)" mat-raised-button color="primary" style="height: 3em; width: 10em;">Pagar</button>
        </div>
        <div *ngIf="alreadyPaid" class="eleccion1Viajero">
         <button mat-stroked-button disabled style="height: 3em; width: 10em;">Ya has pagado</button>
