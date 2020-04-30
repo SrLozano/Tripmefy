@@ -9,7 +9,7 @@
         <p *ngIf="isViajero" (click)="onNotification()" class="menu"> 
             <mat-icon matBadge="{{numberOfMensajes}}" matBadgeColor="warn">question_answer</mat-icon>
         </p>
-        <p *ngIf="isViajero == false" (click)="onNotification()" class="menu"> 
+        <p *ngIf="isViajero == false" (click)="onNotification()" class="menu"> hh
           <mat-icon matBadge="{{numberOfSolicitudes}}" matBadgeColor="warn">question_answer</mat-icon>
       </p>
         <p (click)="onLogout()" class="menu">Logout</p>
@@ -30,16 +30,21 @@
       <h1><b>Tus notificaciones</b></h1>
       <br>
       <div class="mensaje" *ngFor="let solicitud of solicitudes">
+
+        <!--Usamos este if para evitar fallos de inicializaciones multiples del array al actualizar la bbdd -->
+        <div *ngIf="solicitud.idSolicitud != '--'"> 
           <div class="nombre_individuo">
             <b>{{solicitud.nombre}} </b>
           </div>
-          <div class="eleccion1">
+          <div class="eleccion1"> <!--Aceptar la solicitud-->
             <mat-icon (click)="accept(solicitud.idSolicitud)" style="cursor:pointer">done_outline</mat-icon>
           </div>
-          <div class="eleccion2">
+          <div class="eleccion2"> <!--Declinar la solicitud-->
             <mat-icon (click)="aCasa(solicitud.idSolicitud)" style="cursor:pointer">highlight_off</mat-icon>
+          </div>
+          <hr>
         </div>
-        <hr>
+
       </div>
       <br>
       <button type="button" class="btn cancel" (click)="close()">Close</button> 
@@ -51,6 +56,9 @@
     <h1><b>Tus notificaciones</b></h1>
     <br>
     <div class="mensaje" *ngFor="let mensaje of mensajes">
+      
+      <!--Usamos este if para evitar fallos de inicializaciones multiples del array al actualizar la bbdd -->
+      <div *ngIf="mensaje.idViaje != '--'">
         <div class="nombre_individuoViajero">
           <b>Viaje a {{mensaje.nombreViaje}} aceptado</b>
         </div>
@@ -59,8 +67,10 @@
        </div>
        <div *ngIf="alreadyPaid" class="eleccion1Viajero">
         <button mat-stroked-button disabled style="height: 3em; width: 10em;">Ya has pagado</button>
-     </div>
-      <hr>
+        </div>
+        <hr>
+      </div>
+        
     </div>
     <br>
     <button type="button" class="btn cancel" (click)="close1()">Close</button> 
