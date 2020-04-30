@@ -49,10 +49,9 @@ export class HeaderComponent implements OnInit {
   
   ngOnInit(): void {
 
-    /*  Este pedazo de código obtiene el nombre del usuario cuyo organizador que está navegando
-        en esta página ha organizado algún viaje, de manera que posteriormente podamos imprimir
-        las solicitudes que deben ser aceptadas en un viaje por el organizador */
-    
+    /*  Este pedazo de código obtiene el nombre de los nombres de las ciudades de cada una
+    de las solicitudes realizadas por el usuario  */
+
     if(localStorage.getItem('tipo') == 'viajero'){
       this.numberOfSolicitudes = 0;
       this.isViajero = true;
@@ -71,6 +70,10 @@ export class HeaderComponent implements OnInit {
         }
       });
     }
+
+    /*  Este pedazo de código obtiene el nombre del usuario cuyo organizador que está navegando
+        en esta página ha organizado algún viaje, de manera que posteriormente podamos imprimir
+        las solicitudes que deben ser aceptadas en un viaje por el organizador */
     
 
     this.firestoreServiceUser.getUsuario(localStorage.getItem('usuario')).then((elem) => {
@@ -141,7 +144,9 @@ export class HeaderComponent implements OnInit {
           var i; 
           this.numberOfSolicitudes = res.length;
           for (i = 0; i<this.solicitudes.length ; i++){
-            this.solicitudes[i].idSolicitud = res[i].id;
+            if (res[i].estado=="pendiente"){
+              this.solicitudes[i].idSolicitud = res[i].id;
+            }
           }
         });
       });
@@ -152,7 +157,6 @@ export class HeaderComponent implements OnInit {
         for (i = 0; i<res.length; i++){
           if(res[i].estado == "aceptado"){
             this.mensajes[i].idViaje = res[i].id;
-            
           }
         }
       });
