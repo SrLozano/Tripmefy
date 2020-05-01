@@ -1,23 +1,29 @@
 <div class="content">
     <div class="menu-izq">
-        <img src="../../../assets/notificacion.png">
+      <p *ngIf="isViajero" (click)="onNotification()" class="menu-icon"> 
+        <mat-icon matBadge="{{numberOfMensajes}}" matBadgeColor="warn">question_answer</mat-icon>
+      </p>
+      <p *ngIf="isViajero == false" (click)="onNotification()" class="menu-icon">
+        <mat-icon matBadge="{{numberOfSolicitudes}}" matBadgeColor="warn">question_answer</mat-icon>
+      </p>
+      <!-- <img src="../../../assets/notificacion.png">  -->      
     </div>
     <div class="centro">
         <img (click)="toInicio()" src="../../../assets/tripmefy2.png">
     </div>
     <div class="menu-lateral">
-        <p *ngIf="isViajero" (click)="onNotification()" class="menu"> 
+        <p *ngIf="isViajero" (click)="onNotification()" class="menu-icon"> 
             <mat-icon matBadge="{{numberOfMensajes}}" matBadgeColor="warn">question_answer</mat-icon>
         </p>
-        <p *ngIf="isViajero == false" (click)="onNotification()" class="menu"> hh
+        <p *ngIf="isViajero == false" (click)="onNotification()" class="menu-icon"> hh
           <mat-icon matBadge="{{numberOfSolicitudes}}" matBadgeColor="warn">question_answer</mat-icon>
-      </p>
+        </p>
         <p (click)="onLogout()" class="menu">Logout</p>
         <p class="menu" (click)="irPerfil()">Perfil</p>
         <p class="menu" routerLink="/logros">Logros</p>
         <p  class="menu" (click)="irAboutUs()">About Us</p>
         <p  class="menu">Contact</p> 
-        <img src="../../../assets/menu.png">
+        <img src="../../../assets/menu.png" (click)="showMenuMovil()">
     </div>
 </div>
 <div class="titulo">
@@ -51,7 +57,7 @@
     </form>
 </div>
 
-<div class="form-popup-Viajero" id="myFormViajero">
+<div class="form-popup" id="myFormViajero">
   <form action="/action_page.php" class="form-container">
     <h1><b>Tus notificaciones</b></h1>
     <br>
@@ -77,5 +83,19 @@
     </div>
     <br>
     <button type="button" class="btn cancel" (click)="close1()">Close</button> 
+  </form>
+</div>
+
+<div class="form-popup" id="myFormMenu">
+  <form action="/action_page.php" class="form-container">
+    <h1><b>Menu</b></h1>
+    <hr>
+    <p (click)="onLogout()" class="menu">Logout</p>
+    <p class="menu" (click)="irPerfil()">Perfil</p>
+    <p class="menu" routerLink="/logros">Logros</p>
+    <p  class="menu" (click)="irAboutUs()">About Us</p>
+    <p  class="menu">Contact</p>
+
+    <button type="button" class="btn cancel" (click)="showMenuMovil()">Close</button> 
   </form>
 </div>

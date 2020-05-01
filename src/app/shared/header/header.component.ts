@@ -34,6 +34,8 @@ export class HeaderComponent implements OnInit {
     this.titulo = "";
    }
 
+  public menuOpen = false; //indica si el menu esta abierto. (Solo util en vista movil)
+
   public solicitudes = [];
   public numberOfSolicitudes = 0;
   public mensajes = [];
@@ -43,11 +45,10 @@ export class HeaderComponent implements OnInit {
   public isViajero = false; 
 
   usuario:Usuario;
-
-  public payButton = true;
-  public alreadyPaid = false;
   
   ngOnInit(): void {
+
+    /* IMPORTANTE-> El ngOnInit se vuelve a ejecutar con cada modificación de la bbdd en firebase */
 
     /*  Este pedazo de código obtiene el nombre de los nombres de las ciudades de cada una
     de las solicitudes realizadas por el usuario  */
@@ -138,9 +139,11 @@ export class HeaderComponent implements OnInit {
 
   /* Esta función rellena los arrays de solicitudes o de mensajes dependiendo de 
      si el usuario es organizador o viajero, de tal forma que sea posible mostrale
-     notificaciones significativas. De momento SOLO rellenamos aqui los respectivos id
-     con el fin de filtrar informacion en el html, imprimir mas atributos con relación a 
-     esos id o corregir errores como la inicialización duplicada de elementos */
+     notificaciones significativas. 
+
+     IMPORTANTE!! SE USA SOLO CUANDO QUEREMOS OBTENER INFORMACIÓN DE LAS SOLICITUDES DE LA 
+     BASE DE DATOS COMO EL ESTADO DE LA SOLICITUD O LOS IDS. La informacion relativa a estos
+     ids la captamos anteriormente en el OnInit */
   
   onNotification():void{
 
@@ -210,6 +213,19 @@ export class HeaderComponent implements OnInit {
 
   close1():void {
     document.getElementById("myFormViajero").style.display = "none";
+  }
+
+  showMenuMovil():void{
+    if (this.menuOpen == false){
+      document.getElementById("myFormMenu").style.display = "block";
+      this.menuOpen = true;
+    }else if(this.menuOpen == true){
+      document.getElementById("myFormMenu").style.display = "none";
+      this.menuOpen = false;
+    }else{
+      console.log("error->Menu movil");
+    }
+    
   }
 
   /* Función que acepta a alguien en un viaje desde la vista del organizador*/
@@ -290,7 +306,5 @@ export class HeaderComponent implements OnInit {
             }
           }  
         });
-        this.payButton=false;      // No mostramos botón pago si ya ha pagado
-        this.alreadyPaid = true;   // Activamos mensaje de confimración de pago
       }
 }
