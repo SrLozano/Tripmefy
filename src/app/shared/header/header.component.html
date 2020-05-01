@@ -59,13 +59,16 @@
       
       <!--Usamos este if para evitar fallos de inicializaciones multiples del array al actualizar la bbdd -->
       <div *ngIf="mensaje.idViaje != '--'">
-        <div class="nombre_individuoViajero">
+        <div *ngIf="mensaje.estado == 'aceptado' || mensaje.estado == 'pagado'" class="nombre_individuoViajero">
           <b>Viaje a {{mensaje.nombreViaje}} aceptado</b>
         </div>
-        <div *ngIf="payButton" class="eleccion1Viajero">
+        <div *ngIf="mensaje.estado == 'rechazado'" class="nombre_individuoViajero">
+          <b>Lo sentimos, su solicitud para {{mensaje.nombreViaje}} ha sido denegada :(</b>
+        </div>
+        <div *ngIf="mensaje.estado == 'aceptado'" class="eleccion1Viajero">
           <button (click)="pagar(mensaje.idViaje)" mat-raised-button color="primary" style="height: 3em; width: 10em;">Pagar</button>
        </div>
-       <div *ngIf="alreadyPaid" class="eleccion1Viajero">
+       <div *ngIf="mensaje.estado == 'pagado'" class="eleccion1Viajero">
         <button mat-stroked-button disabled style="height: 3em; width: 10em;">Ya has pagado</button>
         </div>
         <hr>

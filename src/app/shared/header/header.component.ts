@@ -52,19 +52,21 @@ export class HeaderComponent implements OnInit {
     /*  Este pedazo de código obtiene el nombre de los nombres de las ciudades de cada una
     de las solicitudes realizadas por el usuario  */
 
+    /*----------------- CASO VIAJERO--------------------- */
+
     if(localStorage.getItem('tipo') == 'viajero'){
       this.numberOfSolicitudes = 0;
       this.isViajero = true;
       this.firestoreServiceSolicitud.getSolicitudesByUserId(localStorage.getItem('usuario')).subscribe(res=>{
         var i;
         for (i = 0; i<res.length; i++){
-          if(res[i].estado == "aceptado" || res[i].estado == "pagado"){
+          if(res[i].estado != "pendiente"){
             this.numberOfMensajes = this.numberOfMensajes + 1;
             console.log("inicializado:onInit: ", res[i].estado);
             
             this.firestoreServiceViaje.getViaje(res[i].idViaje).then((elem) => {
               console.log("inicializado:onInit: ", elem.ciudad);
-              this.mensajes.push({idViaje: "--", nombreViaje: elem.ciudad});
+              this.mensajes.push({idViaje: "--", nombreViaje: elem.ciudad, estado: "--"});
             });
             
           }
@@ -75,8 +77,9 @@ export class HeaderComponent implements OnInit {
     /*  Este pedazo de código obtiene el nombre del usuario cuyo organizador que está navegando
         en esta página ha organizado algún viaje, de manera que posteriormente podamos imprimir
         las solicitudes que deben ser aceptadas en un viaje por el organizador */
-    
 
+    /*----------------- CASO ORGANIZADOR--------------------- */
+    
     this.firestoreServiceUser.getUsuario(localStorage.getItem('usuario')).then((elem) => {
       
       var organizadorEmail = elem.email;
@@ -141,6 +144,8 @@ export class HeaderComponent implements OnInit {
   
   onNotification():void{
 
+    /*----------------- CASO ORGANIZADOR--------------------- */
+
     if(localStorage.getItem('tipo') == 'organizador'){
       this.firestoreServiceUser.getUsuario(localStorage.getItem('usuario')).then((elem) => {
         var organizadorEmail = elem.email;
@@ -165,13 +170,17 @@ export class HeaderComponent implements OnInit {
         });
       });
       document.getElementById("myForm").style.display = "block";
+
+    /*----------------- CASO VIAJERO--------------------- */
+
     }else if(localStorage.getItem('tipo') == 'viajero'){
       this.firestoreServiceSolicitud.getSolicitudesByUserId(localStorage.getItem('usuario')).subscribe(res=>{
         var i;
         console.log("OnNoti...................")
         for (i = 0; i<res.length; i++){
-          if((res[i].estado == "aceptado" || res[i].estado == "pagado") && this.mensajes[i].idViaje == "--"){
+          if((res[i].estado != "pendiente") && this.mensajes[i].idViaje == "--"){
             this.mensajes[i].idViaje = res[i].idViaje;
+            this.mensajes[i].estado = res[i].estado;
           }
         }
         //BORRAMOS POSIBLES REPETICIONES DE PARAMETROS DEL ARRAY DEBIDO AL ONINIT
@@ -264,7 +273,8 @@ export class HeaderComponent implements OnInit {
           if(this.mensajes[i].idViaje == id){
             // SI QUEREMOS QUE SE ELIMINE EL MENSAJE NADA MAS DARLE AL BOTON DE PAGAR DESCOMENTAR ESTO
             //this.mensajes.splice(i, 1);  
-            this.numberOfMensajes = this.numberOfMensajes -1;
+            //this.numberOfMensajes = 0;
+            this.mensajes[i].estado = "pagado";
           }
         }
 

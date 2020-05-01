@@ -192,7 +192,7 @@ export class ViajeComponent implements OnInit {
       tripAux.servicios = elem.servicios;
       tripAux.tlf = elem.tlf;
       tripAux.unidas = elem.unidas;
-      tripAux.viajeros = elem.viajeros;
+      tripAux.viajeros = elem.viajeros; //este valor de momento no es de utilidad
 
       this.viaje = tripAux;
 
