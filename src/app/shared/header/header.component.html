@@ -15,7 +15,7 @@
         <p *ngIf="isViajero" (click)="onNotification()" class="menu-icon"> 
             <mat-icon matBadge="{{numberOfMensajes}}" matBadgeColor="warn">question_answer</mat-icon>
         </p>
-        <p *ngIf="isViajero == false" (click)="onNotification()" class="menu-icon"> hh
+        <p *ngIf="isViajero == false" (click)="onNotification()" class="menu-icon">
           <mat-icon matBadge="{{numberOfSolicitudes}}" matBadgeColor="warn">question_answer</mat-icon>
         </p>
         <p (click)="onLogout()" class="menu">Logout</p>

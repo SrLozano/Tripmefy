@@ -18,9 +18,6 @@ import { FormsModule } from '@angular/forms';
 })
 export class PedirImagenComponent implements OnInit {
 
-
-  
-
   @ViewChild('imageUser') inputImageUser;
   uploadPercent: Observable<number>;
   urlImage: Observable<string>;
@@ -52,8 +49,6 @@ export class PedirImagenComponent implements OnInit {
         
     }
       )).subscribe();
-    
-
     
     
    }

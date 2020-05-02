@@ -54,6 +54,8 @@ export class ViajeComponent implements OnInit {
 
   public links: string[];
 
+  public nombreOrganizador;
+
 
   public show = true;
   public payButton = false;
@@ -204,6 +206,13 @@ export class ViajeComponent implements OnInit {
           for (i = 0; i<res.length ; i++){
             this.slides3.push({src: res[i].url});
           }
+        if(this.slides3.length==0){
+          this.slides3.push({src: tripAux.img});
+        }
+      });
+
+      this.firestoreServiceUser.getUsuariosByEmail(tripAux.email).subscribe(res=>{
+        this.nombreOrganizador = res[0].nombre;
       });
 
       /* Esta función devuelve el array de solicitudes de un viaje */
