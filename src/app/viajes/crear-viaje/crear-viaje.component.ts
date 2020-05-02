@@ -91,6 +91,7 @@ export class CrearViajeComponent implements OnInit {
       newViaje.servicios += 'Comidas,';
     }
     alert("El viaje se ha creado correctamente");
+    this.viajeService.createViaje(newViaje);
     this.route.navigate(['/mis-viajes']);
   }
 
