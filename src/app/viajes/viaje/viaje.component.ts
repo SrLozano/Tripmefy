@@ -195,6 +195,7 @@ export class ViajeComponent implements OnInit {
       tripAux.tlf = elem.tlf;
       tripAux.unidas = elem.unidas;
       tripAux.viajeros = elem.viajeros; //este valor de momento no es de utilidad
+      var tripAux2 = elem;
 
       this.viaje = tripAux;
 
@@ -238,6 +239,7 @@ export class ViajeComponent implements OnInit {
               if(this.solicitudes[i].idUsuario == res[j].id && (this.solicitudes[i].estado=='aceptado' || this.solicitudes[i].estado=='pagado')){ 
                 // Guardamos las imagenes para el carousel
                 this.usuarios_viaje.push({src: res[j].image});
+                
                 if (res[j].tipo == 'viajero') {
                   this.img_usuarios_viaje.push(['perfil-viajero',res[j].id]);
                 }else{
@@ -245,6 +247,8 @@ export class ViajeComponent implements OnInit {
                 }
               }
             } 
+            tripAux2.unidas = String(this.usuarios_viaje.length);
+            this.firestoreServiceViaje.updateViaje(tripAux2);
           }
         });    
       });

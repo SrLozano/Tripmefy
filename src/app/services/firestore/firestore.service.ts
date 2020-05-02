@@ -55,6 +55,7 @@ export class FirestoreService {
   
   public updateViaje(data:Viaje)
   {
+    console.log("hola");
     return this.afs.doc(data.id).set(data);
   }
 
