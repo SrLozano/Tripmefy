@@ -107,36 +107,100 @@ export class UnirsePaisComponent implements OnInit {
       {
         "pais": "Canadá",
         "imagen": "cn.jpg"
-      }
+      },
+      {
+        "pais": "EEUU",
+        "imagen": "eeuu.png"
+      },
     ];
     americaCentro = [
       {
-        "pais": "Panamá",
-        "imagen": "pn.png"
-      }
+        "pais": "Salvador",
+        "imagen": "slv.png"
+      },
+      {
+        "pais": "Costa Rica",
+        "imagen": "csr.png"
+      },
+      {
+        "pais": "Guatemala",
+        "imagen": "gt.png"
+      },
     ];
     americaSur = [
       {
         "pais": "Argentina",
         "imagen": "ar.png"
-      }
+      },
+      {
+        "pais": "Colombia",
+        "imagen": "cl.png"
+      },
+      {
+        "pais": "Venezuela",
+        "imagen": "vn.png"
+      },
+      {
+        "pais": "Perú",
+        "imagen": "pr.png"
+      },
+      {
+        "pais": "Ecuador",
+        "imagen": "ec.png"
+      },
     ];
     asia = [
       {
         "pais": "China",
         "imagen": "ch.png"
-      }
+      },
+      {
+        "pais":  "Kazajistán",
+        "imagen": "kj.png"
+      },
+      {
+        "pais": "Corea del Norte",
+        "imagen": "cn.png"
+      },
+      {
+        "pais": "Corea del Sur",
+        "imagen": "cs.png"
+      },
+      {
+        "pais": "Japón",
+        "imagen": "jp.png"
+      },
     ];
     africa = [
       {
         "pais": "Egipto",
         "imagen": "eg.png"
-      }
+      },
+      {
+        "pais": "Argelia",
+        "imagen": "arg.png"
+      },
+      {
+        "pais": "Camerún",
+        "imagen": "cm.png"
+      },
+      {
+        "pais": "Burkina Faso",
+        "imagen": "bf.png"
+      },
+      {
+        "pais": "Marruecos",
+        "imagen": "mr.png"
+      },
     ];
     oceania = [
       {
         "pais": "Australia",
         "imagen"  : "au.png"
+      },
+      {
+        "pais": "Nueva Zelanda",
+        "imagen"  : "nz.png"
       }
     ];
     europa = [
@@ -153,8 +217,8 @@ export class UnirsePaisComponent implements OnInit {
         "imagen": "fr.png"
       },
       {
-        "pais": "Hungría",
-        "imagen": "hu.png"
+        "pais": "Suecia",
+        "imagen": "su.png"
       }
     ];
     
