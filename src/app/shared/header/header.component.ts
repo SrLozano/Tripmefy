@@ -62,12 +62,27 @@ export class HeaderComponent implements OnInit {
         var i;
         for (i = 0; i<res.length; i++){
           if(res[i].estado != "pendiente"){
-            this.numberOfMensajes = this.numberOfMensajes + 1;
-            console.log("inicializado:onInit: ", res[i].estado);
-            
-            this.firestoreServiceViaje.getViaje(res[i].idViaje).then((elem) => {
-              console.log("inicializado:onInit: ", elem.ciudad);
-              this.mensajes.push({idViaje: "--", nombreViaje: elem.ciudad, estado: "--"});
+            console.log("inicializado:onInit (getSolicitud): ", res[i].id);
+            var añadir=true;
+            var kk;
+            for (kk=0; kk<this.mensajes.length;kk++){
+              if(res[i].id == this.mensajes[kk].idSolicitud){
+                añadir = false;
+              }
+            }if(añadir==true){
+              this.numberOfMensajes = this.numberOfMensajes + 1;
+              this.mensajes.push({idSolicitud: res[i].id, idViaje: res[i].idViaje, estado: res[i].estado, nombreViaje: "--"});
+            }
+
+            this.firestoreServiceViaje.getViaje(res[i].idViaje).then((elem) => {            
+              var j;
+              for (j=0; j<this.mensajes.length;j++){
+                if(this.mensajes[j].idViaje == elem.id && this.mensajes[j].nombreViaje == "--"){
+                  console.log("inicializado:onInit (getViaje): ", elem.ciudad);
+                  this.mensajes[j].nombreViaje = elem.ciudad;
+                }
+              }
+              
             });
             
           }
@@ -88,10 +103,27 @@ export class HeaderComponent implements OnInit {
         var i; 
         for (i = 0; i<res.length ; i++){
           if (res[i].estado=="pendiente"){
-            this.numberOfSolicitudes = this.numberOfSolicitudes + 1;
+            console.log("inicializado:onInit (getSolicitud): ", res[i].id);
+            var añadir=true;
+            var kk;
+            for (kk=0; kk<this.solicitudes.length;kk++){
+              if(res[i].id == this.solicitudes[kk].idSolicitud){
+                añadir = false;
+              }
+            }
+            if(añadir==true){
+              this.numberOfSolicitudes = this.numberOfSolicitudes + 1;
+              this.solicitudes.push({nombre: "--", idSolicitud: res[i].id, idViajero: res[i].idUsuario});
+            }
             //Nos quedamos con el nombre y el id del usuario de nuestras solicitudes:
             this.firestoreServiceUser.getUsuario(res[i].idUsuario).then((elem) => { 
-              this.solicitudes.push({nombre: elem.nombre, idSolicitud: "--"});
+              var j;
+              for (j=0; j<this.solicitudes.length;j++){
+                if(this.solicitudes[j].idViajero == elem.id && this.solicitudes[j].nombre == "--"){
+                  this.solicitudes[j].nombre = elem.nombre;
+                  console.log("inicializado:onInit (getUser): ", elem.nombre);
+                }
+              }
             });
           }
         }
@@ -150,55 +182,13 @@ export class HeaderComponent implements OnInit {
     /*----------------- CASO ORGANIZADOR--------------------- */
 
     if(localStorage.getItem('tipo') == 'organizador'){
-      this.firestoreServiceUser.getUsuario(localStorage.getItem('usuario')).then((elem) => {
-        var organizadorEmail = elem.email;
-        this.firestoreServiceSolicitud.getSolicitudesByOrganizadorEmail(organizadorEmail).subscribe(res=>{
-          var i; 
-          for (i = 0; i<this.solicitudes.length ; i++){ //Actualizamos el id de la solicitud en nuestro array
-            if (res[i].estado=="pendiente" && this.solicitudes[i].idSolicitud == "--"){
-              this.solicitudes[i].idSolicitud = res[i].id;
-            }
-          }
-          //BORRAMOS POSIBLES REPETICIONES DE PARAMETROS DEL ARRAY DEBIDO AL ONINIT
-          var j;
-          var k;
-          for (j = 0; j<this.solicitudes.length ; j++){
-            for (k = 0; k<this.solicitudes.length ; k++){
-              if(j!=k && this.solicitudes[j].idSolicitud == this.solicitudes[k].idSolicitud){
-                this.solicitudes.splice(j, 1);
-                console.log("delete", j, k);
-              }
-            }
-          }
-        });
-      });
+      
       document.getElementById("myForm").style.display = "block";
 
     /*----------------- CASO VIAJERO--------------------- */
 
     }else if(localStorage.getItem('tipo') == 'viajero'){
-      this.firestoreServiceSolicitud.getSolicitudesByUserId(localStorage.getItem('usuario')).subscribe(res=>{
-        var i;
-        console.log("OnNoti...................")
-        for (i = 0; i<res.length; i++){
-          if((res[i].estado != "pendiente") && this.mensajes[i].idViaje == "--"){
-            this.mensajes[i].idViaje = res[i].idViaje;
-            this.mensajes[i].estado = res[i].estado;
-          }
-        }
-        //BORRAMOS POSIBLES REPETICIONES DE PARAMETROS DEL ARRAY DEBIDO AL ONINIT
-        var j;
-        var k;
-        for (j = 0; j<this.mensajes.length ; j++){
-          for (k = 0; k<this.mensajes.length ; k++){
-            console.log(j,k);
-            if(j!=k && this.mensajes[j].idviaje == this.mensajes[k].idViaje){
-              this.mensajes.splice(k, 1);
-              console.log("delete", j, k);
-            }
-          }
-        }
-      });
+      
       document.getElementById("myFormViajero").style.display = "block";
     }
     //console.log(this.mensajes[0].idViaje);
