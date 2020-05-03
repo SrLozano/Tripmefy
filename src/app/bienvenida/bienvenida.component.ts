@@ -11,7 +11,7 @@ export class BienvenidaComponent implements OnInit {
 
   textoMotivacion = "";
   textoAccion = "";
-
+  organizador:boolean;
 
   textoViajero = [
     {
@@ -57,10 +57,12 @@ export class BienvenidaComponent implements OnInit {
       case 'viajero':
         this.textoMotivacion = this.textoViajero[0]["motivacion"];
         this.textoAccion = this.textoViajero[0]["accion"];
+        this.organizador = false;
         break;
       case 'organizador':
       this.textoMotivacion = this.textoOrganizador[0]["motivacion"];
       this.textoAccion = this.textoOrganizador[0]["accion"];
+      this.organizador = true;
         break;
       default:
       this.textoMotivacion = this.textoViajero[0]["motivacion"];

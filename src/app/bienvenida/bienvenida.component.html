@@ -3,7 +3,12 @@
     <div class="tarjeta">
         <h1>¡ Bienvenido !</h1>
         <div class="principal">
-            <iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/_xJWESxbP0k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="videoViajero" *ngIf="organizador == false">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/nWrR_AraVUE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="videoOrganizador" *ngIf="organizador == true">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/QHfSASXi-nA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
             <p>{{textoMotivacion}}</p>
         </div>
         <div class="inferior">
