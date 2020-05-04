@@ -71,11 +71,7 @@ export class RegistroComponent implements OnInit {
       this.route.navigate(['/bienvenida']);
 
     }).catch(err => {
-      document.getElementById("error5").style.display="block";      
-      document.getElementById("error1").style.display="none";
-      document.getElementById("error2").style.display="none";
-      document.getElementById("error3").style.display="none";
-      document.getElementById("error4").style.display="none";
+      document.getElementById("error5").style.display="block";
       document.getElementById("email").style.color="red";
     });
   }
@@ -89,7 +85,6 @@ export class RegistroComponent implements OnInit {
       document.getElementById("error2").style.display="none";
       document.getElementById("error3").style.display="none";
       document.getElementById("error4").style.display="none";
-      document.getElementById("error5").style.display="none";
 
       return true;
     }else if(this.password.localeCompare(this.password2) != 0){
@@ -99,7 +94,6 @@ export class RegistroComponent implements OnInit {
       document.getElementById("error2").style.display="none";
       document.getElementById("error3").style.display="none";
       document.getElementById("error4").style.display="block";
-      document.getElementById("error5").style.display="none";
 
         return true;
     }else if(this.password.length<8){
@@ -107,7 +101,6 @@ export class RegistroComponent implements OnInit {
       document.getElementById("error2").style.display="block";
       document.getElementById("error3").style.display="none";
       document.getElementById("error4").style.display="none";
-      document.getElementById("error5").style.display="none";
 
       return true;
     }else if(!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$/.test(this.email) ){
@@ -115,7 +108,6 @@ export class RegistroComponent implements OnInit {
       document.getElementById("error2").style.display="none";
       document.getElementById("error3").style.display="block";
       document.getElementById("error4").style.display="none";
-      document.getElementById("error5").style.display="none";
       
       return true;
     }else{
@@ -125,7 +117,6 @@ export class RegistroComponent implements OnInit {
         document.getElementById("error2").style.display="none";
         document.getElementById("error3").style.display="none";
         document.getElementById("error4").style.display="none";
-        document.getElementById("error5").style.display="none";
 
         return false;
     } 
