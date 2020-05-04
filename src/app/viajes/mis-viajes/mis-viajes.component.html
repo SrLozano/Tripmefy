@@ -8,7 +8,7 @@
                 <!--<input type="submit" value="Submit" (click)="busqueda">-->
             </form>
         </div>
-        <img id="img-f" src="../../../assets/filtro.png">
+        <img id="img-f" src="./assets/filtro.png">
         <select id="select-f" [(ngModel)]="precio" (change)="filtrar()">
            
             <option value="+ 500€">Todos</option>
@@ -24,11 +24,11 @@
 <div class="content">
 
     <div class="nuevo" *ngIf="comprobarViajero()" [routerLink] = "['/unirse-continente']">
-        <img id="mas" src="../../../assets/nuevo.png">
+        <img id="mas" src="./assets/nuevo.png">
     </div>
     
     <div class="nuevo" *ngIf="comprobarOrganizador()" [routerLink] = "['/crear-viaje']">
-        <img id="mas" src="../../../assets/nuevo.png">
+        <img id="mas" src="./assets/nuevo.png">
     </div>
 
     <div class="pais" *ngFor="let ciudad of escogidas"  [routerLink]="['/viaje/', ciudad['id'] ]">
@@ -41,10 +41,10 @@
         <div class="info">
             <p class="destacado">{{ciudad.precio}}</p>
             <div class="personas">
-                <img src="../../../assets/usuario.png">
+                <img src="./assets/usuario.png">
                 <p>{{ciudad.unidas}}/{{ciudad.maximo}}</p>
             </div>
-            <img src="../../../assets/compartir.png">
+            <img src="./assets/compartir.png">
         </div> 
             
     </div>

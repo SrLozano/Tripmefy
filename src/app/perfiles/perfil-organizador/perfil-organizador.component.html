@@ -42,7 +42,7 @@
    </div>
    <div id="div3">
       <div id="opinions">
-         <img src="../../../assets/plan.png" style="height: 5%; width: 5%; vertical-align: middle; margin-right: 2%">
+         <img src="./assets/plan.png" style="height: 5%; width: 5%; vertical-align: middle; margin-right: 2%">
          <span class="bold_text">{{usuario.tipo}}</span>
          <br>
          <br>
@@ -50,17 +50,17 @@
          <p *ngIf="usuario.estrellas == '-1'"> Este usuario no tiene valoraciones aún </p>
          <div class="stars">
             <span *ngFor="let i of Arr(stars).fill(1)" >
-               <img src="../../../assets/star.png" class="llena" style="height: 5%; width: 5%; vertical-align: middle; margin-right: 2%">
+               <img src="./assets/star.png" class="llena" style="height: 5%; width: 5%; vertical-align: middle; margin-right: 2%">
             </span>  
             <span *ngFor="let i of Arr(emptystars).fill(1)" >
-               <img src="../../../assets/empty_star.png" class="vacia" style="height: 5%; width: 5%; vertical-align: middle; margin-right: 2%;">    
+               <img src="./assets/empty_star.png" class="vacia" style="height: 5%; width: 5%; vertical-align: middle; margin-right: 2%;">    
             </span> 
             <app-boton *ngIf="permisoOpinar" texto="Puntua a este usuario" (click)="puntuar()"></app-boton>
          </div>
          <!--OPINIONES-->
          <div class="titulo-opinion">
             <span class="name comentarios_usuario">Los usuarios opinaron:</span>
-            <img src="../../../assets/comentario.png" *ngIf="permisoOpinar" (click)="comentar()">
+            <img src="./assets/comentario.png" *ngIf="permisoOpinar" (click)="comentar()">
          </div>
          <div class="comment" *ngFor="let comment of comentarios">
               <div class="comment-division-1">               
