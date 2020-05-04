@@ -9,6 +9,8 @@
   <div class="lateral-drch">
     <app-volver class="volver" (click)='back()'></app-volver>
     <h1>INICIO DE SESIÓN</h1>
+    <div id="error1"><p>Introduce los campos obligatorios</p></div>
+    <div id="error2"><p>Email o contraseña incorrectos</p></div>
     <form (ngSubmit)="onLogin()">
       <div class="inicio_datos">
         <mat-form-field class="input">

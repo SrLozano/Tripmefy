@@ -33,21 +33,29 @@ export class InicioSesionComponent implements OnInit {
     var form:Usuario = new Usuario();
     form.email = this.email;
     form.password = this.password;
-    this.authSvc.loginByEmail(form);
-    this.userService.getUsuariosByEmail(this.email).subscribe(res=>{
-      var i;
-        for(i=0; i<res.length; i++){ //nunca va a haber más de un usuario con ese email
-          localStorage.setItem("usuario", res[i].id);
-          localStorage.setItem("tipo", res[i].tipo);
-        }
-      })  
+    this.authSvc.loginByEmail(form)
+    .then((res)=>{
+      document.getElementById("error2").style.display="none";
+      this.userService.getUsuariosByEmail(this.email).subscribe(res=>{
+        var i;
+          for(i=0; i<res.length; i++){ //nunca va a haber más de un usuario con ese email
+            localStorage.setItem("usuario", res[i].id);
+            localStorage.setItem("tipo", res[i].tipo);
+          }
+        });
+        this.route.navigate(['/mis-viajes']);
+    }).catch(err =>{
+      document.getElementById("error2").style.display="block";
+    })
+    
   }
 
   checkFields(){
     if (this.password==='' || this.email === '' || !/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$/.test(this.email)){
-
+      document.getElementById("error1").style.display="block";
       return true;
     }else{
+      document.getElementById("error1").style.display="none";
         return false;
     } 
   }

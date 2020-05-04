@@ -28,14 +28,12 @@ export class AuthService {
 
   loginByEmail(user: IUsuario){
     const {email, password} = user;
+    return new Promise ((resolve, reject)=>{
     this.afAuth.signInWithEmailAndPassword(email, password)
-    .then(res => {
-      console.log('Successfuly', res)
-      this.route.navigate(['/mis-viajes'])
-    })
-    .catch(err => 
-      console.log('Error', err)
-    )
+      .then(userData => 
+        resolve(userData),
+        err => reject(err));
+      });
   }
 
   logOut(){
