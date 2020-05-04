@@ -1,6 +1,7 @@
 import { Component, Input,OnInit , Output, EventEmitter} from "@angular/core";
 import { trigger, transition, style, animate } from "@angular/animations";
 import { ActivatedRoute }  from '@angular/router';
+import { Router } from '@angular/router'; //Para redirigir a una página
 
 @Component({
   selector: "carousel",
@@ -36,8 +37,9 @@ export class CarouselComponent {
   primero = "";
   segundo = "";
 
-  constructor(private _activatedRoute: ActivatedRoute) {
-
+  constructor(private _activatedRoute: ActivatedRoute,
+    private route: Router) {
+    
   }
 
   onPreviousClick() {
@@ -68,16 +70,16 @@ export class CarouselComponent {
       //var datos = window.location.pathname;
       //var routerLink = datos.split('/');
 
-      var primero = this.links[this.currentSlide][0] + '/'; //primero corresponde a la primera posicion del slide donde estemos
+      var primero = '/' + this.links[this.currentSlide][0] + '/'; //primero corresponde a la primera posicion del slide donde estemos
       var segundo = this.links[this.currentSlide][1]
       //var segundo = 'yhySIyMyRGwIqtwEeuZV';
       this.primero = primero;
       this.segundo = segundo;
 
 
-      var destino = origin + primero + segundo;
-
-      window.location.assign(destino);
+      var destino = primero + segundo;
+      
+      this.route.navigate([destino]);
     }
 
   }

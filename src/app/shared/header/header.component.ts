@@ -139,7 +139,7 @@ export class HeaderComponent implements OnInit {
     //  Obtenemos la parte de la izquierda de la url
     var origin = window.location.origin + '/'; 
     var primero;
-
+    /**
     if(localStorage.getItem('tipo') == 'organizador'){
       primero = 'perfil-organizador/';
     }else{
@@ -149,16 +149,23 @@ export class HeaderComponent implements OnInit {
     var segundo = localStorage.getItem('usuario');
     var destino = origin + primero + segundo;
     window.location.assign(destino);
+    **/
+   var perfil = localStorage.getItem('usuario');
+   if(localStorage.getItem('tipo') == 'organizador'){
+     var ruta = '/perfil-organizador/' + perfil;
+    this.route.navigate([ruta]);
+   }else{
+    var ruta = '/perfil-viajero/' + perfil;
+    this.route.navigate([ruta]);
+   }
   }
 
   /* Redirigir a la página de privacidad pulsando sobre about us*/
 
   irAboutUs(){ 
     //  Obtenemos la parte de la izquierda de la url
-    var origin = window.location.origin + '/'; 
-    var primero = "privacidad" ;
-    var destino = origin + primero
-    window.location.assign(destino);
+  
+    this.route.navigate(['/privacidad']);
   }
 
   toInicio(){

@@ -11,7 +11,7 @@
                 <input type="text" id="fname" name="fname" placeholder="Buscar pais..." [(ngModel)]="buscar" (change)="busqueda()" onclick="reset()"><br><br>
             </form>
         </div>
-        <img id="img-f" src="../../../assets/filtro.png">
+        <img id="img-f" src="./assets/filtro.png">
         <!--
         <select id="select-f">
             <option value=any selected>Filter Post</option>
@@ -37,7 +37,7 @@
 </div>
 <div class="content" *ngIf="hayPais()">
     <div class="pais"  *ngFor="let pais of escogidos"  [routerLink]="['/unirse-ciudad/', pais['pais'] ]">
-        <img src="../../../assets/banderas/{{pais['imagen']}}" >
+        <img src="./assets/banderas/{{pais['imagen']}}" >
         <p class="destacado">{{ pais["pais"] }}</p>         
     </div> 
 </div>

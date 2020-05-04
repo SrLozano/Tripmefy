@@ -5,7 +5,7 @@
         <app-pedir-imagen id="pedir-imagen" directiva="users" (cerrar)="cerrarPopup($event, 'pedir-imagen')" (url)="setImagen($event)"></app-pedir-imagen>
         <div id="allContent">
             <div class="cerrar">
-                <img src="../../../assets/cerrar.png" id="close" (click)="cerrar()">
+                <img src="./assets/cerrar.png" id="close" (click)="cerrar()">
             </div>
 
             <div class="elementos">
@@ -18,12 +18,12 @@
                     </textarea>
                 </div>
 
-                <img src="../../../assets/camera.png" id="normal" texto="cambiar imagen de perfil" (click)="chooseImagen()">
+                <img src="./assets/camera.png" id="normal" texto="cambiar imagen de perfil" (click)="chooseImagen()">
                 
                 <div  id="movil">
                     <div class="boton-img">
                         <h2 id="foto">Cambiar foto de perfil</h2>
-                        <img src="../../../assets/camera.png" (click)="chooseImagen()"> Examinar
+                        <img src="./assets/camera.png" (click)="chooseImagen()"> Examinar
                     </div>
                 </div>
                 

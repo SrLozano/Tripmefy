@@ -11,7 +11,7 @@
                 <!--<input type="submit" value="Submit" (click)="busqueda">-->
             </form>
         </div>
-        <img id="img-f" src="../../../assets/filtro.png">
+        <img id="img-f" src="./assets/filtro.png">
         <select id="select-f" [(ngModel)]="precio" (change)="filtrar()">
            
             <option value="+ 500€">Todos</option>
@@ -38,10 +38,10 @@
         <div class="info">
             <p class="destacado">{{ciudad.precio}} €</p>
             <div class="personas">
-                <img src="../../../assets/usuario.png">
+                <img src="./assets/usuario.png">
                 <p>{{ciudad.unidas}}/{{ciudad.maximo}}</p>
             </div>
-            <img src="../../../assets/compartir.png">
+            <img src="./assets/compartir.png">
         </div> 
             
     </div>

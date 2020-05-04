@@ -16,16 +16,16 @@
             <div class="little_container_izq">
 
                <span class="name">{{usuario.nombre}}</span>
-               <img (click)="editar()" id="img-editar" src="../../../assets/engranaje.png" *ngIf="permisoEditar">
+               <img (click)="editar()" id="img-editar" src="./assets/engranaje.png" *ngIf="permisoEditar">
 
                <div>
                   <span class="texto_perfil">{{usuario.ubicacion}}</span>
-                  <img src="../../../assets/location.png" style="height: 7%; width: 7%;" >
+                  <img src="./assets/location.png" style="height: 7%; width: 7%;" >
                </div>
             </div>
             <div class="little_container_der">
                <img *ngIf="usuario.image != ''" src="{{usuario.image}}" style="display: inline-block; max-width: 200px; max-height: 200px; " >
-               <img *ngIf="usuario.image == ''" src="../../../assets/usuario.png" style="display: inline-block; max-width: 100px; max-height: 100px; ">
+               <img *ngIf="usuario.image == ''" src="./assets/usuario.png" style="display: inline-block; max-width: 100px; max-height: 100px; ">
             </div>
 
 
@@ -43,7 +43,7 @@
    </div>
    <div id="div3">
       <div id="opinions">
-         <img src="../../../assets/telegram.png" style="height: 5%; width: 5%; vertical-align: middle; margin-right: 2%">
+         <img src="./assets/telegram.png" style="height: 5%; width: 5%; vertical-align: middle; margin-right: 2%">
          <span class="bold_text">{{usuario.tipo}}</span>
          <br>
          <br>
@@ -51,17 +51,17 @@
          <p *ngIf="usuario.estrellas == '-1'"> Este usuario no tiene valoraciones aún </p>
          <div class="stars">
             <span *ngFor="let i of Arr(stars).fill(1)" >
-               <img src="../../../assets/star.png" class="llena" style="height: 5%; width: 5%; vertical-align: middle; margin-right: 2%">
+               <img src="./assets/star.png" class="llena" style="height: 5%; width: 5%; vertical-align: middle; margin-right: 2%">
             </span>
             <span *ngFor="let i of Arr(emptystars).fill(1)" >
-               <img src="../../../assets/empty_star.png" class="vacia" style="height: 5%; width: 5%; vertical-align: middle; margin-right: 2%;">
+               <img src="./assets/empty_star.png" class="vacia" style="height: 5%; width: 5%; vertical-align: middle; margin-right: 2%;">
             </span>
             <app-boton *ngIf="permisoOpinar" texto="Puntua a este usuario" (click)="puntuar()"></app-boton>
          </div>
          <!--OPINIONES-->
          <div class="titulo-opinion">
             <span class="name comentarios_usuario">Los usuarios opinaron:</span>
-            <img src="../../../assets/comentario.png" *ngIf="permisoOpinar" (click)="comentar()">
+            <img src="./assets/comentario.png" *ngIf="permisoOpinar" (click)="comentar()">
          </div>
          <div class="comment" *ngFor="let comment of comentarios">
               <div class="comment-division-1">

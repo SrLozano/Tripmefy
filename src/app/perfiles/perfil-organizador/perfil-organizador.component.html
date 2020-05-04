@@ -15,16 +15,16 @@
             <div class="little_container_izq">
                
                <span class="name">{{usuario.nombre}}</span>
-               <img (click)="editar()" id="img-editar" src="../../../assets/engranaje.png" *ngIf="permisoEditar"> 
+               <img (click)="editar()" id="img-editar" src="./assets/engranaje.png" *ngIf="permisoEditar"> 
 
                <div>
                   <span class="texto_perfil">{{usuario.ubicacion}}</span>
-                  <img src="../../../assets/location.png" style="height: 7%; width: 7%;" >
+                  <img src="./assets/location.png" style="height: 7%; width: 7%;" >
                </div>
             </div>
             <div class="little_container_der">
                <img *ngIf="usuario.image != ''" src="{{usuario.image}}" style="display: inline-block; max-width: 200px; max-height: 200px; " >
-               <img *ngIf="usuario.image == ''" src="../../../assets/usuario.png" style="display: inline-block; max-width: 100px; max-height: 100px; ">
+               <img *ngIf="usuario.image == ''" src="./assets/usuario.png" style="display: inline-block; max-width: 100px; max-height: 100px; ">
             </div>
             
             
