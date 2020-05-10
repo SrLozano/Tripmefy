@@ -55,6 +55,7 @@ export class ViajeComponent implements OnInit {
   public links: string[];
 
   public nombreOrganizador;
+  public idOrganizador;
 
 
   public show = true;
@@ -73,7 +74,7 @@ export class ViajeComponent implements OnInit {
 
   private db:AngularFirestore;
   constructor(private _route:ActivatedRoute,
-              private _router: Router,
+              private route: Router,
               private storage: AngularFireStorage,
               private firestoreServiceUser: UsuarioFirestoreService,
               private firestoreServiceViaje: FirestoreService,
@@ -158,6 +159,12 @@ export class ViajeComponent implements OnInit {
     });
   }
 
+irOrganizador(){
+  var ruta = '/perfil-organizador/' + this.idOrganizador;
+  this.route.navigate([ruta]);
+}
+
+
   ngOnInit(): void {
 
     // El viaje a Roma es: lWdwEvTbnVAptd1xpr3Z
@@ -214,6 +221,7 @@ export class ViajeComponent implements OnInit {
 
       this.firestoreServiceUser.getUsuariosByEmail(tripAux.email).subscribe(res=>{
         this.nombreOrganizador = res[0].nombre;
+        this.idOrganizador = res[0].id;
       });
 
       /* Esta función devuelve el array de solicitudes de un viaje */

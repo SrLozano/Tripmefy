@@ -44,7 +44,7 @@
 </div>
 
 <div class="main_container_der">
-   <p>Viaje organizado por <span class="organizador">{{nombreOrganizador}}</span></p>
+   <p>Viaje organizado por <span class="organizador" (click)="irOrganizador()">{{nombreOrganizador}}</span></p>
    <p>Comienza el dia <span class="bold">{{viaje.inicio}}</span></p>
    <p>Termina el dia <span class="bold">{{viaje.fin}}</span></p>
    <p><span class="bold">{{viaje.duracion}}</span></p>
